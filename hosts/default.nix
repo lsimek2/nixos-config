@@ -7,6 +7,8 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  boot.tmp.cleanOnBoot = true;
     
   home-manager = {
     # also pass inputs to home-manager modules
@@ -18,9 +20,7 @@
 
    backupFileExtension = "backup";
   };
- 
-  users.defaultUserShell = pkgs.nushell;
- 
+  
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -36,34 +36,29 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Zagreb";
-
-  services.xserver.enable = true;
-
-  services.xserver.windowManager.qtile.enable = true;
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
  
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+};
+
   services.libinput.enable = true;
 
   environment.systemPackages = with pkgs; [
+    git
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     nano
     nushell
-    alacritty
-    xfce.thunar
     gvfs
-    fish
-    picom
-    nerdfonts
     pueue
-    gedit
-    rofi
-    nextcloud-client
-    kmonad
-    networkmanagerapplet
     fastfetch
+    unar
   ];
   
   programs.gnupg.agent = {

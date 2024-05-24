@@ -86,5 +86,26 @@
       };
     };
   };
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+    extensions = with pkgs.vscode-extensions; [
+#      dracula-theme.theme-dracula
+#      vscodevim.vim
+#      yzhang.markdown-all-in-one
+      thenuprojectcontributors.vscode-nushell-lang
+      julialang.language-julia
+      haskell.haskell
+#      justusadan.language-haskell
+      betterthantomorrow.calva
+#      unison-lang.unison
+      jnoortheen.nix-ide
+      arrterian.nix-env-selector    
+      mkhl.direnv
+    ];
+  };
+
+  nixpkgs.config.allowUnfree = true;
 #  home-manager.backupFileExtension = 'backup';
 }
