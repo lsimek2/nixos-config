@@ -106,6 +106,12 @@
     ];
   };
 
+  programs.git = {
+    enable = true;
+    userEmail = "karlo.puselj@gmail.com";
+    userName = "Lunitur";
+  };
+
   nixpkgs.config.allowUnfree = true;
 #  home-manager.backupFileExtension = 'backup';
 }
