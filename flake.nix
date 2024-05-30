@@ -22,10 +22,12 @@
       ];
     };
     nixosConfigurations.centaur = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs; modules = import ./modules; };
       system = "x86_64-linux";
       modules = [
-        ./hosts/centaur/configuration.nix
+        ./hosts/centaur
+        ./hosts #defaults
+        ./users
         inputs.home-manager.nixosModules.default
       ];
     };

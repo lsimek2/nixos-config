@@ -11,9 +11,8 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../default.nix
+      ../../modules/qtile.nix
     ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Use the systemd-boot EFI boot loader.
   # boot.loader.systemd-boot.enable = true;
@@ -29,8 +28,9 @@ in
     };
   };
 
-  services.xserver.displayManager.lightdm.enable = true;
-  #services.xserver.displayManager.lightdm.extraConfig = ''display-setup-script = ${multimonitor}/bin/multimonitor'';
+
+  nixpkgs.config.allowUnfree = true;
+
   services.xserver.displayManager.setupCommands = "${multimonitor}/bin/multimonitor";
 
 # Load nvidia driver for Xorg and Wayland
@@ -47,7 +47,7 @@ in
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -67,7 +67,7 @@ in
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta; #config.boot.kernelPackages.nvidiaPackages.stable;
   
     prime = {
 #     offload = {
@@ -81,7 +81,7 @@ in
     };
   };
 
-  networking.hostName = "centaur"; # Define your hostname.
+  networking.hostName = "victus"; # Define your hostname.
 
 
   # Select internationalisation properties.
@@ -92,40 +92,18 @@ in
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-    # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    nano
-    nushell
-    alacritty
     xfce.thunar
-    gvfs
-    mypy # Qtile dependency
-  #  python311Packages.numpy
-    fish
-    picom
-    nerdfonts
-    pueue
-    gedit
     multimonitor
-    signal-desktop
-    element-desktop
-    rofi
-    nextcloud-client
     kmonad
-  #  python311
-  #  qtile-unwrapped
     networkmanagerapplet
-
+  #  blueman
+    
     (let
       my-python-packages = python-packages: with python-packages; [
         matplotlib
