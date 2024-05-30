@@ -3,24 +3,12 @@
 {
 
   imports = [
-    ../users/users.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.tmp.cleanOnBoot = true;
-    
-  home-manager = {
-    # also pass inputs to home-manager modules
-    extraSpecialArgs = {inherit inputs;};
-    users = {
-      carjin = import ../users/carjin/home.nix;
-      lsimek = import ../users/lsimek/home.nix;
-    };
 
-   backupFileExtension = "backup";
-  };
-  
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -36,7 +24,7 @@
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Zagreb";
- 
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -45,7 +33,7 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-};
+  };
 
   services.libinput.enable = true;
 
@@ -59,8 +47,9 @@
     pueue
     fastfetch
     unar
+    nixpkgs-fmt
   ];
-  
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;

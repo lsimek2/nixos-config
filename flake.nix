@@ -12,10 +12,12 @@
 
   outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations.victus = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs; modules = import ./modules; };
       system = "x86_64-linux";
       modules = [
-        ./hosts/victus/configuration.nix
+        ./hosts/victus
+        ./hosts #defaults
+        ./users
         inputs.home-manager.nixosModules.default
       ];
     };

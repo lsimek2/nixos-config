@@ -1,30 +1,25 @@
-{ config, pkgs, ... }:
+{ config, pkgs, modules, ... }:
 
 {
 
   imports = [
-    ../../modules/nushell.nix  
+    modules.nushell
+    ./theme.nix
   ];
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+
   home.username = "carjin";
   home.homeDirectory = "/home/carjin";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  home.stateVersion = "23.11";
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+  home.packages = with pkgs; [
+    #rstudio
+    (rstudioWrapper.override{ packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
+
+
+    dconf
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -43,6 +38,7 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+
     # # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
@@ -82,7 +78,7 @@
     enable = true;
     settings = {
       daemon = {
-        default_parallel_tasks = 2;
+        default_parallel_tasks = 64;
       };
     };
   };
@@ -91,17 +87,17 @@
     enable = true;
     package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
     extensions = with pkgs.vscode-extensions; [
-#      dracula-theme.theme-dracula
-#      vscodevim.vim
-#      yzhang.markdown-all-in-one
+      #      dracula-theme.theme-dracula
+      #      vscodevim.vim
+      #      yzhang.markdown-all-in-one
       thenuprojectcontributors.vscode-nushell-lang
       julialang.language-julia
       haskell.haskell
-#      justusadan.language-haskell
+      #      justusadan.language-haskell
       betterthantomorrow.calva
-#      unison-lang.unison
+      #      unison-lang.unison
       jnoortheen.nix-ide
-      arrterian.nix-env-selector    
+      arrterian.nix-env-selector
       mkhl.direnv
     ];
   };
@@ -112,6 +108,14 @@
     userName = "Lunitur";
   };
 
+  programs.neovim = {
+    enable = true;
+    extraConfig = ''
+      set number relativenumber
+    '';
+  };
+
+  dconf.enable = true;
+
   nixpkgs.config.allowUnfree = true;
-#  home-manager.backupFileExtension = 'backup';
 }
