@@ -50,7 +50,7 @@
     rustc
     cargo
     nh
-	bash
+    bash
   ]) ++ (with user-pkgs; [
     repl
     wl-ocr

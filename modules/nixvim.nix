@@ -10,7 +10,7 @@
       vim-nix
     ];
 
-    colorschemes.tokyonight.enable = true;
+    #		colorschemes.tokyonight.enable = true;
     clipboard.providers.xclip.enable = true;
 
     plugins = {
