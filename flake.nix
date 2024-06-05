@@ -51,7 +51,7 @@
       };
       nixosConfigurations.centaur = nixpkgs-stable.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules;
+          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim;
           home-manager = home-manager-stable;
         };
         system = "x86_64-linux";
