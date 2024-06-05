@@ -10,7 +10,9 @@
       vim-nix
     ];
 
-		colorschemes.gruvbox.enable = true;
+		colorschemes.tokyonight.enable = true;
+		clipboard.providers.xclip.enable = true;
+
 		plugins = {
 			lualine.enable = true;
 			telescope.enable = true;
@@ -24,6 +26,20 @@
 	
 			servers = {
 				ruff.enable = true;
+				hls.enable = true;
+				ccls.enable = true;
+				rust-analyzer.enable = true;
+				ruby-lsp.enable = true;
+				clojure-lsp.enable = true;
+				zls.enable = true;
+
+				html.enable = true;
+				cssls.enable = true;
+				
+				nushell.enable = true;
+				bashls.enable = true;
+
+				nixd.enable = true;
 			};
 		};
 	
