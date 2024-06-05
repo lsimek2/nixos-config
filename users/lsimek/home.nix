@@ -4,6 +4,7 @@
 
   imports = [
     modules.nushell
+    modules.nixvim
     ./theme.nix
   ];
 
@@ -105,13 +106,6 @@
     enable = true;
     userEmail = "iinjano@proton.me";
     userName = "lsimek";
-  };
-
-  programs.neovim = {
-    enable = true;
-    extraConfig = ''
-      set number relativenumber
-    '';
   };
 
   dconf.enable = true;

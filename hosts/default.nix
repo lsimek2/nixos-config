@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, user-pkgs, ... }:
 
 {
 
@@ -37,7 +37,7 @@
 
   services.libinput.enable = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     git
     wget
     nano
@@ -47,7 +47,10 @@
     fastfetch
     unar
     nixpkgs-fmt
-  ];
+  ]) ++ (with user-pkgs; [
+    repl
+    wl-ocr
+  ]);
 
   programs.gnupg.agent = {
     enable = true;
@@ -67,7 +70,6 @@
   services.udev.extraRules = ''
     KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", GROUP="input", MODE="0660"
   '';
-	
-	
+
   services.mullvad-vpn.enable = true;
 }

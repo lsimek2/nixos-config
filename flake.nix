@@ -15,9 +15,14 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, nixvim, ... }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
@@ -28,11 +33,12 @@
         config.allowUnfree = true;
       };
       modules = import ./modules;
+      user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
     in
     {
       nixosConfigurations.victus = nixpkgs-stable.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules;
+          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim;
           home-manager = home-manager-stable;
         };
         system = "x86_64-linux";
