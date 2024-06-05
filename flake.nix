@@ -20,9 +20,14 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, nixvim, stylix, ... }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
@@ -38,7 +43,7 @@
     {
       nixosConfigurations.victus = nixpkgs-stable.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim;
+          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
           home-manager = home-manager-stable;
         };
         system = "x86_64-linux";
@@ -47,11 +52,13 @@
           ./hosts #defaults
           ./users
           home-manager-stable.nixosModules.default
+          stylix.nixosModules.stylix
+          modules.stylix
         ];
       };
       nixosConfigurations.centaur = nixpkgs-stable.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim;
+          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
           home-manager = home-manager-stable;
         };
         system = "x86_64-linux";
@@ -60,6 +67,8 @@
           ./hosts #defaults
           ./users
           home-manager-stable.nixosModules.default
+          stylix.nixosModules.stylix
+          modules.stylix
         ];
       };
     };

@@ -5,7 +5,6 @@
   imports = [
     modules.nushell
     modules.nixvim
-    ./theme.nix
   ];
 
   home.username = "lsimek";

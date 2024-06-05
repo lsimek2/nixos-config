@@ -3,4 +3,5 @@
   nushell = ./nushell.nix;
   hyprland = ./hyprland.nix;
   nixvim = ./nixvim.nix;
+  stylix = ./stylix.nix;
 }

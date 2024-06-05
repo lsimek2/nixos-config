@@ -4,7 +4,6 @@
 
   imports = [
     modules.nushell
-    ./theme.nix
     modules.nixvim
   ];
 
