@@ -19,6 +19,10 @@
 			oil.enable = true;
 			treesitter.enable = true;
 			luasnip.enable = true;
+			
+			nvim-tree.enable = true;
+			surround.enable = true;
+			bufferline.enable = true;
 		};
 	
 		plugins.lsp = {
@@ -28,7 +32,11 @@
 				ruff.enable = true;
 				hls.enable = true;
 				ccls.enable = true;
+
 				rust-analyzer.enable = true;
+				rust-analyzer.installRustc = false;
+				rust-analyzer.installCargo = false;				
+				
 				ruby-lsp.enable = true;
 				clojure-lsp.enable = true;
 				zls.enable = true;
@@ -40,21 +48,27 @@
 				bashls.enable = true;
 
 				nixd.enable = true;
+				ltex.enable = true;
 			};
 		};
-	
+
+		plugins.alpha = {
+			enable = true;
+			theme = "dashboard";
+		};
+		
 		plugins.cmp = {
 			enable = true;
 			autoEnableSources = true;
 	
-# 			sources = [
-# 				{name = "nvim-lsp";}
-# 				{name = "path";}
-# 				{name = "buffer";}
-# 			];
+ 			settings.sources = [
+ 				{name = "nvim-lsp";}
+ 				{name = "path";}
+ 				{name = "buffer";}
+ 			];
 		};
 	
-		options = {
+		opts = {
 			number = true;
 			relativenumber = true;
 	

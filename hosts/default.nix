@@ -47,6 +47,8 @@
     fastfetch
     unar
     nixpkgs-fmt
+		rustc
+		cargo
   ]) ++ (with user-pkgs; [
     repl
     wl-ocr
