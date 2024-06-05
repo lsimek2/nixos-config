@@ -51,6 +51,8 @@
     cargo
     nh
     bash
+    ghc
+    stack
   ]) ++ (with user-pkgs; [
     repl
     wl-ocr
