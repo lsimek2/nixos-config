@@ -9,14 +9,18 @@ in
 {
   imports =
     [
-      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       modules.qtile
       ./nvidia.nix
     ];
 
+  services.xserver.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+  };
+
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.enable = true;
 
   boot.loader = {
     efi = {
@@ -57,6 +61,10 @@ in
     multimonitor
     kmonad
     networkmanagerapplet
+    xmobar
+    xcompmgr
+    rofi
+    stalonetray
     #  blueman
 
     (
@@ -72,12 +80,6 @@ in
       python-with-my-packages
     )
   ];
-  #  services.xserver.windowManager.session = [{
-  #    name = "qtile-wayland";
-  #    start = ''
-  #      /usr/bin/env qtile start -b wayland &
-  #      waitPID=$!
-  #    '';
-  #  }];
+
 }
 

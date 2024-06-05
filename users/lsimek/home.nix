@@ -16,7 +16,7 @@
   # environment.
   home.packages = with pkgs; [
     #rstudio
-    (rstudioWrapper.override{ packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
+    (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
 
     dconf
 
@@ -67,7 +67,7 @@
   #  /etc/profiles/per-user/carjin/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-#  	EDITOR = "";
+    #  	EDITOR = "";
   };
 
   # Let Home Manager install and manage itself.
@@ -82,25 +82,25 @@
     };
   };
 
-#   programs.vscode = {
-#     enable = true;
-#     package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
-#     extensions = with pkgs.vscode-extensions; [
-#       #      dracula-theme.theme-dracula
-#       #      vscodevim.vim
-#       #      yzhang.markdown-all-in-one
-#       thenuprojectcontributors.vscode-nushell-lang
-#       julialang.language-julia
-#       haskell.haskell
-#       #      justusadan.language-haskell
-#       betterthantomorrow.calva
-#       #      unison-lang.unison
-#       jnoortheen.nix-ide
-#       arrterian.nix-env-selector
-#       mkhl.direnv
-#     ];
-#   };
-# 
+  #   programs.vscode = {
+  #     enable = true;
+  #     package = pkgs.vscode.fhsWithPackages (ps: with ps; [ rustup zlib openssl.dev pkg-config ]);
+  #     extensions = with pkgs.vscode-extensions; [
+  #       #      dracula-theme.theme-dracula
+  #       #      vscodevim.vim
+  #       #      yzhang.markdown-all-in-one
+  #       thenuprojectcontributors.vscode-nushell-lang
+  #       julialang.language-julia
+  #       haskell.haskell
+  #       #      justusadan.language-haskell
+  #       betterthantomorrow.calva
+  #       #      unison-lang.unison
+  #       jnoortheen.nix-ide
+  #       arrterian.nix-env-selector
+  #       mkhl.direnv
+  #     ];
+  #   };
+  # 
   programs.git = {
     enable = true;
     userEmail = "iinjano@proton.me";

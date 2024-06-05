@@ -5,9 +5,10 @@
 { config, lib, pkgs, modules, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
-			modules.qtile
+      modules.qtile
     ];
 
   nix.settings.experimental-features = [ "nix-command" ];
@@ -35,9 +36,9 @@
 
   services.xserver.displayManager.lightdm.enable = true;
 
-# Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-  
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" ];
+
   hardware.nvidia = {
 
     forceFullCompositionPipeline = true;
@@ -65,17 +66,17 @@
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-  
+
   };
 
 
   # Unfree software
-  nixpkgs.config.allowUnfree = true;  
+  nixpkgs.config.allowUnfree = true;
 
   users.defaultUserShell = pkgs.nushell;
   fonts.packages = with pkgs; [
@@ -85,7 +86,7 @@
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";

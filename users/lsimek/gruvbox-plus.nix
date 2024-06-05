@@ -12,5 +12,5 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out
     ${pkgs.unzip}/bin/unzip $src -d $out/
-   '';
+  '';
 }

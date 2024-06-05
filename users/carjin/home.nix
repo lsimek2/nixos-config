@@ -1,4 +1,4 @@
-{ config, pkgs, modules, ... }:
+{ config, pkgs, pkgs-unstable, modules, ... }:
 
 {
 
@@ -16,7 +16,7 @@
   # environment.
   home.packages = with pkgs; [
     #rstudio
-    (rstudioWrapper.override{ packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
+    (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
 
 
     dconf
@@ -108,12 +108,6 @@
     userName = "Lunitur";
   };
 
-  programs.neovim = {
-    enable = true;
-    extraConfig = ''
-      set number relativenumber
-    '';
-  };
 
   dconf.enable = true;
 

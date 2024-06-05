@@ -8,7 +8,8 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../default.nix
     ];
@@ -24,8 +25,8 @@ in
       efiSysMountPoint = "/boot/efi";
     };
     grub = {
-        efiSupport = true;
-        device = "nodev";
+      efiSupport = true;
+      device = "nodev";
     };
   };
 
@@ -33,8 +34,8 @@ in
   #services.xserver.displayManager.lightdm.extraConfig = ''display-setup-script = ${multimonitor}/bin/multimonitor'';
   services.xserver.displayManager.setupCommands = "${multimonitor}/bin/multimonitor";
 
-# Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
 
@@ -63,17 +64,17 @@ in
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-  
+
     prime = {
-#     offload = {
-#       enable = true;
-#       enableOffloadCmd = true;
-#     };
+      #     offload = {
+      #       enable = true;
+      #       enableOffloadCmd = true;
+      #     };
       sync.enable = true;
       # Make sure to use the correct Bus ID values for your system!
       amdgpuBusId = "PCI:7:0:0";
@@ -92,7 +93,7 @@ in
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-    # Configure keymap in X11
+  # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
@@ -110,7 +111,7 @@ in
     xfce.thunar
     gvfs
     mypy # Qtile dependency
-  #  python311Packages.numpy
+    #  python311Packages.numpy
     fish
     picom
     nerdfonts
@@ -122,20 +123,22 @@ in
     rofi
     nextcloud-client
     kmonad
-  #  python311
-  #  qtile-unwrapped
+    #  python311
+    #  qtile-unwrapped
     networkmanagerapplet
 
-    (let
-      my-python-packages = python-packages: with python-packages; [
-        matplotlib
-        numpy
-        pandas
-        scikit-learn
-      ];
-     python-with-my-packages = python3.withPackages my-python-packages;
-     in
-    python-with-my-packages)
+    (
+      let
+        my-python-packages = python-packages: with python-packages; [
+          matplotlib
+          numpy
+          pandas
+          scikit-learn
+        ];
+        python-with-my-packages = python3.withPackages my-python-packages;
+      in
+      python-with-my-packages
+    )
   ];
   #services.xserver.windowManager.session = [{
   #  name = "qtile";

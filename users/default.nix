@@ -1,4 +1,4 @@
-{inputs, modules,...}:
+{ inputs, modules, pkgs-unstable, pkgs-stable, ... }:
 {
   imports = [
     ./carjin/user.nix
@@ -7,7 +7,7 @@
 
   home-manager = {
     # also pass inputs to home-manager modules
-    extraSpecialArgs = { inherit inputs; inherit modules; };
+    extraSpecialArgs = { inherit modules pkgs-unstable pkgs-stable; };
     users = {
       carjin = import ./carjin/home.nix;
       lsimek = import ./lsimek/home.nix;
