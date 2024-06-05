@@ -75,6 +75,44 @@
 			shiftwidth = 2;
 	
 		};
+
+		keymaps = [
+			{
+				action = "<cmd>NvimTreeToggle<CR>";
+				key = "<C-n>";
+				mode = "n";
+			}
+
+			{
+				action = "<cmd>bnext<CR>";
+				key = "<Tab>";
+				mode = "n";
+			}
+
+			{
+				action = "<cmd>bprevious<CR>";
+				key = "<S-Tab>";
+				mode = "n";
+			}
+
+			{
+				action = "<cmd>Telescope find_files<CR>";
+				key = "<Space>ff";
+				mode = "n";
+			}
+
+			{
+				action = "<C-w>l";
+				key = "<C-l>";
+				mode = "n";
+			}
+
+			{
+				action = "<C-w>h";
+				key = "<C-h>";
+				mode = "n";
+			}
+		];
 	
 	  globals.mapleader = " ";
 	};
