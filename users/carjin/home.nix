@@ -5,6 +5,7 @@
   imports = [
     modules.nushell
     modules.nixvim
+    modules.stylix-hm
   ];
 
   home.username = "carjin";

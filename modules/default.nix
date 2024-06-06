@@ -4,4 +4,5 @@
   hyprland = ./hyprland.nix;
   nixvim = ./nixvim.nix;
   stylix = ./stylix.nix;
+  stylix-hm = ./stylix-hm.nix;
 }
