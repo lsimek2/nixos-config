@@ -10,7 +10,6 @@
       vim-nix
     ];
 
-    #		colorschemes.tokyonight.enable = true;
     clipboard.providers.xclip.enable = true;
 
     plugins = {
@@ -23,6 +22,8 @@
       nvim-tree.enable = true;
       surround.enable = true;
       bufferline.enable = true;
+
+#      lazy.enable = true;
     };
 
     plugins.lsp = {
@@ -65,12 +66,42 @@
         { name = "nvim-lsp"; }
         { name = "path"; }
         { name = "buffer"; }
+        #{ name = "cmdline"; }
+        #{ name = "cmdline-history"; }
+        { name = "dictionary"; }
+        { name = "latex_symbols"; }
+        { name = "luasnip"; }
       ];
+      
+      settings.mapping = {
+      	 "<CR>" = "cmp.mapping.confirm({ select = true })";
+	 "<Tab>" = ''
+	   cmp.mapping(
+	     function(fallback)
+		if cmp.visible() then
+		 cmp.select_next_item()
+		elseif luasnip and luasnip.expandable() then
+		 luasnip.expand()
+		elseif luasnip and luasnip.expand_or_jumpable() then
+		 luasnip.expand_or_jump()
+		elseif check_backspace and check_backspace() then
+		 fallback()
+		else
+		 fallback()
+		end
+	     end
+	   ,
+	   { "i", "s" }
+	 )
+         '';
+       };
     };
+
 
     opts = {
       number = true;
       relativenumber = true;
+      expandtab = true;
 
       shiftwidth = 2;
 
@@ -110,6 +141,12 @@
       {
         action = "<C-w>h";
         key = "<C-h>";
+        mode = "n";
+      }
+
+      {
+        action = "<cmd>close<CR>";
+        key = "<Space>x";
         mode = "n";
       }
     ];
