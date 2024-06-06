@@ -23,7 +23,58 @@
       surround.enable = true;
       bufferline.enable = true;
 
-#      lazy.enable = true;
+      toggleterm.enable = true;
+
+      cmp-buffer = { enable = true; };
+      cmp-nvim-lsp = { enable = true; };
+      cmp-path = { enable = true; };
+      cmp_luasnip = { enable = true; };
+
+      cmp = {
+        enable = true;
+	autoEnableSources = true;
+
+        settings = {
+          snippet.expand = ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "luasnip"; }
+            {
+              name = "buffer";
+              option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
+            }
+            { name = "nvim_lua"; }
+            { name = "path"; }
+          ];
+
+          mapping = {
+           "<CR>" = "cmp.mapping.confirm({ select = true })";
+           "<Tab>" = ''
+             cmp.mapping(
+               function(fallback)
+                  if cmp.visible() then
+                   cmp.select_next_item()
+                  elseif luasnip and luasnip.expandable() then
+                   luasnip.expand()
+                  elseif luasnip and luasnip.expand_or_jumpable() then
+                   luasnip.expand_or_jump()
+                  elseif check_backspace and check_backspace() then
+                   fallback()
+                  else
+                   fallback()
+                  end
+               end
+             ,
+             { "i", "s" }
+           )
+           '';
+          };
+        };
+      };
     };
 
     plugins.lsp = {
@@ -58,46 +109,6 @@
       theme = "dashboard";
     };
 
-    plugins.cmp = {
-      enable = true;
-      autoEnableSources = true;
-
-      settings.sources = [
-        { name = "nvim-lsp"; }
-        { name = "path"; }
-        { name = "buffer"; }
-        #{ name = "cmdline"; }
-        #{ name = "cmdline-history"; }
-        { name = "dictionary"; }
-        { name = "latex_symbols"; }
-        { name = "luasnip"; }
-      ];
-      
-      settings.mapping = {
-      	 "<CR>" = "cmp.mapping.confirm({ select = true })";
-	 "<Tab>" = ''
-	   cmp.mapping(
-	     function(fallback)
-		if cmp.visible() then
-		 cmp.select_next_item()
-		elseif luasnip and luasnip.expandable() then
-		 luasnip.expand()
-		elseif luasnip and luasnip.expand_or_jumpable() then
-		 luasnip.expand_or_jump()
-		elseif check_backspace and check_backspace() then
-		 fallback()
-		else
-		 fallback()
-		end
-	     end
-	   ,
-	   { "i", "s" }
-	 )
-         '';
-       };
-    };
-
-
     opts = {
       number = true;
       relativenumber = true;
@@ -110,7 +121,7 @@
     keymaps = [
       {
         action = "<cmd>NvimTreeToggle<CR>";
-        key = "<C-n>";
+        key = "<Space>-n";
         mode = "n";
       }
 
@@ -128,25 +139,43 @@
 
       {
         action = "<cmd>Telescope find_files<CR>";
-        key = "<Space>ff";
+        key = "<Space>f";
         mode = "n";
       }
 
       {
         action = "<C-w>l";
-        key = "<C-l>";
+        key = "<Space>l";
         mode = "n";
       }
 
       {
         action = "<C-w>h";
-        key = "<C-h>";
+        key = "<Space>w";
+        mode = "n";
+      }
+
+      {
+        action = "<C-w>j";
+        key = "<Space>j";
+        mode = "n";
+      }
+
+      {
+        action = "<C-w>k";
+        key = "<Space>k";
         mode = "n";
       }
 
       {
         action = "<cmd>close<CR>";
         key = "<Space>x";
+        mode = "n";
+      }
+
+      {
+        action = "<cmd>ToggleTerm<CR>";
+        key = "<Space>t";
         mode = "n";
       }
     ];
