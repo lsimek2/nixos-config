@@ -71,7 +71,12 @@ w_spacer = lambda: widget.Spacer(
             background=main_background,
         )
 
-w_window_name = lambda: widget.WindowName(foreground=colors.get('white'), max_chars=30, **theme_defaults)
+w_window_name = lambda: widget.WindowName(foreground=colors.get('white'), max_chars=20,
+                                          fontsize=13,
+                                          padding_size=10,
+                                          background=colors.get('lblack'),
+                                          font='Hack Nerd Font',
+                                          )
 
 w_sep = lambda linewidth: widget.Sep(
             linewidth=linewidth,
@@ -142,22 +147,26 @@ w_clock = lambda: widget.Clock(
 
 w_tray = lambda: widget.Systray(**theme_defaults) if (qtile.core.name == "x11") else widget.StatusNotifier(**theme_defaults)
 
-w_menu = lambda: widget.Image(
-            filename="~/.config/qtile/icons/qtilelogo2.png",
-            iconsize=9,
+w_icon = lambda: widget.Image(
+            filename='~/.config/qtile/icons/nixlogo3.png',
             background=colors.get('lblack'),
-            mouse_callbacks={'Button1': lambda: qtile.cmd_spawn('jgmenu_run')}
-            )
+         )
 
 w_tasklist = lambda: widget.TaskList(
-    margin = 0,
-    padding_y = 5,
-    **theme_defaults)
+#    padding=10,
+#    margin=5,
+    font_size=13,
+    background=colors.get('lblack'),
+    foreground=colors.get('white'),
+    font='Hack Nerd Font Mono',
+    borderwidth=1,
+    border=colors.get('laven'),
+    )
 
 def init_widgets_screen1():
     widgets_list_screen1 = [
             w_sep(5),
-            w_menu(),
+            w_icon(),      
             w_groupbox(),
       #      w_window_name(),
             w_tasklist(),
@@ -179,7 +188,7 @@ def init_widgets_screen2():
     widgets_list_screen2 = [
 
         w_sep(5),              #
-        w_menu(),
+#        w_icon(),
         w_groupbox(),
         w_tasklist(),
         w_spacer(),
@@ -191,7 +200,7 @@ def init_widgets_screen2():
 
 
 main_bar = bar.Bar(widgets=init_widgets_screen1(), size=25,
-                   opacity=0.85, background="000000")
+                   opacity=0.80, background="222222")
 
 main_bar2 = bar.Bar(widgets=init_widgets_screen2(), size=25,
-                    opacity=0.85, background="000000")
+                    opacity=0.80, background="222222")

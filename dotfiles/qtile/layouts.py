@@ -6,17 +6,17 @@ from colorschemes import colors
 
 def init_layout_theme():
     return {"margin":10,
-            "border_width":2,
-            "border_focus": colors.get('pist'),
-            "border_normal": colors.get('laven')
+            "border_width":1,
+            "border_focus": colors.get('laven'),
+            "border_normal": colors.get('lblack')
             }
 
 layout_theme = init_layout_theme()
 
 # layouts = []
 layouts = [
-     layout.MonadTall(margin=10, border_width=2, border_focus=colors.get('pist'), border_normal=colors.get('laven')),
-     layout.MonadWide(margin=10, border_width=2, border_focus=colors.get('pist'), border_normal=colors.get('laven')),
+     layout.MonadTall(margin=10, border_width=1, border_focus=colors.get('laven'), border_normal=colors.get('lblack')),
+     layout.MonadWide(margin=10, border_width=1, border_focus=colors.get('laven'), border_normal=colors.get('lblack')),
      layout.Matrix(**layout_theme),
      layout.Bsp(**layout_theme),
      layout.Floating(**layout_theme),
