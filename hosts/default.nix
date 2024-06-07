@@ -47,6 +47,9 @@
     bash
     ghc
     stack
+    alsa-utils
+    brightnessctl
+
   ]) ++ (with user-pkgs; [
     repl
     wl-ocr

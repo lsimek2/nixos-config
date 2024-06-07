@@ -47,7 +47,7 @@ keys = [
     Key([mod], "d",
         lazy.spawn(
             ("rofi -show drun" if qtile.core.name == "x11" else
-             "wofi -I"))),
+             "wofi -S drun"))),
     Key([mod], "Escape", lazy.spawn('xkill')),
     Key([mod], "Return", lazy.spawn(myTerm + " --command nu")),
     Key([mod], "KP_Enter", lazy.spawn(myTerm)),
@@ -89,8 +89,8 @@ keys = [
     # MULTIMEDIA KEYS
 
     # INCREASE/DECREASE BRIGHTNESS
-    Key([], "XF86MonBrightnessUp", lazy.spawn(home + '/.config/qtile/scripts/brightness.sh inc')),
-    Key([], "XF86MonBrightnessDown", lazy.spawn(home + '/.config/qtile/scripts/brightness.sh dec')),
+    Key([], "XF86MonBrightnessUp", lazy.spawn('brightnessctl set 5%+')),
+    Key([], "XF86MonBrightnessDown", lazy.spawn('brightnessctl set 5%-')),
     # Key([], "XF86MonBrightnessDown", lazy.spawn(f"notify-send {brightnessCon(False)}")),
 
     # INCREASE/DECREASE/MUTE VOLUME
