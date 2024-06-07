@@ -47,7 +47,7 @@ groups.append(scratchpad)
 
 if qtile.core.name == "wayland":
     wl_input_rules = {
-        "type:touchpad": InputConfig(dwt=False),
+        "type:touchpad": InputConfig(dwt=False, tap=True, natural_scroll=True),
         "type:keyboard": InputConfig(kb_options="caps:ctrl_modifier,compose:ralt"),
     }
 

@@ -19,6 +19,13 @@ in
     enableContribAndExtras = true;
   };
 
+  
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
   services.xserver.enable = true;
   #services.displayManager.sddm.enable = true;
 

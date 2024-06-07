@@ -4,42 +4,40 @@
 
 { config, lib, pkgs, inputs, modules, ... }:
 let
-  multimonitor = import ./multimonitor.nix { inherit pkgs; };
+  monitor = import ./monitor.nix { inherit pkgs; };
 in
 {
   imports =
     [
       ./hardware-configuration.nix
-      modules.qtile
+      modules.qtile-wayland
     ];
 
-  services.xserver.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-  };
+  services.xserver.videoDrivers = [ "intel" ];
 
   services.xserver.enable = true;
-  #services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    settings = {
+      Autologin = {
+        Session = "qtile.desktop";
+        User = "carjin";
+      };  
+    };
+  };
+
+  #services.xserver.deviceSection = ''
+  #  Option "DRI" "2"
+  #  Option "TearFree" "true"
+  #'';
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config.allowUnfree = true;
 
-  services.xserver.displayManager.setupCommands = "${multimonitor}/bin/multimonitor";
-
-  # Load nvidia driver for Xorg and Wayland
-
   networking.hostName = "minibook"; # Define your hostname.
-
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -48,13 +46,14 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     xfce.thunar
-    multimonitor
+    monitor
     kmonad
     networkmanagerapplet
     xmobar
     xcompmgr
     rofi
     stalonetray
+    wlr-randr
     #  blueman
 
     (
@@ -70,6 +69,19 @@ in
       python-with-my-packages
     )
   ];
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  };
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      libvdpau-va-gl
+    ];
+  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
 
   system.stateVersion = "24.05";
 

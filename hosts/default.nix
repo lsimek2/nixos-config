@@ -9,12 +9,6 @@
 
   boot.tmp.cleanOnBoot = true;
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = with pkgs; [

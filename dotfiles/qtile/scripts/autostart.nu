@@ -7,9 +7,10 @@ def run [name: string, ...args: string] {
 }
 
 ^pueue clean
-#^pueue parallel 1024
+^pueue parallel 1024
 
 if ($env.XDG_SESSION_TYPE == "wayland") {
+    run rotate-screen
     run swaybg "-i" ~/Pictures/wallhaven-8586my.png "-m" fit
 }
 

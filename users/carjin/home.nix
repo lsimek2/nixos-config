@@ -20,7 +20,7 @@
     #rstudio
     (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
     haskell-language-server
-
+    ani-cli
     dconf
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
