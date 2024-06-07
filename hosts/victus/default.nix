@@ -80,6 +80,8 @@ in
       python-with-my-packages
     )
   ];
+  
+  system.stateVersion = "23.11";
 
 }
 

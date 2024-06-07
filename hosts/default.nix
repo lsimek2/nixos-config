@@ -68,8 +68,6 @@
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.allowedUDPPorts = [ 22 ];
 
-  system.stateVersion = "23.11";
-
   #kmonad
   boot.kernelModules = [ "uinput" ];
 
