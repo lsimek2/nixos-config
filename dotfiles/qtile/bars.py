@@ -66,6 +66,8 @@ w_groupbox = lambda: widget.GroupBox(
             disable_drag=True,
         )
 
+w_pulsevolume = lambda: widget.PulseVolume(**theme_defaults)
+
 w_spacer = lambda: widget.Spacer(
             length=bar.STRETCH,
             background=main_background,
@@ -150,6 +152,7 @@ w_tray = lambda: widget.Systray(**theme_defaults) if (qtile.core.name == "x11") 
 w_icon = lambda: widget.Image(
             filename='~/.config/qtile/icons/nixlogo3.png',
             background=colors.get('lblack'),
+            margin_y=3.5
          )
 
 w_tasklist = lambda: widget.TaskList(
@@ -174,6 +177,7 @@ def init_widgets_screen1():
             w_current_layout(),
            # w_updates(),
            # w_clipboard(),
+            w_pulsevolume(),
             w_cpu(),
             w_ram(),
             w_net(),
