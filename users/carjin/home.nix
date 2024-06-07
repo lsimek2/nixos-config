@@ -6,6 +6,7 @@
     modules.nushell
     modules.nixvim
     modules.stylix-hm
+    ../../dotfiles
   ];
 
   home.username = "carjin";
