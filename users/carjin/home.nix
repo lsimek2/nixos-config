@@ -18,7 +18,7 @@
   home.packages = with pkgs; [
     #rstudio
     (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
-
+    haskell-language-server
 
     dconf
 
@@ -113,4 +113,19 @@
   dconf.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  programs.helix = {
+    enable = true;
+    languages.language = [{
+      name = "nix";
+      auto-format = true;
+      formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+    }];
+    settings = {
+      editor.lsp = {
+        display-inlay-hints = true;
+      };
+    };
+  };
+
 }

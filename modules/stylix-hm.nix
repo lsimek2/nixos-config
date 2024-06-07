@@ -1,6 +1,6 @@
-{pkgs, ...}: {
-    stylix.targets = {
-       firefox.enable = true;
-       nushell.enable = true;
+{ pkgs, ... }: {
+  stylix.targets = {
+    firefox.enable = true;
+    nushell.enable = true;
   };
 }
