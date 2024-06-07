@@ -18,7 +18,6 @@
       element-desktop
       nextcloud-client
       gedit
-      alacritty
       cargo
       stack
     ];

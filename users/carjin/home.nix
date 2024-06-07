@@ -22,6 +22,7 @@
     haskell-language-server
     ani-cli
     dconf
+    alacritty
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -112,6 +113,7 @@
 
 
   dconf.enable = true;
+  programs.alacritty.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
