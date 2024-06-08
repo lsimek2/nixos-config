@@ -5,6 +5,8 @@
   imports = [
   ];
 
+  zramSwap.enable = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.tmp.cleanOnBoot = true;
