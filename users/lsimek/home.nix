@@ -18,7 +18,7 @@
   # environment.
   home.packages = with pkgs; [
     #rstudio
-    (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
+   # (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
 
     dconf
     alacritty

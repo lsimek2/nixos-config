@@ -30,7 +30,7 @@
 import os
 import subprocess
 from libqtile import hook, qtile
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile.backend.wayland import InputConfig
 
 # My home made imports

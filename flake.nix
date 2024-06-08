@@ -56,17 +56,17 @@
           modules.stylix
         ];
       };
-      nixosConfigurations.minibook = nixpkgs-stable.lib.nixosSystem {
+      nixosConfigurations.minibook = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = {
           inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
-          home-manager = home-manager-stable;
+          home-manager = home-manager-unstable;
         };
         system = "x86_64-linux";
         modules = [
           ./hosts/minibook
           ./hosts #defaults
           ./users
-          home-manager-stable.nixosModules.default
+          home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
         ];

@@ -10,7 +10,6 @@ in
   imports =
     [
       ./hardware-configuration.nix
-      modules.qtile-wayland
     ];
 
   services.xserver.videoDrivers = [ "intel" ];
@@ -21,27 +20,38 @@ in
     wayland.enable = true;
     settings = {
       Autologin = {
-        Session = "qtile.desktop";
+        Session = "sway.desktop";
         User = "carjin";
       };  
     };
   };
 
-  #services.xserver.deviceSection = ''
-  #  Option "DRI" "2"
-  #  Option "TearFree" "true"
-  #'';
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
   nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "minibook"; # Define your hostname.
+  networking.hostName = "minibook"; 
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
+  programs.waybar.enable = true;
+
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
+
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -49,26 +59,25 @@ in
     monitor
     kmonad
     networkmanagerapplet
-    xmobar
-    xcompmgr
-    rofi
     stalonetray
-    wlr-randr
-    #  blueman
 
-    (
-      let
-        my-python-packages = python-packages: with python-packages; [
-          matplotlib
-          numpy
-          pandas
-          scikit-learn
-        ];
-        python-with-my-packages = python3.withPackages my-python-packages;
-      in
-      python-with-my-packages
-    )
+    wlr-randr
+    waybar
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    mako 
+    pamixer
+    wofi
+    dunst
+    autotiling-rs
+    sway-contrib.grimshot
+    pavucontrol
+    xdg-desktop-portal
+    swayr
   ];
+
+  xdg.portal.wlr.enable = true;
 
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
@@ -81,7 +90,7 @@ in
       libvdpau-va-gl
     ];
   };
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "i965"; }; # Force intel-media-driver
 
   system.stateVersion = "24.05";
 
