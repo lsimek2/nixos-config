@@ -43,6 +43,11 @@ icons = {
         'update': '\udb81\udeb0',
         'checkmark': '\uf4b2',
         'search': '\uf4b1',
+        'volume_high': '\udb81\udd7e',
+        'volume_mid': '\udb81\udd80',
+        'volume_low': '\udb81\udd7f',
+        'volume_mute': '\udb81\udf5f'
+
     }
 
 utf16_patch = lambda _str: _str.encode('utf-16', 'surrogatepass').decode('utf-16')
@@ -66,7 +71,12 @@ w_groupbox = lambda: widget.GroupBox(
             disable_drag=True,
         )
 
-w_pulsevolume = lambda: widget.PulseVolume(**theme_defaults)
+w_volume_emoji = lambda: widget.Volume(
+    emoji=True,
+    emoji_list=[icons.get('volume_mute','VOL_MUTE'),icons.get('volume_low','VOL_LOW'),icons.get('volume_mid','VOL_MID'),icons.get('volume_high','VOL_HI')],
+    **{**theme_defaults, 'padding':2})
+
+w_volume = lambda: widget.Volume( **{**theme_defaults, 'padding':4})
 
 w_spacer = lambda: widget.Spacer(
             length=bar.STRETCH,
@@ -177,7 +187,8 @@ def init_widgets_screen1():
             w_current_layout(),
            # w_updates(),
            # w_clipboard(),
-            w_pulsevolume(),
+            w_volume_emoji(),
+            w_volume(),
             w_cpu(),
             w_ram(),
             w_net(),
