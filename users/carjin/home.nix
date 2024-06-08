@@ -20,6 +20,8 @@
     dconf
     alacritty
     anki-bin
+    mpv
+    deluge-gtk
 
   ]) ++ (with pkgs-stable; [
     (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
