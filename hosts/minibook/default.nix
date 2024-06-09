@@ -52,14 +52,26 @@ in
     enable = true;
     powertop.enable = true;
   };
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    xfce.thunar
     monitor
     kmonad
     networkmanagerapplet
     stalonetray
+    xfce.xfce4-taskmanager
 
     wlr-randr
     waybar
