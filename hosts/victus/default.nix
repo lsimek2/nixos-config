@@ -36,6 +36,7 @@ in
     };
     grub = {
       efiSupport = true;
+      useOSProber = true;
       device = "nodev";
     };
   };
