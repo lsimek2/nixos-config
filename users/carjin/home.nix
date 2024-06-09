@@ -27,9 +27,7 @@
     (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
   ]);
 
-  home.file = {
-
-  };
+  home.file = { };
 
   home.sessionVariables = {
     # EDITOR = "emacs";
@@ -90,6 +88,11 @@
         display-inlay-hints = true;
       };
     };
+  };
+
+  gtk.iconTheme = {
+    package = pkgs.papirus-icon-theme;
+    name = "Papirus";
   };
 
 }

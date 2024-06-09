@@ -19,7 +19,7 @@ in
     enableContribAndExtras = true;
   };
 
-  
+
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -87,7 +87,7 @@ in
       python-with-my-packages
     )
   ];
-  
+
   system.stateVersion = "23.11";
 
 }

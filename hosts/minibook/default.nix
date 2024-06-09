@@ -22,7 +22,7 @@ in
       Autologin = {
         Session = "sway.desktop";
         User = "carjin";
-      };  
+      };
     };
   };
 
@@ -33,7 +33,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  networking.hostName = "minibook"; 
+  networking.hostName = "minibook";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -66,7 +66,7 @@ in
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako 
+    mako
     pamixer
     wofi
     dunst
