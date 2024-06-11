@@ -22,6 +22,7 @@
     anki-bin
     mpv
     deluge-gtk
+    libreoffice
 
   ]) ++ (with pkgs-stable; [
     (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
