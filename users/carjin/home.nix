@@ -89,6 +89,7 @@
       };
     };
   };
+  stylix.targets.helix.enable = false;
 
   gtk.iconTheme = {
     package = pkgs.papirus-icon-theme;
