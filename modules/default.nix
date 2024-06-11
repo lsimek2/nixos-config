@@ -6,4 +6,5 @@
   nixvim = ./nixvim.nix;
   stylix = ./stylix.nix;
   stylix-hm = ./stylix-hm.nix;
+  nix-ld = ./nix-ld.nix;
 }
