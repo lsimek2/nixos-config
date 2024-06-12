@@ -5,6 +5,8 @@
     ./lsimek/user.nix
   ];
 
+  nix.trustedUsers = [ "root" "carjin" "lsimek" ];
+
   home-manager = {
     # also pass inputs to home-manager modules
     extraSpecialArgs = { inherit modules pkgs-unstable pkgs-stable nixvim stylix; };
