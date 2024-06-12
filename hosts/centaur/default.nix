@@ -9,6 +9,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       modules.qtile
+      modules.nix-ld
     ];
 
   nix.settings.experimental-features = [ "nix-command" ];

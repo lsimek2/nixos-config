@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, modules, ... }:
 let
   multimonitor = import ./multimonitor.nix { inherit pkgs; };
 in
@@ -12,6 +12,7 @@ in
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../default.nix
+      modules.nix-ld
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
