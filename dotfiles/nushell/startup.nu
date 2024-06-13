@@ -7,18 +7,9 @@ let ssh_agent_file = ( $nu.temp-path | path join $"ssh-agent-($env.USER).nuon" )
 open $ssh_agent_file | load-env
 
 def 'git nixos' [message] {
-  if not ("/tmp/nixos-config" | path exists) {
-    git clone -n git@github.com:Lunitur/nixos-config.git /tmp/nixos-config
-    ^cp -r ./ /tmp/nixos-config
-    cd /tmp/nixos-config
     git add .
     git commit -m $message
     git push
-  } else {
-    rm -rf /tmp/nixos-config
-    git nixos $message
-  }
-
 }
 
 def 'server carjin' [] {
