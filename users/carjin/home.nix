@@ -15,6 +15,7 @@
   home.stateVersion = "23.11";
 
   home.packages = (with pkgs; [
+    nmap
     haskell-language-server
     ani-cli
     dconf
@@ -33,7 +34,7 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-
+``
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
