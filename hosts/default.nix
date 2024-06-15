@@ -51,6 +51,7 @@
     stack
     alsa-utils
     brightnessctl
+    clamav
 
   ]) ++ (with user-pkgs; [
     repl

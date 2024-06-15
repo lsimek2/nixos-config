@@ -13,10 +13,10 @@ in {
     enableContribAndExtras = true;
   };
 
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-  };
+  #powerManagement = {
+  #  enable = true;
+  #  powertop.enable = true;
+  #};
 
   programs.thunar = {
     enable = true;
