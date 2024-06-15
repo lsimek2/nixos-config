@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       modules.qtile
       modules.nix-ld
+      modules.xmonad
     ];
 
   nix.settings.experimental-features = [ "nix-command" ];
@@ -36,7 +37,7 @@
   };
 
   services.xserver.displayManager.lightdm.enable = true;
-
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -122,8 +123,6 @@
       firefox
       tree
       git
-      fish
-      feh
     ];
   };
 

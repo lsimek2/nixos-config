@@ -5,7 +5,7 @@
   imports = [
   ];
 
-  zramSwap.enable = true;
+  # zramSwap.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
