@@ -2,16 +2,14 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, modules, ... }:
-{
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      modules.qtile
-      modules.nix-ld
-      modules.xmonad
-    ];
+{ config, lib, pkgs, modules, ... }: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    modules.qtile
+    modules.nix-ld
+    modules.xmonad
+  ];
 
   nix.settings.experimental-features = [ "nix-command" ];
 
@@ -72,23 +70,24 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   };
-
 
   # Unfree software
   nixpkgs.config.allowUnfree = true;
 
   users.defaultUserShell = pkgs.nushell;
-  fonts.packages = with pkgs; [
-    nerdfonts #bilo bi bolje da su samo iskljcuvo oni koji se koriste
-  ];
+  fonts.packages = with pkgs;
+    [
+      nerdfonts # bilo bi bolje da su samo iskljcuvo oni koji se koriste
+    ];
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable =
+    true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
@@ -119,11 +118,7 @@
   users.users.lsimek = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      firefox
-      tree
-      git
-    ];
+    packages = with pkgs; [ firefox tree git ];
   };
 
   # List packages installed in system profile. To search, run:
