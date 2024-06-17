@@ -3,16 +3,10 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, inputs, modules, ... }:
-let
-  multimonitor = import ./multimonitor.nix { inherit pkgs; };
-in
-{
+let multimonitor = import ./multimonitor.nix { inherit pkgs; };
+in {
   imports =
-    [
-      ./hardware-configuration.nix
-      modules.qtile
-      ./nvidia.nix
-    ];
+    [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ];
 
   services.xserver.windowManager.xmonad = {
     enable = true;
@@ -26,15 +20,11 @@ in
 
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
+    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
   };
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
-
 
   hardware.opengl = {
     enable = true;
@@ -59,13 +49,13 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  services.xserver.displayManager.setupCommands = "${multimonitor}/bin/multimonitor";
+  services.xserver.displayManager.setupCommands =
+    "${multimonitor}/bin/multimonitor";
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
   networking.hostName = "victus"; # Define your hostname.
-
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -91,18 +81,16 @@ in
     stalonetray
     #  blueman
 
-    (
-      let
-        my-python-packages = python-packages: with python-packages; [
+    (let
+      my-python-packages = python-packages:
+        with python-packages; [
           matplotlib
           numpy
           pandas
           scikit-learn
         ];
-        python-with-my-packages = python3.withPackages my-python-packages;
-      in
-      python-with-my-packages
-    )
+      python-with-my-packages = python3.withPackages my-python-packages;
+    in python-with-my-packages)
   ];
 
   system.stateVersion = "23.11";
