@@ -106,7 +106,7 @@
   # 
   programs.git = {
     enable = true;
-    userEmail = "tinjano@proton.me";
+    userEmail = "iinjano@proton.me";
     userName = "lsimek";
   };
 
