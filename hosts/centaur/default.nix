@@ -131,7 +131,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    nano
     nushell
     xfce.thunar
     python311Packages.qtile
@@ -139,6 +138,17 @@
     nerdfonts
     pueue
   ];
+
+  programs.vim = {
+    defaultEditor = true;
+#     config = ''
+#       set number relativenumber
+#       set tabstop=2
+#       set expandtab
+#       set shiftwidth=2
+#     '';
+  };
+  #environment.variables.EDITOR = "vim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -6,6 +6,9 @@ def hello-nu [] {
 let ssh_agent_file = ( $nu.temp-path | path join $"ssh-agent-($env.USER).nuon" )
 open $ssh_agent_file | load-env
 
+# fastfetch
+fastfetch
+
 def 'git nixos' [message] {
     git add .
     git commit -m $message

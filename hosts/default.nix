@@ -5,7 +5,7 @@
   imports = [
   ];
 
-  zramSwap.enable = true;
+  # zramSwap.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -14,7 +14,7 @@
   nixpkgs.config.allowUnfree = true;
 
   fonts.packages = with pkgs; [
-    nerdfonts #bilo bi bolje da su samo iskljcuvo oni koji se koriste
+    nerdfonts 
   ];
 
   networking.networkmanager.enable = true;

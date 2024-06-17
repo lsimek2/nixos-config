@@ -37,7 +37,6 @@
 
   };
 
-
   stylix.opacity = {
     applications = 1.0;
     terminal = 0.8;
@@ -46,9 +45,6 @@
   };
 
   stylix.targets = {
-    # commented lines should go to home manager
-    #	firefox.enable = true;
     nixvim.enable = true;
-    #	nushell.enable = true;
   };
 }
