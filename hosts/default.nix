@@ -47,8 +47,11 @@
     cargo
     nh
     bash
+
     ghc
+    haskell-language-server
     stack
+
     alsa-utils
     brightnessctl
 
@@ -56,6 +59,8 @@
     repl
     wl-ocr
   ]);
+
+  programs.direnv.enable = true;
 
   programs.gnupg.agent = {
     enable = true;
