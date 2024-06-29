@@ -27,7 +27,8 @@
     };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, home-manager-stable, home-manager-unstable, nixvim, stylix, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, nixpkgs-stable, home-manager-stable
+    , home-manager-unstable, nixvim, stylix, ... }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
@@ -39,19 +40,18 @@
       };
       modules = import ./modules;
       user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
-    in
-    {
-      nixosConfigurations.victus = nixpkgs-stable.lib.nixosSystem {
+    in {
+      nixosConfigurations.victus = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = {
           inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
-          home-manager = home-manager-stable;
+          home-manager = home-manager-unstable;
         };
         system = "x86_64-linux";
         modules = [
           ./hosts/victus
-          ./hosts #defaults
+          ./hosts # defaults
           ./users
-          home-manager-stable.nixosModules.default
+          home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
         ];
@@ -64,24 +64,9 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/minibook
-          ./hosts #defaults
+          ./hosts # defaults
           ./users
           home-manager-unstable.nixosModules.default
-          stylix.nixosModules.stylix
-          modules.stylix
-        ];
-      };
-      nixosConfigurations.centaur = nixpkgs-stable.lib.nixosSystem {
-        specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
-          home-manager = home-manager-stable;
-        };
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/centaur
-          ./hosts #defaults
-          ./users
-          home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
         ];

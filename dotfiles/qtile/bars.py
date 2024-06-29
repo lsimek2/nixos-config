@@ -187,8 +187,8 @@ def init_widgets_screen1():
             w_current_layout(),
            # w_updates(),
            # w_clipboard(),
-            w_volume_emoji(),
-            w_volume(),
+          #  w_volume_emoji(),
+          #  w_volume(),
             w_cpu(),
             w_ram(),
             w_net(),
@@ -201,15 +201,16 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_list_screen2 = [
-
-        w_sep(5),              #
-#        w_icon(),
-        w_groupbox(),
-        w_tasklist(),
-        w_spacer(),
-        w_clock(),
-        w_sep(5)
-    ]
+ 
+         w_sep(5),              #
+ #        w_icon(),
+         w_groupbox(),
+         w_tasklist(),
+         w_spacer(),
+         w_clock(),
+         w_sep(5)
+     ]
+   #  widgets_list_screen2 = []
 
     return widgets_list_screen2
 
@@ -218,4 +219,4 @@ main_bar = bar.Bar(widgets=init_widgets_screen1(), size=25,
                    opacity=0.80, background="222222")
 
 main_bar2 = bar.Bar(widgets=init_widgets_screen2(), size=25,
-                    opacity=0.80, background="222222")
+                   opacity=0.80, background="222222")

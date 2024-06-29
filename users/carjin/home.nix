@@ -4,7 +4,7 @@
 
   imports = [
     modules.nushell
-    modules.nixvim
+   # modules.nixvim
     modules.stylix-hm
     ../../dotfiles
   ];
@@ -24,6 +24,8 @@
     mpv
     deluge-gtk
     libreoffice
+    osu-lazer-bin
+    protonup-ng
 
   ]) ++ (with pkgs-stable; [
     (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
