@@ -12,7 +12,6 @@
       firefox
       tree
       discord
-      steam
       lutris
       signal-desktop
       element-desktop
