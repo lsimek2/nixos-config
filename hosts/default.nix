@@ -31,6 +31,11 @@
     #jack.enable = true;
   };
 
+  location = {
+    latitude = 45.8;
+    longitude = 16.0;
+  };
+
   services.libinput.enable = true;
 
   environment.systemPackages = (with pkgs; [
