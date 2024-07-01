@@ -15,7 +15,7 @@ in {
 
   powerManagement = {
     enable = true;
-   # powertop.enable = true;
+    # powertop.enable = true;
   };
 
   programs.thunar = {
@@ -46,10 +46,10 @@ in {
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
 
-  hardware.opengl = {
+
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   services.xserver.enable = true;
@@ -103,16 +103,19 @@ in {
     stalonetray
     #  blueman
 
-    (let
-      my-python-packages = python-packages:
-        with python-packages; [
-          matplotlib
-          numpy
-          pandas
-          scikit-learn
-        ];
-      python-with-my-packages = python3.withPackages my-python-packages;
-    in python-with-my-packages)
+    (
+      let
+        my-python-packages = python-packages:
+          with python-packages; [
+            matplotlib
+            numpy
+            pandas
+            scikit-learn
+          ];
+        python-with-my-packages = python3.withPackages my-python-packages;
+      in
+      python-with-my-packages
+    )
   ];
 
   system.stateVersion = "23.11";

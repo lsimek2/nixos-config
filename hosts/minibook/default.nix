@@ -52,7 +52,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.kernelParams = ["fbcon=rotate:1"];
+  boot.kernelParams = [ "fbcon=rotate:1" ];
   boot.loader.systemd-boot.consoleMode = "0";
 
   nixpkgs.config.allowUnfree = true;

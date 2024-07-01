@@ -4,7 +4,7 @@
 
   imports = [
     modules.nushell
-   # modules.nixvim
+    # modules.nixvim
     modules.stylix-hm
     ../../dotfiles
   ];

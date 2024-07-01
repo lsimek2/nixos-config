@@ -10,7 +10,7 @@
     };
     users = {
       carjin = import ./carjin/home.nix;
-     # lsimek = import ./lsimek/home.nix;
+      # lsimek = import ./lsimek/home.nix;
     };
 
     backupFileExtension = "backup";

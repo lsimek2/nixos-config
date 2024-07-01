@@ -27,8 +27,16 @@
     };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, home-manager-stable
-    , home-manager-unstable, nixvim, stylix, ... }@inputs:
+  outputs =
+    { self
+    , nixpkgs-unstable
+    , nixpkgs-stable
+    , home-manager-stable
+    , home-manager-unstable
+    , nixvim
+    , stylix
+    , ...
+    }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
@@ -40,7 +48,8 @@
       };
       modules = import ./modules;
       user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
-    in {
+    in
+    {
       nixosConfigurations.victus = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = {
           inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
