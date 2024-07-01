@@ -13,10 +13,10 @@ in {
     enableContribAndExtras = true;
   };
 
-  #powerManagement = {
-  #  enable = true;
-  #  powertop.enable = true;
-  #};
+  powerManagement = {
+    enable = true;
+   # powertop.enable = true;
+  };
 
   programs.thunar = {
     enable = true;
@@ -66,6 +66,8 @@ in {
       device = "nodev";
     };
   };
+
+  boot.crashDump.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
