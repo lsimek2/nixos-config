@@ -93,6 +93,7 @@
     };
   };
   stylix.targets.helix.enable = false;
+  stylix.targets.kde.enable = false;
 
   gtk.iconTheme = {
     package = pkgs.papirus-icon-theme;

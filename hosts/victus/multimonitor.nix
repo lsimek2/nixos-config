@@ -20,7 +20,9 @@ pkgs.writeShellScriptBin "multimonitor" ''
     if [[ $output == *"HDMI-1-0 connected"* ]]; then
       # If yes set secondary monitor as primary
       ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-1-0 --primary --mode 1920x1080 -r 144 --output eDP --mode 1920x1080 -r 144 --right-of HDMI-1-0
-    elif [[ $output == *"HDMI-1-0 disconnected"* ]]; then
+    elif [[ $output == *"DisplayPort-1 connected"* ]]; then
+      ${pkgs.xorg.xrandr}/bin/xrandr --output DisplayPort-1 --mode 1920x1080 -r 143.85 --primary --left-of eDP
+    else
       ${pkgs.xorg.xrandr}/bin/xrandr --output eDP --primary --mode 1920x1080 -r 144
     fi
   fi

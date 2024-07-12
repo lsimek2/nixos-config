@@ -10,8 +10,18 @@ def run [name: string, ...args: string] {
 ^pueue parallel 1024
 
 if ($env.XDG_SESSION_TYPE == "wayland") {
-    run rotate-screen
-    run swaybg "-i" ~/Pictures/wallhaven-8586my.png "-m" fit
+    if (hostname | $in == "minibook") {
+    	run rotate-screen
+    	run swaybg "-i" ~/Pictures/wallhaven-8586my.png "-m" fit
+    }
+    if (hostname | $in == "victus") {
+        run wlr-randr "--output" DP-2 "--mode" 1920x1080@143.854996 "--pos" "0,0"
+        run swaybg "-i" ~/Pictures/to_sh250_ooh_01_01_wip002.jpg "-m" fill
+        
+    }
+    
+    run rm ~/.gtkrc-2.0.backup
+    
 }
 
 

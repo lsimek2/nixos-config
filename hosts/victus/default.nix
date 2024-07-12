@@ -8,6 +8,9 @@ in {
   imports =
     [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ];
 
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
+
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
