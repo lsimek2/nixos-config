@@ -19,7 +19,7 @@ if ($env.XDG_SESSION_TYPE == "wayland") {
         run swaybg "-i" ~/Pictures/to_sh250_ooh_01_01_wip002.jpg "-m" fill
         
     }
-    
+    run dunst
     run rm ~/.gtkrc-2.0.backup
     
 }

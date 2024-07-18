@@ -9,7 +9,15 @@ in {
     [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ];
 
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  # services.xserver.desktopManager.plasma6.enable = true;
+
+  programs.sway = {
+    enable = true;
+    extraOptions = [
+      "--unsupported-gpu"
+    ];
+  };
+  programs.waybar.enable = true;
 
   services.xserver.windowManager.xmonad = {
     enable = true;

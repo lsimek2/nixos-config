@@ -8,6 +8,7 @@ from colorschemes import colors
 colorcycle = cycle([colors.get('laven'), colors.get('lyg'), colors.get('lblue'), colors.get('lye'), colors.get('lpnk')])
 
 from extras.widgets import _Net
+from qtile_extras.widget import StatusNotifier
 
 color_cycle = cycle([
         colors.get('laven'),
@@ -157,7 +158,7 @@ w_clock = lambda: widget.Clock(
             **theme_defaults,
         )
 
-w_tray = lambda: widget.Systray(**theme_defaults) if (qtile.core.name == "x11") else widget.StatusNotifier(**theme_defaults)
+w_tray = lambda: widget.Systray(**theme_defaults) if (qtile.core.name == "x11") else StatusNotifier(**theme_defaults)
 
 w_icon = lambda: widget.Image(
             filename='~/.config/qtile/icons/nixlogo3.png',

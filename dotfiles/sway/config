@@ -5,5 +5,7 @@
 # user config directory
 include $HOME/.config/sway/config.d/*
 
+exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 # only enable this if every app you use is compatible with wayland
 # xwayland disable
