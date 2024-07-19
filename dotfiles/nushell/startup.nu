@@ -6,6 +6,12 @@ def hello-nu [] {
 let ssh_agent_file = ( $nu.temp-path | path join $"ssh-agent-($env.USER).nuon" )
 open $ssh_agent_file | load-env
 
+def cpu_performance [] {
+    for i in 0..11 {
+       echo performance | sudo tee $"/sys/devices/system/cpu/cpu($i)/cpufreq/scaling_governor"
+   }
+}
+
 def 'git nixos' [message] {
     git add .
     git commit -m $message
