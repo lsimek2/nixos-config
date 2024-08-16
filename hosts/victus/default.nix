@@ -6,10 +6,15 @@
 let multimonitor = import ./multimonitor.nix { inherit pkgs; };
 in {
   imports =
-    [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ];
+    [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ./vfio.nix ];
 
   services.displayManager.sddm.enable = true;
  # services.desktopManager.plasma6.enable = true;
+
+  specialisation."VFIO".configuration = {
+    system.nixos.tags = [ "with-vfio" ];
+    vfio.enable = true;
+  };
 
   programs.sway = {
     enable = true;
@@ -17,6 +22,7 @@ in {
       "--unsupported-gpu"
     ];
   };
+  
   programs.waybar.enable = true;
 
   services.xserver.windowManager.xmonad = {
@@ -78,7 +84,7 @@ in {
     };
   };
 
-  boot.kernelParams = [ "amd_pstate=disable" ];
+  boot.kernelParams = [ "amd_pstate=disable" "amd_iommu=on" ];
 
   # Enable kernel debug mode
   # boot.crashDump.enable = true;
