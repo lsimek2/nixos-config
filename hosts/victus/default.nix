@@ -80,7 +80,8 @@ in {
 
   boot.kernelParams = [ "amd_pstate=disable" ];
 
-  boot.crashDump.enable = true;
+  # Enable kernel debug mode
+  # boot.crashDump.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
