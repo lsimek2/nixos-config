@@ -4,7 +4,7 @@
     boot.kernelModules = [ "kvmfr" ];
     
     services.udev.extraRules = ''
-    SUBSYSTEM=="kvmfr", OWNER="user", GROUP="kvm", MODE="0660"
+    SUBSYSTEM=="kvmfr", OWNER="carjin", GROUP="kvm", MODE="0660"
     '';
     
     virtualisation.libvirtd.qemu.verbatimConfig = ''
@@ -16,7 +16,9 @@
     ]
     '';
     
-    
+    boot.extraModprobeConfig = ''
+      options kvmfr static_size_mb=32
+    '';
 }
 
 # https://eastern-dream.github.io/blog/posts/nixos-windows-guest-simple-looking-glass-setup-guide/

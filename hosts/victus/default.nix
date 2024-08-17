@@ -6,7 +6,7 @@
 let multimonitor = import ./multimonitor.nix { inherit pkgs; };
 in {
   imports =
-    [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ./vfio.nix kvmfr.nix ];
+    [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ./vfio.nix ./kvmfr.nix ];
 
   services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true;
@@ -29,10 +29,11 @@ in {
     };
   };
   programs.virt-manager.enable = true;
+  
+  vfio.enable = true;
 
-  specialisation."VFIO".configuration = {
-    system.nixos.tags = [ "with-vfio" ];
-    vfio.enable = true;
+  specialisation.no-vfio.configuration = {
+    vfio.enable = lib.mkForce false;
   };
 
   programs.sway = {

@@ -17,12 +17,11 @@ in
           "vfio_pci"
           "vfio"
           "vfio_iommu_type1"
-          # "vfio_virqfd"
 
-          "nvidia"
-          "nvidia_modeset"
-          "nvidia_uvm"
-          "nvidia_drm"
+       #   "nvidia"
+       #   "nvidia_modeset"
+       #   "nvidia_uvm"
+       #   "nvidia_drm"
         ];
 
         kernelParams = [
@@ -37,3 +36,5 @@ in
     };
 }
 
+# https://alexbakker.me/post/nixos-pci-passthrough-qemu-vfio.html
+# https://astrid.tech/2022/09/22/0/nixos-gpu-vfio/
