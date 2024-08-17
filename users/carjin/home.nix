@@ -16,7 +16,7 @@
 
   home.packages = (with pkgs; [
     nmap
-   # haskell-language-server
+    # haskell-language-server
     ani-cli
     dconf
     alacritty
@@ -51,15 +51,15 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhsWithPackages (ps: with ps; [ 
-      rustup 
-      zlib 
-      openssl.dev 
-      pkg-config 
-      haskell.compiler.ghc966 
-      (haskell-language-server.override { supportedGhcVersions = [ "96" ]; } )
-      ]
-      );
+    package = pkgs.vscode.fhsWithPackages (ps: with ps; [
+      rustup
+      zlib
+      openssl.dev
+      pkg-config
+      haskell.compiler.ghc966
+      (haskell-language-server.override { supportedGhcVersions = [ "96" ]; })
+    ]
+    );
     extensions = with pkgs.vscode-extensions; [
       #      dracula-theme.theme-dracula
       #      vscodevim.vim
@@ -107,6 +107,13 @@
   gtk.iconTheme = {
     package = pkgs.papirus-icon-theme;
     name = "Papirus";
+  };
+
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
+    }; # fix ui virt-manager bug
   };
 
 }

@@ -6,10 +6,29 @@
 let multimonitor = import ./multimonitor.nix { inherit pkgs; };
 in {
   imports =
-    [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ./vfio.nix ];
+    [ ./hardware-configuration.nix modules.qtile ./nvidia.nix modules.nix-ld ./vfio.nix kvmfr.nix ];
 
   services.displayManager.sddm.enable = true;
- # services.desktopManager.plasma6.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [
+          (pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd
+        ];
+      };
+    };
+  };
+  programs.virt-manager.enable = true;
 
   specialisation."VFIO".configuration = {
     system.nixos.tags = [ "with-vfio" ];
@@ -22,7 +41,7 @@ in {
       "--unsupported-gpu"
     ];
   };
-  
+
   programs.waybar.enable = true;
 
   services.xserver.windowManager.xmonad = {
@@ -122,6 +141,7 @@ in {
     rofi
     stalonetray
     #  blueman
+    looking-glass-client
 
     (
       let
