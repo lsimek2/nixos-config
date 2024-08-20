@@ -6,8 +6,21 @@
   ];
 
   # zramSwap.enable = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://cache.nixos.org/"
+        "https://victus.cachix.org/"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "victus.cachix.org-1:VQvwDrGr4O3e1G64Xl97fl2QdHRxr3LieTYldF84jIY="
+      ];
+    };
+  };
 
   boot.tmp.cleanOnBoot = true;
 
@@ -59,8 +72,7 @@
 
     alsa-utils
     brightnessctl
-    clamav
-
+    
   ]) ++ (with user-pkgs; [
     repl
     wl-ocr
@@ -86,4 +98,5 @@
   '';
 
   services.mullvad-vpn.enable = true;
+
 }

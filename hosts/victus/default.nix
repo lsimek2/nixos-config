@@ -36,6 +36,8 @@ in {
     vfio.enable = lib.mkForce false;
   };
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   programs.sway = {
     enable = true;
     extraOptions = [
@@ -143,6 +145,20 @@ in {
     stalonetray
     #  blueman
     looking-glass-client
+    
+    wlr-randr
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    mako
+    pamixer
+    wofi
+    dunst
+    autotiling-rs
+    sway-contrib.grimshot
+    pavucontrol
+    xdg-desktop-portal
+    swayr
 
     (
       let
