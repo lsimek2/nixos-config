@@ -21,7 +21,7 @@ exec tail -f $SWAYSOCK.wob | wob --border-color '#ffdcbb8c' --background-color '
 exec autotiling-rs
 
 # Wlsunset
-exec ~/.config/sway/scripts/light.sh
+exec wlsunset -l 45.8293 -L 15.9793 # ~/.config/sway/scripts/light.sh
 
 # nm-applet
 exec nm-applet --indicator
@@ -43,7 +43,7 @@ exec libinput-gestures-setup start
 #exec kanshi
 
 # Xdg DEsktop Portal
-exec /usr/libexec/xdg-desktop-portal
+# exec /usr/libexec/xdg-desktop-portal
 
 # Tracker daemon for gnome apps
 exec tracker daemon -s
@@ -54,7 +54,7 @@ exec tracker daemon -s
 # swayrd
 exec_always swayrd
 
-#exec discord --start-minimized
+exec discord --start-minimized
 exec telegram-desktop -startintray
 exec signal-desktop --start-in-tray
 exec element-desktop
