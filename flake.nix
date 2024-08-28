@@ -20,6 +20,11 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nuenv = {
+      url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -29,12 +34,14 @@
     , home-manager-stable
     , home-manager-unstable
     , stylix
+    , nuenv
     , ...
     }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
         config.allowUnfree = true;
+        overlays = [ nuenv.overlays.default ];
       };
       pkgs-stable = import nixpkgs-stable {
         system = "x86_64-linux";

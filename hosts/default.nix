@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user-pkgs, ... }:
+{ config, lib, pkgs, user-pkgs, pkgs-unstable, ... }:
 
 {
 
@@ -74,11 +74,19 @@
     brightnessctl
 
     wlsunset
-
   ]) ++ (with user-pkgs; [
     repl
     wl-ocr
-  ]);
+  ]) ++
+  [
+ #   (pkgs-unstable.nuenv.writeScriptBin {
+ #     name = "run-me";
+ #     script = ''
+ #       def blue [msg: string] { $"(ansi blue)($msg)(ansi reset)" }
+ #       blue "Hello world"
+ #     '';
+ #   })
+    ];
 
   programs.direnv.enable = true;
 
@@ -108,5 +116,7 @@
   };
 
   services.btrfs.autoScrub.enable = true;
+
+  users.defaultUserShell = pkgs.nushell;
 
 }
