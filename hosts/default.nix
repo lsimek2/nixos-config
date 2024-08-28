@@ -107,4 +107,6 @@
     options = "--delete-older-than 30d";
   };
 
+  services.btrfs.autoScrub.enable = true;
+
 }
