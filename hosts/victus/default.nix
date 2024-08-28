@@ -29,7 +29,7 @@ in {
     };
   };
   programs.virt-manager.enable = true;
-  
+
   vfio.enable = true;
 
   specialisation.no-vfio.configuration = {
@@ -146,7 +146,7 @@ in {
     stalonetray
     #  blueman
     looking-glass-client
-    
+
     wlr-randr
     grim # screenshot functionality
     slurp # screenshot functionality

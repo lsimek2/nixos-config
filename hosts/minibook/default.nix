@@ -13,6 +13,33 @@ in
       modules.qtile-wayland
     ];
 
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [
+          (pkgs.OVMF.override {
+            secureBoot = true;
+            tpmSupport = true;
+          }).fd
+        ];
+      };
+    };
+  };
+
+  programs.virt-manager.enable = true;
+
+
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  virtualisation.waydroid.enable = true;
+
+  users.extraGroups.vboxusers.members = [ "carjin" ];
+
   services.xserver.videoDrivers = [ "intel" ];
 
   services.xserver.enable = true;
@@ -61,6 +88,7 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = with pkgs; [ brlaser brgenml1lpr brgenml1cupswrapper ];
 
   programs.sway = {
     enable = true;
@@ -118,7 +146,7 @@ in
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # LIBVA_DRIVER_NAME=iHD

@@ -6,7 +6,7 @@
   ];
 
   # zramSwap.enable = true;
-  
+
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
@@ -72,9 +72,9 @@
 
     alsa-utils
     brightnessctl
-    
+
     wlsunset
-    
+
   ]) ++ (with user-pkgs; [
     repl
     wl-ocr

@@ -15,7 +15,7 @@
         };
 
       };
-      
+
       vfio.enable = lib.mkForce false;
     };
   };
