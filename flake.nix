@@ -16,11 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
-
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -33,7 +28,6 @@
     , nixpkgs-stable
     , home-manager-stable
     , home-manager-unstable
-    , nixvim
     , stylix
     , ...
     }@inputs:
@@ -52,7 +46,7 @@
     {
       nixosConfigurations.victus = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
+          inherit pkgs-unstable pkgs-stable modules user-pkgs stylix;
           home-manager = home-manager-unstable;
         };
         system = "x86_64-linux";
@@ -60,6 +54,7 @@
           ./hosts/victus
           ./hosts # defaults
           ./users
+          ./network
           home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
@@ -67,7 +62,7 @@
       };
       nixosConfigurations.minibook = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs nixvim stylix;
+          inherit pkgs-unstable pkgs-stable modules user-pkgs stylix;
           home-manager = home-manager-unstable;
         };
         system = "x86_64-linux";
@@ -75,6 +70,7 @@
           ./hosts/minibook
           ./hosts # defaults
           ./users
+          ./network
           home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix

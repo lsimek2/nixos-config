@@ -1,6 +1,13 @@
 {lib, ...}:
 # networking configuration
 {
+  imports = [
+    ./avahi.nix
+    ./spotify.nix
+    ./syncthing.nix
+    ./tailscale.nix
+  ];
+
   networking.networkmanager = {
     enable = true;
     dns = "systemd-resolved";
