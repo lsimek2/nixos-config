@@ -73,6 +73,8 @@
     alsa-utils
     brightnessctl
 
+    telegram-desktop
+
     wlsunset
   ]) ++ (with user-pkgs; [
     repl
