@@ -13,7 +13,23 @@
             $env.config = {
              hooks: {
                command_not_found: {
-                 |cmd_name| ^command-not-found $cmd_name
+                  |cmd_name| try {
+                     let dbPath = "/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite"
+                     let system = "x86_64-linux"
+                     let db = open $dbPath | $in.Programs
+        
+                     let list = $db | where system == $system and name == $cmd_name 
+                                    | select package
+                                    | get package 
+        
+                     if ($list | is-empty) {
+                       print "No non-local packages found.\n"
+                     } else { 
+                       let selected_package = $list | input list "Select package";
+
+                       nsh $selected_package
+                     }
+                   }
                }
              }
             
