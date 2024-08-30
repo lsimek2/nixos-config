@@ -11,6 +11,12 @@
             carapace $spans.0 nushell $spans | from json
             }
             $env.config = {
+             hooks: {
+               command_not_found: {
+                 |cmd_name| ^command-not-found $cmd_name
+               }
+             }
+            
              show_banner: false,
              completions: {
              case_sensitive: false # case-sensitive completions
