@@ -17,8 +17,9 @@
                      let dbPath = "/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite"
                      let system = "x86_64-linux"
                      let db = open $dbPath | $in.Programs
+                     let program_name = $cmd_name | split words | get 0
         
-                     let list = $db | where system == $system and name == $cmd_name 
+                     let list = $db | where system == $system and name == $program_name
                                     | select package
                                     | get package 
         
@@ -27,7 +28,8 @@
                      } else { 
                        let selected_package = $list | input list "Select package";
 
-                       nsh $selected_package
+                       ^nix-shell -p $selected_package
+                     #  ^nix-shell --run $"nu -e '($cmd_name)'" -p $selected_package
                      }
                    }
                }
