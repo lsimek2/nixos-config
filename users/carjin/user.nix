@@ -7,7 +7,8 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "input" "libvirtd" ]; # 'input' for kmonad
     openssh.authorizedKeys.keys =
-      [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhjgro/JnCCqYuHT/eiTv0EYqW8kN/MYL/nBmOJ+5l9 karlo.puselj@gmail.com" ];
+      [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDhjgro/JnCCqYuHT/eiTv0EYqW8kN/MYL/nBmOJ+5l9 karlo.puselj@gmail.com"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAa4p4eaMH3uBaxjn+yQuD7TzvDzE/5gP3/Xshn1S0vj tinjano@proton.me" ];
     packages = with pkgs; [
       firefox
       tree
