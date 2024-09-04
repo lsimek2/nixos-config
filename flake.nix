@@ -25,6 +25,11 @@
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs =
@@ -35,6 +40,7 @@
     , home-manager-unstable
     , stylix
     , nuenv
+    , nixos-cosmic
     , ...
     }@inputs:
     let
@@ -49,13 +55,14 @@
       };
       modules = import ./modules;
       user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
+      specialArgs = {
+          inherit pkgs-unstable pkgs-stable modules user-pkgs stylix nixos-cosmic;
+          home-manager = home-manager-unstable;
+      };
     in
     {
       nixosConfigurations.victus = nixpkgs-unstable.lib.nixosSystem {
-        specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs stylix;
-          home-manager = home-manager-unstable;
-        };
+        inherit specialArgs;
         system = "x86_64-linux";
         modules = [
           ./hosts/victus
@@ -65,13 +72,11 @@
           home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
+          modules.cosmic
         ];
       };
       nixosConfigurations.minibook = nixpkgs-unstable.lib.nixosSystem {
-        specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs stylix;
-          home-manager = home-manager-unstable;
-        };
+        inherit specialArgs;
         system = "x86_64-linux";
         modules = [
           ./hosts/minibook
