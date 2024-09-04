@@ -72,7 +72,7 @@
           home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
-          modules.cosmic
+#          modules.cosmic
         ];
       };
       nixosConfigurations.minibook = nixpkgs-unstable.lib.nixosSystem {

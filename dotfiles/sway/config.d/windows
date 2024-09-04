@@ -4,6 +4,7 @@ assign [class="firefox"] → number 2
 assign [app_id="firefox"] → number 2
 assign [app_id="thunar"] → number 3
 assign [class="code"] → number 4
+assign [class="vesktop"] → number 5
 assign [class="discord"] → number 5
 assign [class="Element"] → number 5
 assign [class="Signal"] → number 5
@@ -11,6 +12,8 @@ assign [class="Spotify"] → number 6
 assign [class="Audacity"] → number 6
 assign [class="Gmpc"] → number 6
 assign [app_id="ario"] → number 6
+assign [app_id="looking-glass-client"] → number 6
+assign [app_id="mpv"] → number 7
 assign [class="Thunderbird"] → number 8
 assign [class="Bitwarden"] → number 9
 
@@ -36,12 +39,6 @@ for_window [class="qt5ct" instance="qt5ct"] floating enable, resize set width 60
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
 for_window [app_id="pamac-manager"] floating enable, resize set width 80 ppt height 70 ppt
 for_window [class="Lxappearance"] floating enable, resize set width 60 ppt height 50 ppt
-for_window [app_id="garuda-welcome"] floating enable
-for_window [app_id="garuda-assistant"] floating enable
-for_window [app_id="garuda-gamer"] floating enable
-for_window [app_id="Garuda.garuda-settings-manager"] floating enable
-for_window [app_id="garuda-network-assistant"] floating enable
-for_window [app_id="garuda-boot-options"] floating enable
 
 # set floating for window roles
 for_window [window_role="pop-up"] floating enable
@@ -62,6 +59,7 @@ for_window [title="Save File"] floating enable
 for_window [app_id="firedragon" title="firedragon — Sharing Indicator"] kill
 
 # Inhibit idle
-for_window [app_id="firedragon"] inhibit_idle fullscreen
+for_window [app_id="firefox"] inhibit_idle fullscreen
+for_window [app_id="mpv"] inhibit_idle fullscreen
 for_window [app_id="Chromium"] inhibit_idle fullscreen
 

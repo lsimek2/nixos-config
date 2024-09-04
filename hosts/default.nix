@@ -74,6 +74,7 @@
     brightnessctl
 
     telegram-desktop
+    vesktop
 
     wlsunset
   ]) ++ (with user-pkgs; [

@@ -54,7 +54,8 @@ exec tracker daemon -s
 # swayrd
 exec_always swayrd
 
-exec discord --start-minimized
+#exec discord --start-minimized
+#exec vesktop
 exec telegram-desktop -startintray
 exec signal-desktop --start-in-tray
 exec element-desktop
