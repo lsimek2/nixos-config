@@ -139,6 +139,8 @@ in
     pavucontrol
     xdg-desktop-portal
     swayr
+
+    moonlight-qt
   ];
 
   xdg.portal.wlr.enable = true;
