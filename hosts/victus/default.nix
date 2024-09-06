@@ -13,6 +13,21 @@ in {
       ./vfio.nix 
       ./kvmfr.nix ];
 
+  services.nix-serve = {
+    enable = true;
+    secretKeyFile = "/etc/private/cache-priv-key.pem";
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    virtualHosts = {
+      "victus.akita-bleak.ts.net" = {
+        locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+      };
+    };
+  };
+
   services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true;
 
