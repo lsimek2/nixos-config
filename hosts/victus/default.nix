@@ -7,7 +7,7 @@ let multimonitor = import ./multimonitor.nix { inherit pkgs; };
 in {
   imports =
     [ ./hardware-configuration.nix 
-      modules.qtile 
+    #  modules.qtile 
     #  ./nvidia.nix 
       modules.nix-ld 
       ./vfio.nix 

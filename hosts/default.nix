@@ -2,8 +2,7 @@
 
 {
 
-  imports = [
-  ];
+  imports = [ ];
 
   # zramSwap.enable = true;
 
@@ -28,9 +27,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  fonts.packages = with pkgs; [
-    nerdfonts #bilo bi bolje da su samo iskljcuvo oni koji se koriste
-  ];
+  fonts.packages = with pkgs;
+    [
+      nerdfonts # bilo bi bolje da su samo iskljcuvo oni koji se koriste
+    ];
 
   networking.networkmanager.enable = true;
 
@@ -75,23 +75,23 @@
     alsa-utils
     brightnessctl
 
+    virtiofsd # libvirt folder sharing
+
     telegram-desktop
     vesktop
 
+    julia
+
     wlsunset
-  ]) ++ (with user-pkgs; [
-    repl
-    wl-ocr
-  ]) ++
-  [
- #   (pkgs-unstable.nuenv.writeScriptBin {
- #     name = "run-me";
- #     script = ''
- #       def blue [msg: string] { $"(ansi blue)($msg)(ansi reset)" }
- #       blue "Hello world"
- #     '';
- #   })
-    ];
+  ]) ++ (with user-pkgs; [ repl wl-ocr ]) ++ [
+    #   (pkgs-unstable.nuenv.writeScriptBin {
+    #     name = "run-me";
+    #     script = ''
+    #       def blue [msg: string] { $"(ansi blue)($msg)(ansi reset)" }
+    #       blue "Hello world"
+    #     '';
+    #   })
+  ];
 
   programs.direnv.enable = true;
 
