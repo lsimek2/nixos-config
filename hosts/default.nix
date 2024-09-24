@@ -82,6 +82,9 @@
 
     julia
 
+    rust-analyzer
+    lldb_18 #rust lsp
+
     wlsunset
   ]) ++ (with user-pkgs; [ repl wl-ocr ]) ++ [
     #   (pkgs-unstable.nuenv.writeScriptBin {
