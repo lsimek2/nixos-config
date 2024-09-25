@@ -1,4 +1,4 @@
-{ config, lib, pkgs, user-pkgs, pkgs-unstable, ... }:
+{ config, lib, pkgs, user-pkgs, pkgs-unstable, pkgs-stable, ... }:
 
 {
 
@@ -22,6 +22,8 @@
       ];
     };
   };
+
+  security.polkit.enable = true;
 
   boot.tmp.cleanOnBoot = true;
 
@@ -83,7 +85,9 @@
     julia
 
     rust-analyzer
-    lldb_18 #rust lsp
+    lldb_18 # rust lsp
+
+    gcc # rust linker error
 
     wlsunset
   ]) ++ (with user-pkgs; [ repl wl-ocr ]) ++ [

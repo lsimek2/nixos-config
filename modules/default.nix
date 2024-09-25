@@ -8,5 +8,5 @@
   stylix-hm = ./stylix-hm.nix;
   nix-ld = ./nix-ld.nix;
   xmonad = ./xmonad.nix;
-  cosmic =  ./cosmic.nix;
+  cosmic = ./cosmic.nix;
 }

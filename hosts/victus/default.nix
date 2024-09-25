@@ -2,16 +2,63 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, modules, ... }:
-let multimonitor = import ./multimonitor.nix { inherit pkgs; };
-in {
-  imports =
-    [ ./hardware-configuration.nix 
+{ config, lib, pkgs, inputs, modules, pkgs-stable, ... }:
+let
+  multimonitor = import ./multimonitor.nix { inherit pkgs; };
+  upkgs = with pkgs; [
+    xfce.thunar
+    multimonitor
+    kmonad
+    networkmanagerapplet
+    xmobar
+    xcompmgr
+    rofi
+    stalonetray
+    #  blueman
+    looking-glass-client
+
+    wlr-randr
+    grim # screenshot functionality
+    slurp # screenshot functionality
+    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    mako
+    pamixer
+    wofi
+    dunst
+    autotiling-rs
+    sway-contrib.grimshot
+    pavucontrol
+    xdg-desktop-portal
+    swayr
+
+
+    (
+      let
+        my-python-packages = python-packages:
+          with python-packages; [
+            matplotlib
+            numpy
+            pandas
+            scikit-learn
+          ];
+        python-with-my-packages = python3.withPackages my-python-packages;
+      in
+      python-with-my-packages
+    )
+  ];
+  spkgs = with pkgs-stable; [
+    kdiskmark
+  ];
+in
+{
+  imports = [
+    ./hardware-configuration.nix
     #  modules.qtile 
     #  ./nvidia.nix 
-      modules.nix-ld 
-      ./vfio.nix 
-      ./kvmfr.nix ];
+    modules.nix-ld
+    ./vfio.nix
+    ./kvmfr.nix
+  ];
 
   services.nix-serve = {
     enable = true;
@@ -23,7 +70,10 @@ in {
     recommendedProxySettings = true;
     virtualHosts = {
       "victus.akita-bleak.ts.net" = {
-        locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+        locations."/".proxyPass =
+          "http://${config.services.nix-serve.bindAddress}:${
+            toString config.services.nix-serve.port
+          }";
       };
     };
   };
@@ -52,17 +102,13 @@ in {
 
   vfio.enable = true;
 
-  specialisation.no-vfio.configuration = {
-    vfio.enable = lib.mkForce false;
-  };
+  specialisation.no-vfio.configuration = { vfio.enable = lib.mkForce false; };
 
   boot.supportedFilesystems = [ "ntfs" ];
 
   programs.sway = {
     enable = true;
-    extraOptions = [
-      "--unsupported-gpu"
-    ];
+    extraOptions = [ "--unsupported-gpu" ];
   };
 
   programs.waybar.enable = true;
@@ -84,9 +130,12 @@ in {
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall =
+      true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
   services.redshift = {
@@ -104,7 +153,6 @@ in {
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.tumbler.enable = true; # Thumbnail support for images
-
 
   hardware.graphics = {
     enable = true;
@@ -152,46 +200,8 @@ in {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    xfce.thunar
-    multimonitor
-    kmonad
-    networkmanagerapplet
-    xmobar
-    xcompmgr
-    rofi
-    stalonetray
-    #  blueman
-    looking-glass-client
 
-    wlr-randr
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako
-    pamixer
-    wofi
-    dunst
-    autotiling-rs
-    sway-contrib.grimshot
-    pavucontrol
-    xdg-desktop-portal
-    swayr
-
-    (
-      let
-        my-python-packages = python-packages:
-          with python-packages; [
-            matplotlib
-            numpy
-            pandas
-            scikit-learn
-          ];
-        python-with-my-packages = python3.withPackages my-python-packages;
-      in
-      python-with-my-packages
-    )
-  ];
+  environment.systemPackages = upkgs ++ spkgs;
 
   system.stateVersion = "23.11";
 

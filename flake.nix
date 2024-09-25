@@ -25,7 +25,7 @@
       url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    
+
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -56,8 +56,8 @@
       modules = import ./modules;
       user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
       specialArgs = {
-          inherit pkgs-unstable pkgs-stable modules user-pkgs stylix nixos-cosmic;
-          home-manager = home-manager-unstable;
+        inherit pkgs-unstable pkgs-stable modules user-pkgs stylix nixos-cosmic;
+        home-manager = home-manager-unstable;
       };
     in
     {
@@ -72,7 +72,7 @@
           home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
-#          modules.cosmic
+          #          modules.cosmic
         ];
       };
       nixosConfigurations.minibook = nixpkgs-unstable.lib.nixosSystem {
