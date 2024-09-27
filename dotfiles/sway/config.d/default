@@ -138,7 +138,6 @@ exec swayidle -w\
     #bindsym $mod+w layout tabbed
     #bindsym $mod+e layout toggle split
 
-    bindsym $mod+s exec grimshot --notify copy area
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
@@ -224,6 +223,6 @@ bindsym XF86AudioMute exec pamixer --toggle-mute
 # Screenshots
 #
     bindsym print exec /usr/bin/env grimshot --notify save output
-    bindsym Shift+print exec ~/.config/sway/scripts/screenshot.nu
-    bindsym Alt+print exec /usr/bin/env grimshot --notify copy area
+    bindsym $mod+Shift+s exec ~/.config/sway/scripts/screenshot.nu
+    bindsym $mod+s exec grimshot --notify copy area
 
