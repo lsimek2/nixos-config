@@ -11,8 +11,8 @@
             carapace $spans.0 nushell $spans | from json
             }
             $env.config = {
-             hooks: {
-               command_not_found: {
+              hooks: {
+                command_not_found: {
                   |cmd_name| try {
                      let dbPath = "/nix/var/nix/profiles/per-user/root/channels/nixos/programs.sqlite"
                      let system = "x86_64-linux"
@@ -32,10 +32,18 @@
                      #  ^nix-shell --run $"nu -e '($cmd_name)'" -p $selected_package
                      }
                    }
-               }
-               env_change: {
-                 PWD: {|before, after| if (($"($after)/shell.nix" | path exists) and ($env.IN_NIX_SHELL? | describe) == nothing) { nix-shell --command nu } }
-               }
+                }
+              pre_prompt: [{ ||
+                if (which direnv | is-empty) {
+                 return
+                }
+
+                direnv export json | from json | default {} | load-env
+              }]
+               
+              env_change: {
+               #  PWD: {|before, after| if (($"($after)/shell.nix" | path exists) and ($env.IN_NIX_SHELL? | describe) == nothing) { nix-shell --command nu } }
+              }
 
              }
             

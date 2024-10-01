@@ -71,7 +71,7 @@
     bash
 
     ghc
-    haskell-language-server
+    (haskell-language-server.override { supportedGhcVersions = [ "96" "910" ]; })
     stack
 
     alsa-utils
