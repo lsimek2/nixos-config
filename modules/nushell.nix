@@ -33,6 +33,10 @@
                      }
                    }
                }
+               env_change: {
+                 PWD: {|before, after| if (($"($after)/shell.nix" | path exists) and ($env.IN_NIX_SHELL? | describe) == nothing) { nix-shell --command nu } }
+               }
+
              }
             
              show_banner: false,

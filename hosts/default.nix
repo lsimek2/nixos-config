@@ -79,6 +79,9 @@
 
     virtiofsd # libvirt folder sharing
 
+    scala
+    metals
+
     telegram-desktop
     vesktop
 
