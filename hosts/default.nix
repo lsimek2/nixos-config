@@ -69,6 +69,7 @@
     cargo
     nh
     bash
+    xarchiver
 
     #    ghc
     (haskell-language-server.override {
