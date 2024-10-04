@@ -70,9 +70,11 @@
     nh
     bash
 
-    ghc
-    (haskell-language-server.override { supportedGhcVersions = [ "96" "910" ]; })
-    stack
+    #    ghc
+    (haskell-language-server.override {
+      supportedGhcVersions = [ "96" "910" ];
+    })
+    cabal-install
 
     alsa-utils
     brightnessctl
@@ -81,6 +83,8 @@
 
     scala
     metals
+
+    nil # Nix language server
 
     telegram-desktop
     vesktop
