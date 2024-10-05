@@ -81,8 +81,8 @@
 
     virtiofsd # libvirt folder sharing
 
-    scala
     metals
+    sbt
 
     nil # Nix language server
 

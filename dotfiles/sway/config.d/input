@@ -16,7 +16,7 @@ input type:keyboard xkb_layout "hr"
 input type:keyboard xkb_variant "us"
 
 input "type:keyboard" {
-    xkb_options caps:ctrl_modifier
+    xkb_options caps:escape
 }
 
 #Rotate touchscreen input
