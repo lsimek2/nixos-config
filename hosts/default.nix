@@ -21,7 +21,15 @@
         "victus.cachix.org-1:VQvwDrGr4O3e1G64Xl97fl2QdHRxr3LieTYldF84jIY="
       ];
     };
+    nixPath =
+     # Prepend default nixPath values.
+     options.nix.nixPath.default ++
+     # Append our nixpkgs-overlays.
+     [ "nixpkgs-overlays=/home/carjin/nixos/overlays/overlays-compat/" ];
   };
+
+
+  nixpkgs.overlays = [ (import ../overlays/freer-simple.nix) ];
 
   security.polkit.enable = true;
 
