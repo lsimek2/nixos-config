@@ -1,5 +1,5 @@
 final: prev: {
-  sl = prev.haskell.packages.ghc910.freer-simple.overrideAttrs (old: {
+  haskell.packages.ghc910.freer-simple = prev.haskell.packages.ghc910.freer-simple.overrideAttrs (old: {
     src = prev.fetchFromGitHub {
       owner = "georgefst";
       repo = "freer-simple";
