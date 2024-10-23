@@ -4,8 +4,6 @@
 
   imports = [ ];
 
-  # zramSwap.enable = true;
-
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
@@ -21,50 +19,28 @@
         "victus.cachix.org-1:VQvwDrGr4O3e1G64Xl97fl2QdHRxr3LieTYldF84jIY="
       ];
     };
-  #  nixPath =
-     # Prepend default nixPath values.
-   #  options.nix.nixPath.default ++
-     # Append our nixpkgs-overlays.
-   #  [ "nixpkgs-overlays=/home/carjin/nixos/overlays/overlays-compat/" ];
   };
 
+  zramSwap.enable = true;
 
-  nixpkgs.overlays = [ (import ../overlays/freer-simple.nix) ];
-
-  security.polkit.enable = true;
+  nixpkgs.overlays = [ ];
 
   boot.tmp.cleanOnBoot = true;
 
   nixpkgs.config.allowUnfree = true;
 
-  fonts.packages = with pkgs;
-    [
-      nerdfonts # bilo bi bolje da su samo iskljcuvo oni koji se koriste
-    ];
-
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Zagreb";
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
 
   location = {
     latitude = 45.8;
     longitude = 16.0;
   };
 
-  services.libinput.enable = true;
-
   environment.systemPackages = (with pkgs; [
     git
+    tree
     wget
     nano
     nushell
@@ -72,49 +48,17 @@
     pueue
     fastfetch
     unar
-    nixpkgs-fmt
-    rustc
-    cargo
+    nixfmt-rfc-style
     nh
     bash
     xarchiver
-
-    #    ghc
-    (haskell-language-server.override {
-      supportedGhcVersions = [ "96" "910" ];
-    })
-    cabal-install
-
-    alsa-utils
-    brightnessctl
-
-    virtiofsd # libvirt folder sharing
-
-    metals
-    sbt
-
     nil # Nix language server
-
-    telegram-desktop
-    vesktop
-
+    cabal-install
+    sbt
     julia
-
-    rust-analyzer
-    lldb_18 # rust lsp
-
-    gcc # rust linker error
-
-    wlsunset
-  ]) ++ (with user-pkgs; [ repl wl-ocr ]) ++ [
-    #   (pkgs-unstable.nuenv.writeScriptBin {
-    #     name = "run-me";
-    #     script = ''
-    #       def blue [msg: string] { $"(ansi blue)($msg)(ansi reset)" }
-    #       blue "Hello world"
-    #     '';
-    #   })
-  ];
+    cargo
+  ]) ++
+  (with user-pkgs; [ repl ]);
 
   programs.direnv.enable = true;
 
@@ -128,12 +72,6 @@
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.allowedUDPPorts = [ 22 ];
 
-  #kmonad
-  boot.kernelModules = [ "uinput" ];
-
-  services.udev.extraRules = ''
-    KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", GROUP="input", MODE="0660"
-  '';
 
   services.mullvad-vpn.enable = true;
 

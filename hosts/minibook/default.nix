@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, inputs, modules, ... }:
 let
   monitor = import ./monitor.nix { inherit pkgs; };
@@ -10,8 +6,12 @@ in
   imports =
     [
       ./hardware-configuration.nix
-      modules.qtile-wayland
+      modules.sway
     ];
+    
+  environment.systemPackages = with pkgs; [
+    moonlight-qt
+  ];
 
   virtualisation.libvirtd = {
     enable = true;
@@ -82,20 +82,7 @@ in
   boot.kernelParams = [ "fbcon=rotate:1" ];
   boot.loader.systemd-boot.consoleMode = "0";
 
-  nixpkgs.config.allowUnfree = true;
-
   networking.hostName = "minibook";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-  services.printing.drivers = with pkgs; [ brlaser brgenml1lpr brgenml1cupswrapper ];
-
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
-
-  programs.waybar.enable = true;
 
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
@@ -105,49 +92,10 @@ in
     powertop.enable = true;
   };
 
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
-
-  services.gvfs.enable = true; # Mount, trash, and other functionalities
-  services.tumbler.enable = true; # Thumbnail support for images
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    monitor
-    kmonad
-    networkmanagerapplet
-    stalonetray
-    xfce.xfce4-taskmanager
-
-    wlr-randr
-    waybar
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako
-    pamixer
-    wofi
-    dunst
-    autotiling-rs
-    sway-contrib.grimshot
-    pavucontrol
-    xdg-desktop-portal
-    swayr
-
-    moonlight-qt
-  ];
-
-  xdg.portal.wlr.enable = true;
-
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
+  
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [

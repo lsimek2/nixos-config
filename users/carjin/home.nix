@@ -16,17 +16,18 @@
 
   home.packages = (with pkgs; [
     nmap
-    # haskell-language-server
     ani-cli
     dconf
-    alacritty
     anki-bin
     mpv
     deluge-gtk
     libreoffice
     osu-lazer-bin
     protonup-ng
-    xfce.xfce4-taskmanager
+    firefox
+    lutris
+    nextcloud-client
+    gedit
 
   ]) ++ (with pkgs-stable; [
     (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
@@ -51,15 +52,6 @@
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode.fhsWithPackages (ps: with ps; [
-      rustup
-      zlib
-      openssl.dev
-      pkg-config
-      haskell.compiler.ghc966
-      (haskell-language-server.override { supportedGhcVersions = [ "96" ]; })
-    ]
-    );
     extensions = with pkgs.vscode-extensions; [
       #      dracula-theme.theme-dracula
       #      vscodevim.vim
@@ -100,7 +92,14 @@
         display-inlay-hints = true;
       };
     };
+    themes = {
+    autumn_night_transparent = {
+      "inherits" = "autumn_night";
+      "ui.background" = { };
+    };
+    };
   };
+  
   stylix.targets.helix.enable = false;
   stylix.targets.kde.enable = false;
 

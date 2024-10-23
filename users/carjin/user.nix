@@ -12,16 +12,6 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAa4p4eaMH3uBaxjn+yQuD7TzvDzE/5gP3/Xshn1S0vj tinjano@proton.me"
       ];
     packages = with pkgs; [
-      firefox
-      tree
-      discord
-      lutris
-      signal-desktop
-      element-desktop
-      nextcloud-client
-      gedit
-      cargo
-      stack
     ];
   };
 

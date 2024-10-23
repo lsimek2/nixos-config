@@ -1,61 +1,18 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, inputs, modules, pkgs-stable, ... }:
 let
   multimonitor = import ./multimonitor.nix { inherit pkgs; };
   upkgs = with pkgs; [
-    xfce.thunar
     multimonitor
-    kmonad
-    networkmanagerapplet
-    xmobar
-    xcompmgr
-    rofi
-    stalonetray
-    #  blueman
+    virtiofsd # libvirt folder sharing
     looking-glass-client
-
-    wlr-randr
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako
-    pamixer
-    wofi
-    dunst
-    autotiling-rs
-    sway-contrib.grimshot
-    pavucontrol
-    xdg-desktop-portal
-    swayr
-
-
-    (
-      let
-        my-python-packages = python-packages:
-          with python-packages; [
-            matplotlib
-            numpy
-            pandas
-            scikit-learn
-          ];
-        python-with-my-packages = python3.withPackages my-python-packages;
-      in
-      python-with-my-packages
-    )
   ];
-  spkgs = with pkgs-stable; [
-    kdiskmark
-  ];
+  spkgs = with pkgs-stable; [];
 in
 {
   imports = [
     ./hardware-configuration.nix
-    #  modules.qtile 
-    #  ./nvidia.nix 
     modules.nix-ld
+    modules.sway
     ./vfio.nix
     ./kvmfr.nix
   ];
@@ -78,6 +35,7 @@ in
     };
   };
 
+  services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true;
 
@@ -98,6 +56,7 @@ in
       };
     };
   };
+  
   programs.virt-manager.enable = true;
 
   vfio.enable = true;
@@ -106,26 +65,11 @@ in
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  programs.sway = {
-    enable = true;
-    extraOptions = [ "--unsupported-gpu" ];
-  };
-
-  programs.waybar.enable = true;
-
-  services.xserver.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-  };
+  programs.sway.extraOptions = [ "--unsupported-gpu" ];
 
   powerManagement = {
     enable = true;
     # powertop.enable = true;
-  };
-
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
   };
 
   programs.steam = {
@@ -150,17 +94,14 @@ in
       night = 3700;
     };
   };
-
-  services.gvfs.enable = true; # Mount, trash, and other functionalities
-  services.tumbler.enable = true; # Thumbnail support for images
+  
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
-
-  services.xserver.enable = true;
-  #services.displayManager.sddm.enable = true;
 
   boot.loader = {
     efi = {
@@ -180,26 +121,10 @@ in
   # Enable kernel debug mode
   # boot.crashDump.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
   services.xserver.displayManager.setupCommands =
     "${multimonitor}/bin/multimonitor";
 
   networking.hostName = "victus"; # Define your hostname.
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
 
   environment.systemPackages = upkgs ++ spkgs;
 

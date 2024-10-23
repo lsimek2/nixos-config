@@ -9,4 +9,5 @@
   nix-ld = ./nix-ld.nix;
   xmonad = ./xmonad.nix;
   cosmic = ./cosmic.nix;
+  sway = ./sway.nix;
 }
