@@ -1,4 +1,12 @@
-{ config, lib, pkgs, inputs, modules, pkgs-stable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  modules,
+  pkgs-stable,
+  ...
+}:
 let
   multimonitor = import ./multimonitor.nix { inherit pkgs; };
   upkgs = with pkgs; [
@@ -6,7 +14,7 @@ let
     virtiofsd # libvirt folder sharing
     looking-glass-client
   ];
-  spkgs = with pkgs-stable; [];
+  spkgs = with pkgs-stable; [ ];
 in
 {
   imports = [
@@ -27,10 +35,7 @@ in
     recommendedProxySettings = true;
     virtualHosts = {
       "victus.akita-bleak.ts.net" = {
-        locations."/".proxyPass =
-          "http://${config.services.nix-serve.bindAddress}:${
-            toString config.services.nix-serve.port
-          }";
+        locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
       };
     };
   };
@@ -56,12 +61,14 @@ in
       };
     };
   };
-  
+
   programs.virt-manager.enable = true;
 
   vfio.enable = true;
 
-  specialisation.no-vfio.configuration = { vfio.enable = lib.mkForce false; };
+  specialisation.no-vfio.configuration = {
+    vfio.enable = lib.mkForce false;
+  };
 
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -74,12 +81,9 @@ in
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall =
-      true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
   services.redshift = {
@@ -94,7 +98,7 @@ in
       night = 3700;
     };
   };
-  
+
   services.blueman.enable = true;
   hardware.bluetooth.enable = true;
 
@@ -121,8 +125,7 @@ in
   # Enable kernel debug mode
   # boot.crashDump.enable = true;
 
-  services.xserver.displayManager.setupCommands =
-    "${multimonitor}/bin/multimonitor";
+  services.xserver.displayManager.setupCommands = "${multimonitor}/bin/multimonitor";
 
   networking.hostName = "victus"; # Define your hostname.
 
@@ -131,4 +134,3 @@ in
   system.stateVersion = "23.11";
 
 }
-

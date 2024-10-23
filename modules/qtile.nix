@@ -38,4 +38,3 @@
   services.xserver.xkb.variant = "us";
   services.xserver.xkb.layout = "hr";
 }
-  

@@ -18,11 +18,11 @@
                      let system = "x86_64-linux"
                      let db = open $dbPath | $in.Programs
                      let program_name = $cmd_name | split words | get 0
-        
+
                      let list = $db | where system == $system and name == $program_name
                                     | select package
                                     | get package 
-        
+
                      if ($list | is-empty) {
                        print "No non-local packages found.\n"
                      } else { 
@@ -68,7 +68,7 @@
             append /usr/bin/env |
             append $"($env.HOME)/System"
             )
-       
+
             source ($nu.default-config-dir | path join "startup.nu")
       '';
       #     shellAliases = {

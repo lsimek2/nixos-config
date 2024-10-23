@@ -1,4 +1,5 @@
-{ nixos-cosmic, ... }: {
+{ nixos-cosmic, ... }:
+{
   imports = [ nixos-cosmic.nixosModules.default ];
 
   nix.settings = {
@@ -9,6 +10,5 @@
   services.displayManager.cosmic-greeter.enable = true;
 
   services.desktopManager.cosmic.enable = true;
-
 
 }

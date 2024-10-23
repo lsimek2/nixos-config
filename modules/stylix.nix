@@ -1,4 +1,5 @@
-{ stylix, pkgs, ... }: {
+{ stylix, pkgs, ... }:
+{
   stylix.enable = true;
 
   stylix.image = ../users/carjin/desktop.jpg;
@@ -35,7 +36,6 @@
     };
 
   };
-
 
   stylix.opacity = {
     applications = 1.0;

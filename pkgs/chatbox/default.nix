@@ -1,4 +1,4 @@
-{}:
+{ }:
 derivation {
   system = "x86_64-linux";
   # Name of the derivation

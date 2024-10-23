@@ -1,14 +1,20 @@
-{ config, lib, pkgs, inputs, modules, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  modules,
+  ...
+}:
 let
   monitor = import ./monitor.nix { inherit pkgs; };
 in
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      modules.sway
-    ];
-    
+  imports = [
+    ./hardware-configuration.nix
+    modules.sway
+  ];
+
   environment.systemPackages = with pkgs; [
     moonlight-qt
   ];
@@ -32,7 +38,6 @@ in
   };
 
   programs.virt-manager.enable = true;
-
 
   virtualisation.spiceUSBRedirection.enable = true;
 
@@ -74,7 +79,6 @@ in
     };
   };
 
-
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -95,7 +99,7 @@ in
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
-  
+
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
@@ -104,9 +108,10 @@ in
       libvdpau-va-gl
     ];
   };
-  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  }; # Force intel-media-driver
 
   system.stateVersion = "24.05";
 
 }
-

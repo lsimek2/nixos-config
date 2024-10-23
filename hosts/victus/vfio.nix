@@ -5,13 +5,20 @@ let
     "10de:2291" # Audio
   ];
 in
-{ pkgs, lib, config, ... }: {
-  options.vfio.enable = with lib;
-    mkEnableOption "Configure the machine for VFIO";
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
+  options.vfio.enable = with lib; mkEnableOption "Configure the machine for VFIO";
 
   config =
-    let cfg = config.vfio;
-    in {
+    let
+      cfg = config.vfio;
+    in
+    {
       boot = {
         initrd.kernelModules = [
           "vfio_pci"
@@ -24,12 +31,14 @@ in
           #   "nvidia_drm"
         ];
 
-        kernelParams = [
-          # enable IOMMU
-          "amd_iommu=on"
-        ] ++ lib.optional cfg.enable
-          # isolate the GPU
-          ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
+        kernelParams =
+          [
+            # enable IOMMU
+            "amd_iommu=on"
+          ]
+          ++ lib.optional cfg.enable
+            # isolate the GPU
+            ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
       };
 
       virtualisation.spiceUSBRedirection.enable = true;

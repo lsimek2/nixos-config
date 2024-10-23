@@ -1,4 +1,10 @@
-{ config, pkgs, pkgs-stable, modules, ... }:
+{
+  config,
+  pkgs,
+  pkgs-stable,
+  modules,
+  ...
+}:
 
 {
 
@@ -14,24 +20,33 @@
 
   home.stateVersion = "23.11";
 
-  home.packages = (with pkgs; [
-    nmap
-    ani-cli
-    dconf
-    anki-bin
-    mpv
-    deluge-gtk
-    libreoffice
-    osu-lazer-bin
-    protonup-ng
-    firefox
-    lutris
-    nextcloud-client
-    gedit
+  home.packages =
+    (with pkgs; [
+      nmap
+      ani-cli
+      dconf
+      anki-bin
+      mpv
+      deluge-gtk
+      libreoffice
+      osu-lazer-bin
+      protonup-ng
+      firefox
+      lutris
+      nextcloud-client
+      gedit
 
-  ]) ++ (with pkgs-stable; [
-    (rstudioWrapper.override { packages = with rPackages; [ ggplot2 dplyr xts tidyverse ]; })
-  ]);
+    ])
+    ++ (with pkgs-stable; [
+      (rstudioWrapper.override {
+        packages = with rPackages; [
+          ggplot2
+          dplyr
+          xts
+          tidyverse
+        ];
+      })
+    ]);
 
   home.file = { };
 
@@ -74,7 +89,6 @@
     userName = "Lunitur";
   };
 
-
   dconf.enable = true;
   programs.alacritty.enable = true;
 
@@ -82,24 +96,26 @@
 
   programs.helix = {
     enable = true;
-    languages.language = [{
-      name = "nix";
-      auto-format = true;
-      formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
-    }];
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+      }
+    ];
     settings = {
       editor.lsp = {
         display-inlay-hints = true;
       };
     };
     themes = {
-    autumn_night_transparent = {
-      "inherits" = "autumn_night";
-      "ui.background" = { };
-    };
+      autumn_night_transparent = {
+        "inherits" = "autumn_night";
+        "ui.background" = { };
+      };
     };
   };
-  
+
   stylix.targets.helix.enable = false;
   stylix.targets.kde.enable = false;
 

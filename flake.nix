@@ -33,15 +33,16 @@
   };
 
   outputs =
-    { self
-    , nixpkgs-unstable
-    , nixpkgs-stable
-    , home-manager-stable
-    , home-manager-unstable
-    , stylix
-    , nuenv
-    , nixos-cosmic
-    , ...
+    {
+      self,
+      nixpkgs-unstable,
+      nixpkgs-stable,
+      home-manager-stable,
+      home-manager-unstable,
+      stylix,
+      nuenv,
+      nixos-cosmic,
+      ...
     }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
@@ -56,7 +57,14 @@
       modules = import ./modules;
       user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
       specialArgs = {
-        inherit pkgs-unstable pkgs-stable modules user-pkgs stylix nixos-cosmic;
+        inherit
+          pkgs-unstable
+          pkgs-stable
+          modules
+          user-pkgs
+          stylix
+          nixos-cosmic
+          ;
         home-manager = home-manager-unstable;
       };
     in

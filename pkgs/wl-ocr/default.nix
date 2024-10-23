@@ -1,12 +1,12 @@
-{ writeShellScriptBin
-, lib
-, grim
-, libnotify
-, slurp
-, tesseract5
-, wl-clipboard
-, langs ? "eng+hun+fra+jpn+jpn_vert+kor+kor_vert+pol+ron+spa"
-,
+{
+  writeShellScriptBin,
+  lib,
+  grim,
+  libnotify,
+  slurp,
+  tesseract5,
+  wl-clipboard,
+  langs ? "eng+hun+fra+jpn+jpn_vert+kor+kor_vert+pol+ron+spa",
 }:
 let
   _ = lib.getExe;

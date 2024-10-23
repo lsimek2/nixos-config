@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   home.file.".config/qtile".source = ./qtile;
   home.file.".config/xmonad".source = ./xmonad;
   home.file.".config/xmobar".source = ./xmobar;
