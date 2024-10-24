@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-{
+{ config, pkgs, ... }: {
   programs = {
     nushell = {
       enable = true;
@@ -49,17 +48,10 @@
             
              show_banner: false,
              completions: {
-             case_sensitive: false # case-sensitive completions
-             quick: true    # set to false to prevent auto-selecting completions
-             partial: true    # set to false to prevent partial filling of the prompt
-             algorithm: "fuzzy"    # prefix or fuzzy
-             external: {
-             # set to false to prevent nushell looking into $env.PATH to find more suggestions
-                 enable: true 
-             # set to lower can improve completion performance at the cost of omitting some options
-                 max_results: 100 
-                 completer: $carapace_completer # check 'carapace_completer' 
-               }
+               case_sensitive: false # case-sensitive completions
+               quick: true    # set to false to prevent auto-selecting completions
+               partial: true    # set to false to prevent partial filling of the prompt
+               algorithm: "fuzzy"    # prefix or fuzzy
              }
             } 
             $env.PATH = ($env.PATH | 
@@ -70,12 +62,13 @@
             )
 
             source ($nu.default-config-dir | path join "startup.nu")
+            source ($nu.default-config-dir | path join "completers.nu")
       '';
-      #     shellAliases = {
-      #     vi = "hx";
-      #     vim = "hx";
-      #     nano = "hx";
-      #     };
+      shellAliases = {
+        vi = "hx";
+        vim = "hx";
+        nano = "hx";
+      };
     };
     carapace.enable = true;
     carapace.enableNushellIntegration = true;
