@@ -16,6 +16,7 @@ in
   ];
 
   environment.systemPackages = with pkgs; [
+    virtiofsd # libvirt folder sharing
     moonlight-qt
   ];
 

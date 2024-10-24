@@ -20,9 +20,9 @@
       ];
       substituters = [
         "https://nix-community.cachix.org"
-        "https://cache.nixos.org/"
-        "https://victus.cachix.org/"
-        "http://victus.akita-bleak.ts.net/"
+        "https://cache.nixos.org"
+        "https://victus.cachix.org"
+        "http://victus.akita-bleak.ts.net?priority=50"
       ];
       trusted-public-keys = [
         "victus.akita-bleak.ts.net:kb/jFWfxfUVJfWlLeu+qEYO3zGkNHdfCvb61qSHRo3A="
