@@ -9,4 +9,6 @@
   home.file.".config/dunst".source = ./dunst;
   home.file.".config/sway".source = ./sway;
   home.file.".config/waybar".source = ./waybar;
+  home.file.".local/share/nwg-launchers".source = ./nwg-launchers-assets;
+  home.file.".config/nwg-launchers".source = ./nwg-launchers;
 }

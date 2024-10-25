@@ -1,127 +1,138 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 40,
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": ["clock"],
-    "modules-right": ["custom/recorder", "tray", "pulseaudio", "backlight", "temperature", "cpu", "memory", "battery", "network", "custom/powermenu"],
-    "sway/mode": {
-        "format": " {}"
-    },
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 30,
+    //"width": 1350, // Waybar width
+    // Choose the order of the modules idle_inhibitor
+    "modules-left": ["custom/launcher","sway/workspaces", "sway/mode", "sway/window"],
+    "modules-right": ["custom/pacman", "backlight", "custom/keyboard-layout", "cpu", "memory", "battery", "network", "custom/network_traffic", "pulseaudio","tray", "idle_inhibitor", "clock","custom/power"],
+
+ // Modules configuration
+
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
-        "disable-markup": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "1 <span font='Font Awesome 5 Free 14'></span>",
-            "2": "2 <span font='Font Awesome 5 Free 14'></span>",
-            "3": "3 <span font='Font Awesome 5 Free 14'></span>",
-            "4": "4 <span font='Font Awesome 5 Free 14'></span>",
-            "5": "5 <span font='Font Awesome 5 Free 14'></span>",
-            "6": "6 <span font='Font Awesome 5 Free 14'></span>",
-            "7": "7 <span font='Font Awesome 5 Free 14'></span>",
-            "8": "8 <span font='Font Awesome 5 Free 14'></span>",
-            "9": "9 <span font='Font Awesome 5 Free 14'></span>",
-            "10": "0 <span font='Font Awesome 5 Free 14'></span>"
+        "1": "1  ",
+        "2": "2  ",
+		"3": "3  ",
+		"4": "4 ",
+		"5": "5 󰭹",
+		"6": "6 ",
+		"7": "7 ",
+		"8": "8 󰊴",
+		"9": "9",
+		"10": "10",
+        }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/window": {
+        "format": "{}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+       "format-icons": {
+            "activated": " ",
+            "deactivated": " "
         }
     },
     "tray": {
-        "icon-size": 20,
-        "spacing": 8
-    },
-    "sway/window": {
-        "max-length": 60,
-        "tooltip": false
-        // "format": "( {} )"
+        "icon-size": 14,
+        "spacing": 5
     },
     "clock": {
-        "format": "{:%a %d %b - %H:%M}",
-        "tooltip": false
+        "tooltip-format": "{:%A %B %d %Y | %H:%M}",
+        "format": " {:%a %d %b  %I:%M %p}",	//12 hour format
+        //"format": " {:%a %d %b  %H:%M}",	//24 hour format
+        "format-alt": " {:%d/%m/%Y  %H:%M:%S}",
+        //"timezones": [ "Kolkata" ],
+        //"max-length": 200
+        "interval": 1
     },
     "cpu": {
-        "interval": 1,
-        "format": "\uf4bc  {usage: >3}%",
-        "max-length": 10
+        "format": " {usage: >3}%",
+        "on-click": "alacritty -e htop"
     },
     "memory": {
-        "interval": 15,
-        "format": "\uefc5   {used:0.1f}G/{total:0.1f}G",
-        "tooltip": false
-    },
-    "custom/powermenu": {
-        "return-type": "json",
-        "exec": "",
-        "format": "<span font='Font Awesome 5 Free 9'>{icon}</span>  {}",
-        "format-icons": [""],
-        "interval": 3600,
-        "escape": true,
-        "on-click": "/home/marco/.config/wofi/wofi-power.sh"
-    },
-    "custom/recorder": {
-		"format": "!",
-		"return-type": "json",
-		"interval": 3,
-		"exec": "echo '{\"class\": \"recording\"}'",
-		"exec-if": "pgrep wf-recorder",
-        "tooltip": false,
-        "on-click": "killall -s SIGINT wf-recorder"
-	},
-    "battery": {
-        "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>   {capacity}%{time}",
-        "format-icons": ["", "", "", "", ""],
-        "format-time": " ({H}h{M}m)",
-        "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
-        "format-full": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  Charged",
-        "interval": 15,
-        "states": {
-            "warning": 25,
-            "critical": 10
-        },
-        "tooltip": false
-    },
-    "network": {
-        "format": "{icon}",
-        "format-alt": "\uf1eb   {essid} ({signalStrength}%)",
-        "format-alt-click": "click-left",
-        "format-wifi": "\udb82\ude60  ︁{ipaddr}/{cidr} {icon}",
-        "format-ethernet": "\udb80\ude00  {ifname}",
-        "format-disconnected": "⚠ Disconnected",
-        "tooltip": false
-    },
-    "pulseaudio": {
-        "format": "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%",
-        "format-alt": "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%",
-        "format-alt-click": "click-right",
-        "format-muted": "\udb81\udf5f",
-        "format-icons": {
-            "phone": [" ", " ", " ", " "],
-            "default": ["", "", "", ""]
-        },
-        "scroll-step": 2,
-        "on-click": "pavucontrol",
-        "tooltip": false
-    },
-    "backlight": {
-        "format": "{icon}  {percent}%",
-        "format-alt": "{icon}",
-        "format-alt-click": "click-left",
-        "format-icons": ["", ""],
-        "on-scroll-up": "brightnessctl set 5%+",
-        "on-scroll-down": "brightnessctl set 5%-"
+        "format": " {: >3}%",
+        "on-click": "alacritty -e htop"
     },
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
-        "critical-threshold": 75,
-        "interval": 5,
-        "format": "{icon} {temperatureC}°",
-        "tooltip": false,
-        "format-icons": [
-            "", // Icon: temperature-empty
-            "", // Icon: temperature-quarter
-            "", // Icon: temperature-half
-            "", // Icon: temperature-three-quarters
-            ""  // Icon: temperature-full
-        ]
-    }
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C ",
+        "format": "{temperatureC}°C "
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent: >3}%",
+        "format-icons": ["", ""],
+        "on-scroll-down": "brightnessctl -c backlight set 5%-",
+        "on-scroll-up": "brightnessctl -c backlight set +5%"
+    },
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity: >3}%",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", " "]
+        //"format-icons": ["", "", "", "", "", "", "", "", "", ""]
+    },
+     "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format": "⚠ Disabled",
+        "format-wifi": "  {essid}",
+        "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
+        "format-disconnected": "⚠ Disconnected",
+        "on-click": "alacritty -e nmtui"
+    },
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{icon} {volume: >3}%",
+        "format-bluetooth": "{icon} {volume: >3}%",
+        "format-muted":" muted",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+      	"format":"⏻",
+       	"on-click": "nwgbar",
+      	"tooltip": false,
+   },
+   "custom/keyboard-layout": {
+      	"exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
+      	// Interval set only as a fallback, as the value is updated by signal
+      	"interval": 30,
+      	"format": "  {}", // Icon: keyboard
+      	// Signal sent by Sway key binding (~/.config/sway/key-bindings)
+      	"signal": 1, // SIGHUP
+      	"tooltip": false,
+        "on-click": "~/.config/waybar/scripts/keyhint.sh",
+},
+     "custom/launcher": {
+    	"format":" ",
+    	"on-click": "exec nwg-drawer -c 7 -is 70 -spacing 23",
+    	"tooltip": false,
+},
+     "custom/network_traffic": {
+             "exec": "~/.config/waybar/scripts/network_traffic.sh",
+             "return-type": "json",
+             "format-ethernet": "{icon} {ifname} ⇣{bandwidthDownBytes:>4} ⇡{bandwidthUpBytes:>4}",    // optional
+},
 }

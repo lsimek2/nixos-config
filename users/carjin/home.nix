@@ -80,7 +80,7 @@
     languages.language = [{
       name = "nix";
       auto-format = true;
-      formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+      formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
     }];
     settings = { editor.lsp = { display-inlay-hints = true; }; };
     themes = {
