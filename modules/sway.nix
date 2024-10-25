@@ -77,6 +77,7 @@
       yad
       nwg-launchers
       nwg-drawer
+      htop
     ])
     ++ (with user-pkgs; [ wl-ocr ]);
 }

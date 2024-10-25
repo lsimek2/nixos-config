@@ -67,7 +67,15 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    border-color: #81a1c1;
+    border-color: #3f9fff;
+}
+
+#workspaces button.visible {
+    border-color: #55789b;
+}
+
+#workspaces button.urgent {
+    border-color: #8f3232;
 }
 
 #mode {

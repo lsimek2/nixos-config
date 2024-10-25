@@ -5,13 +5,14 @@
     //"width": 1350, // Waybar width
     // Choose the order of the modules idle_inhibitor
     "modules-left": ["custom/launcher","sway/workspaces", "sway/mode", "sway/window"],
-    "modules-right": ["custom/pacman", "backlight", "custom/keyboard-layout", "cpu", "memory", "battery", "network", "custom/network_traffic", "pulseaudio","tray", "idle_inhibitor", "clock","custom/power"],
+    "modules-right": ["backlight", "temperature", "cpu", "memory", "battery", "network", "custom/network_traffic", "pulseaudio","tray", "idle_inhibitor", "clock","custom/power"],
 
  // Modules configuration
 
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
+        "disable-markup": false,
         "format": "{icon}",
         "format-icons": {
         "1": "1  ",
@@ -57,16 +58,26 @@
         "on-click": "alacritty -e htop"
     },
     "memory": {
-        "format": " {: >3}%",
-        "on-click": "alacritty -e htop"
+        "interval": 15,
+        "format": "\uefc5   {used:0.1f}G/{total:0.1f}G",
+        "tooltip": false,
+        "on-click": "xfce4-taskmanager"
     },
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C ",
-        "format": "{temperatureC}°C "
-    },
+        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "critical-threshold": 75,
+        "interval": 5,
+        "format": "{icon} {temperatureC}°",
+        "tooltip": false,
+        "format-icons": [
+            "", // Icon: temperature-empty
+            "", // Icon: temperature-quarter
+            "", // Icon: temperature-half
+            "", // Icon: temperature-three-quarters
+            ""  // Icon: temperature-full
+        ]
+    }
+,
     "backlight": {
         // "device": "acpi_video1",
         "format": "{icon} {percent: >3}%",
