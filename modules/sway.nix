@@ -78,6 +78,8 @@
       nwg-launchers
       nwg-drawer
       htop
+      swaylock-effects
+      loupe
     ])
     ++ (with user-pkgs; [ wl-ocr ]);
 }
