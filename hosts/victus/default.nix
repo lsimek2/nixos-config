@@ -41,8 +41,16 @@ in
   };
 
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    settings = {
+      Autologin = {
+        Session = "sway.desktop";
+        User = "carjin";
+      };
+    };
+  };
 
   virtualisation.libvirtd = {
     enable = true;
