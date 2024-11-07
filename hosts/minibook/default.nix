@@ -18,6 +18,10 @@ in
   environment.systemPackages = with pkgs; [
     virtiofsd # libvirt folder sharing
     moonlight-qt
+    wireshark
+    tshark
+    nikto
+    jetbrains.idea-community-bin
   ];
 
   virtualisation.libvirtd = {
@@ -59,6 +63,8 @@ in
       };
     };
   };
+
+  programs.wireshark.enable = true;
 
   programs.steam = {
     enable = true;

@@ -1,4 +1,12 @@
-{ config, lib, pkgs, user-pkgs, pkgs-unstable, pkgs-stable, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  user-pkgs,
+  pkgs-unstable,
+  pkgs-stable,
+  ...
+}:
 
 {
 
@@ -6,7 +14,10 @@
 
   nix = {
     settings = {
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
@@ -38,29 +49,32 @@
     longitude = 16.0;
   };
 
-  environment.systemPackages = (with pkgs; [
-    git
-    tree
-    wget
-    nano
-    nushell
-    gvfs
-    pueue
-    fastfetch
-    unar
-    nixfmt-rfc-style
-    nh
-    bash
-    xarchiver
-    nil # Nix language server
-    cabal-install
-    sbt
-    julia
-    cargo
-    fzf
-    zoxide
-    carapace
-  ]) ++ (with user-pkgs; [ repl ]);
+  environment.systemPackages =
+    (with pkgs; [
+      git
+      tree
+      wget
+      nano
+      nushell
+      gvfs
+      pueue
+      fastfetch
+      unar
+      nixfmt-rfc-style
+      nh
+      bash
+      xarchiver
+      nil # Nix language server
+      cabal-install
+      sbt
+      metals
+      julia
+      cargo
+      fzf
+      zoxide
+      carapace
+    ])
+    ++ (with user-pkgs; [ repl ]);
 
   programs.fish.enable = true;
 

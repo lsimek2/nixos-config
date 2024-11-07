@@ -1,4 +1,10 @@
-{ config, pkgs, pkgs-stable, modules, ... }:
+{
+  config,
+  pkgs,
+  pkgs-stable,
+  modules,
+  ...
+}:
 
 {
 
@@ -14,36 +20,50 @@
 
   home.stateVersion = "23.11";
 
-  home.packages = (with pkgs; [
-    nmap
-    ani-cli
-    dconf
-    anki-bin
-    mpv
-    deluge-gtk
-    libreoffice
-    osu-lazer-bin
-    protonup-ng
-    firefox
-    lutris
-    nextcloud-client
-    gedit
-  ]) ++ (with pkgs-stable;
-    [
+  home.packages =
+    (with pkgs; [
+      nmap
+      ani-cli
+      dconf
+      anki-bin
+      mpv
+      deluge-gtk
+      libreoffice
+      osu-lazer-bin
+      protonup-ng
+      firefox
+      lutris
+      nextcloud-client
+      gedit
+      peazip
+      calibre
+    ])
+    ++ (with pkgs-stable; [
       (rstudioWrapper.override {
-        packages = with rPackages; [ ggplot2 dplyr xts tidyverse ];
+        packages = with rPackages; [
+          ggplot2
+          dplyr
+          xts
+          tidyverse
+        ];
       })
     ]);
 
   home.file = { };
 
-  home.sessionVariables = { EDITOR = "hx"; };
+  home.sessionVariables = {
+    EDITOR = "hx";
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   services.pueue = {
     enable = true;
-    settings = { daemon = { default_parallel_tasks = 64; }; };
+    settings = {
+      daemon = {
+        default_parallel_tasks = 64;
+      };
+    };
   };
 
   programs.vscode = {
@@ -77,12 +97,18 @@
 
   programs.helix = {
     enable = true;
-    languages.language = [{
-      name = "nix";
-      auto-format = true;
-      formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-    }];
-    settings = { editor.lsp = { display-inlay-hints = true; }; };
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+      }
+    ];
+    settings = {
+      editor.lsp = {
+        display-inlay-hints = true;
+      };
+    };
     themes = {
       autumn_night_transparent = {
         "inherits" = "autumn_night";
