@@ -103,7 +103,7 @@
         "format-wifi": "  {essid}",
         "format-ethernet": " {ifname}: {ipaddr}/{cidr}",
         "format-disconnected": "⚠ Disconnected",
-        "on-click": "alacritty -e nmtui"
+        "on-click": "nmcli device wifi rescan"
     },
     "pulseaudio": {
         "scroll-step": 5,

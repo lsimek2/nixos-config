@@ -24,21 +24,22 @@
     (with pkgs; [
       nmap
       ani-cli
-      dconf
-      anki-bin
-      mpv
-      deluge-gtk
-      libreoffice
-      osu-lazer-bin
       protonup-ng
-      firefox
-      lutris
-      nextcloud-client
-      gedit
-      peazip
-      calibre
     ])
     ++ (with pkgs-stable; [
+      calibre
+      firefox
+      lutris
+      deluge-gtk
+      nextcloud-client
+      osu-lazer-bin
+      mpv
+      dconf
+      anki-bin
+      gedit
+      peazip
+      libreoffice
+
       (rstudioWrapper.override {
         packages = with rPackages; [
           ggplot2
