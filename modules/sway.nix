@@ -49,7 +49,7 @@
   '';
 
   environment.systemPackages =
-    (with pkgs; [
+    (with pkgs-stable; [
       xfce.thunar
       xfce.xfce4-taskmanager
       networkmanagerapplet

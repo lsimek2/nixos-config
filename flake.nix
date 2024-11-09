@@ -96,5 +96,15 @@
           modules.stylix
         ];
       };
+      nixosConfigurations.pico = nixpkgs-unstable.lib.nixosSystem {
+        inherit specialArgs;
+        system = "aarch64-linux";
+        modules = [
+          ./hosts/pico
+          ./hosts # defaults
+          ./users/carjin/user.nix
+          ./network
+        ];
+      };
     };
 }

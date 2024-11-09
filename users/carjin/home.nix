@@ -24,6 +24,7 @@
     (with pkgs; [
       nmap
       ani-cli
+      peazip
       protonup-ng
     ])
     ++ (with pkgs-stable; [
@@ -37,7 +38,6 @@
       dconf
       anki-bin
       gedit
-      peazip
       libreoffice
 
       (rstudioWrapper.override {
