@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-stable,
   inputs,
   modules,
   ...
@@ -15,14 +16,19 @@ in
     modules.sway
   ];
 
-  environment.systemPackages = with pkgs; [
-    virtiofsd # libvirt folder sharing
-    moonlight-qt
-    wireshark
-    tshark
-    nikto
-    jetbrains.idea-community-bin
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      jetbrains.idea-community-bin
+    ])
+    ++
+
+      (with pkgs-stable; [
+        virtiofsd # libvirt folder sharing
+        moonlight-qt
+        wireshark
+        tshark
+        nikto
+      ]);
 
   virtualisation.libvirtd = {
     enable = true;
@@ -103,9 +109,9 @@ in
     powertop.enable = true;
   };
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
-  };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  # intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  # };
 
   hardware.graphics = {
     enable = true;

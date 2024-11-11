@@ -24,12 +24,14 @@
     (with pkgs; [
       nmap
       ani-cli
+      firefox
+      librewolf
+      chromium
       peazip
       protonup-ng
     ])
     ++ (with pkgs-stable; [
       calibre
-      firefox
       lutris
       deluge-gtk
       nextcloud-client
