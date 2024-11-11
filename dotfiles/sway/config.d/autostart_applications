@@ -26,9 +26,6 @@ exec wlsunset -l 45.8293 -L 15.9793 # ~/.config/sway/scripts/light.sh
 # nm-applet
 exec nm-applet --indicator
 
-# Welcome
-#exec dex -a -s /etc/xdg/autostart/:~/.config/autostart/
-
 # Clipman
 exec clipman restore
 exec wl-paste -t text --watch clipman store
@@ -50,6 +47,9 @@ exec tracker daemon -s
 
 # Cheatsheet
 #exec micro ~/.config/sway/cheatsheet
+
+# Looking glass
+exec looking-glass-client -f /dev/kvmfr0 -m KEY_INSERT -T -F
 
 # swayrd
 exec_always swayrd
