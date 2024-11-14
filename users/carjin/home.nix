@@ -27,6 +27,7 @@
       firefox
       librewolf
       chromium
+      mpv
       peazip
       protonup-ng
     ])
@@ -36,7 +37,6 @@
       deluge-gtk
       nextcloud-client
       osu-lazer-bin
-      mpv
       dconf
       anki-bin
       gedit

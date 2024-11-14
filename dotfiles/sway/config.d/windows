@@ -3,6 +3,7 @@
 assign [class="firefox"] → number 2
 assign [app_id="firefox"] → number 2
 assign [app_id="thunar"] → number 3
+assign [app_id="org.kde.dolphin"] → number 3
 assign [class="code"] → number 4
 assign [class="vesktop"] → number 5
 assign [class="discord"] → number 5

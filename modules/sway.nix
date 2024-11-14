@@ -12,17 +12,17 @@
     wrapperFeatures.gtk = true;
   };
 
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
+  # programs.thunar = {
+  # enable = true;
+  # plugins = with pkgs.xfce; [
+  # thunar-archive-plugin
+  # thunar-volman
+  # ];
+  # };
 
   services.libinput.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
-  services.tumbler.enable = true; # Thumbnail support for images
+  # services.tumbler.enable = true; # Thumbnail support for images
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -80,6 +80,19 @@
       htop
       swaylock-effects
       loupe
+
+      kdePackages.dolphin
+      kdePackages.qtwayland
+      kdePackages.qtsvg
+      kdePackages.kio-fuse # to mount remote filesystems via FUSE
+      kdePackages.kio-extras # extra protocols support (sftp, fish and more)
+      kdePackages.konsole
+      # kdePackages.kompare
+      kdePackages.kdegraphics-thumbnailers
+      # kdePackages.kde-thumbnailer-apk
+      kdePackages.ffmpegthumbs
+      kdePackages.kdesdk-thumbnailers
+      icoutils
     ])
     ++ (with user-pkgs; [ wl-ocr ]);
 }

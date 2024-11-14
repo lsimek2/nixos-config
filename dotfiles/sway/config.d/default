@@ -56,9 +56,9 @@ exec swaylock -f -C ~/.config/swaylock/config
 
     # Start your launcher
     bindsym $mod+d exec $menu
-
-    # Activities
-    bindsym $mod+p exec swayr switch-window
+    bindsym $mod+shift+d exec nwg-drawer -c 7 -is 70 -spacing 23    # Activities
+   
+     bindsym $mod+p exec swayr switch-window
 
     # Activities and workspaces
     bindsym $mod+Shift+p exec swayr switch-workspace-or-window
@@ -218,7 +218,7 @@ bindsym XF86AudioMute exec pamixer --toggle-mute
 #
 # App shortcuts
 #
-    bindsym $mod+n exec thunar && swaymsg workspace number 3
+    bindsym $mod+n exec dolphin && swaymsg workspace number 3
     bindsym $mod+o exec firefox && swaymsg workspace number 2
     bindsym $mod+Shift+o exec firefox --private-window && swaymsg workspace number 2
     bindsym $mod+v exec pavucontrol
