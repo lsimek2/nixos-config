@@ -106,6 +106,12 @@
         auto-format = true;
         formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       }
+      {
+        name = "haskell";
+        auto-format = true;
+        formatter.command = "${pkgs.haskellPackages.ormolu}/bin/ormolu";
+        # linter.command = "${pkgs.haskellPackages.hlint}/bin/hlint";
+      }
     ];
     settings = {
       editor.lsp = {
