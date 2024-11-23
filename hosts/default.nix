@@ -67,6 +67,7 @@
       nil # Nix language server
       cabal-install
       sbt
+      mill
       metals
       julia
       cargo

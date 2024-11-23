@@ -113,6 +113,11 @@
         formatter.command = "${pkgs.haskellPackages.ormolu}/bin/ormolu";
         # linter.command = "${pkgs.haskellPackages.hlint}/bin/hlint";
       }
+      {
+        name = "scala";
+        auto-format = true;
+        # formatter.command = "${pkgs.scalafmt}/bin/scalafmt";
+      }
     ];
     settings = {
       editor.lsp = {

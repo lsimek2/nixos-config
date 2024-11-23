@@ -6,6 +6,8 @@
 
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -37,11 +39,12 @@
       self,
       nixpkgs-unstable,
       nixpkgs-stable,
+      nixos-hardware,
       home-manager-stable,
       home-manager-unstable,
       stylix,
       nuenv,
-      nixos-cosmic,
+      # nixos-cosmic,
       ...
     }@inputs:
     let
@@ -63,7 +66,7 @@
           modules
           user-pkgs
           stylix
-          nixos-cosmic
+          # nixos-cosmic
           ;
         home-manager = home-manager-unstable;
       };
@@ -91,6 +94,7 @@
           ./hosts # defaults
           ./users
           ./network
+          nixos-hardware.nixosModules.chuwi-minibook-x
           home-manager-unstable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix

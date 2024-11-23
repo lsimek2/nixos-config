@@ -56,7 +56,7 @@ in
 
   users.extraGroups.vboxusers.members = [ "carjin" ];
 
-  services.xserver.videoDrivers = [ "intel" ];
+  # services.xserver.videoDrivers = [ "intel" ];
 
   services.xserver.enable = true;
   services.displayManager.sddm = {
@@ -96,7 +96,10 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.kernelParams = [ "fbcon=rotate:1" ];
+  # boot.kernelParams = [
+  # "fbcon=rotate:1"
+  # "video=DSI-1:panel_orientation=right_side_up"
+  # ];
   boot.loader.systemd-boot.consoleMode = "0";
 
   networking.hostName = "minibook";
@@ -112,18 +115,19 @@ in
   # nixpkgs.config.packageOverrides = pkgs: {
   # intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   # };
+  # options.hardware.intelgpu.driver = "xe";
 
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      libvdpau-va-gl
-    ];
+    # extraPackages = with pkgs; [
+    # intel-media-driver # LIBVA_DRIVER_NAME=iHD
+    # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+    # libvdpau-va-gl
+    # ];
   };
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  }; # Force intel-media-driver
+  # environment.sessionVariables = {
+  # LIBVA_DRIVER_NAME = "iHD";
+  # }; # Force intel-media-driver
 
   system.stateVersion = "24.05";
 

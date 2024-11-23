@@ -12,13 +12,13 @@
     wrapperFeatures.gtk = true;
   };
 
-  # programs.thunar = {
-  # enable = true;
-  # plugins = with pkgs.xfce; [
-  # thunar-archive-plugin
-  # thunar-volman
-  # ];
-  # };
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
 
   services.libinput.enable = true;
   services.gvfs.enable = true; # Mount, trash, and other functionalities
@@ -50,7 +50,7 @@
 
   environment.systemPackages =
     (with pkgs-stable; [
-      xfce.thunar
+      # xfce.thunar
       xfce.xfce4-taskmanager
       networkmanagerapplet
       wlr-randr
@@ -64,7 +64,7 @@
       autotiling-rs
       sway-contrib.grimshot
       pavucontrol
-      xdg-desktop-portal
+      # xdg-desktop-portal
       swayr
       alsa-utils
       brightnessctl
