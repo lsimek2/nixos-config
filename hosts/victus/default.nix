@@ -128,7 +128,10 @@ in
   };
 
   boot.kernelPackages = pkgs.linuxPackages_xanmod;
-  boot.kernelParams = [ "amd_iommu=on" ]; # "amd_pstate=disable"
+  boot.kernelParams = [
+    "amd_iommu=on"
+    "acpi_osi=Linux"
+  ]; # "amd_pstate=disable"
 
   # Enable kernel debug mode
   # boot.crashDump.enable = true;

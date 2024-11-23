@@ -27,4 +27,10 @@
 
   # Don't wait for network startup
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+
+  # Enable DCHP ports for Hotspot
+  networking.firewall.allowedUDPPorts = [
+    67
+    68
+  ];
 }
