@@ -22,6 +22,7 @@
 
   home.packages =
     (with pkgs; [
+      tldr
       nmap
       ani-cli
       firefox
