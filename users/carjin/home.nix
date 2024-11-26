@@ -28,6 +28,7 @@
       firefox
       librewolf
       chromium
+      nextcloud-client
       mpv
       peazip
       protonup-ng
@@ -36,7 +37,6 @@
       calibre
       lutris
       deluge-gtk
-      nextcloud-client
       osu-lazer-bin
       dconf
       anki-bin
