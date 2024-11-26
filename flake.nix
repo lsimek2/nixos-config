@@ -100,7 +100,7 @@
           modules.stylix
         ];
       };
-      nixosConfigurations.pico = nixpkgs-unstable.lib.nixosSystem {
+      nixosConfigurations.pico = nixpkgs-stable.lib.nixosSystem {
         inherit specialArgs;
         system = "aarch64-linux";
         modules = [

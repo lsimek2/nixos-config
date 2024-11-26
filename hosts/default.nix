@@ -75,7 +75,7 @@
       zoxide
       carapace
     ])
-    ++ (with user-pkgs; [ repl ]);
+    ++ (with user-pkgs; [ ]);
 
   programs.fish.enable = true;
 
@@ -98,8 +98,6 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-
-  services.btrfs.autoScrub.enable = true;
 
   users.defaultUserShell = pkgs.nushell;
 
