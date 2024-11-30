@@ -120,6 +120,7 @@
       }
     ];
     settings = {
+      theme = "tokyonight";
       editor.lsp = {
         display-inlay-hints = true;
       };
