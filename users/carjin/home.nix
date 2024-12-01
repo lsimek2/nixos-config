@@ -1,6 +1,6 @@
 {
   config,
-  pkgs,
+  pkgs-unstable,
   pkgs-stable,
   modules,
   ...
@@ -21,20 +21,21 @@
   home.stateVersion = "23.11";
 
   home.packages =
-    (with pkgs; [
+    (with pkgs-unstable; [
       tldr
       nmap
       ani-cli
+      protonup-ng
+    ])
+    ++ (with pkgs-stable; [
+      calibre
       firefox
+      inkscape
       librewolf
       chromium
       nextcloud-client
       mpv
       peazip
-      protonup-ng
-    ])
-    ++ (with pkgs-stable; [
-      calibre
       lutris
       deluge-gtk
       osu-lazer-bin
@@ -72,7 +73,7 @@
 
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
+    extensions = with pkgs-stable.vscode-extensions; [
       #      dracula-theme.theme-dracula
       #      vscodevim.vim
       #      yzhang.markdown-all-in-one
@@ -105,12 +106,12 @@
       {
         name = "nix";
         auto-format = true;
-        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+        formatter.command = "${pkgs-stable.nixfmt-rfc-style}/bin/nixfmt";
       }
       {
         name = "haskell";
         auto-format = true;
-        formatter.command = "${pkgs.haskellPackages.ormolu}/bin/ormolu";
+        formatter.command = "${pkgs-stable.haskellPackages.ormolu}/bin/ormolu";
         # linter.command = "${pkgs.haskellPackages.hlint}/bin/hlint";
       }
       {
@@ -137,7 +138,7 @@
   stylix.targets.kde.enable = false;
 
   gtk.iconTheme = {
-    package = pkgs.papirus-icon-theme;
+    package = pkgs-stable.papirus-icon-theme;
     name = "Papirus";
   };
 

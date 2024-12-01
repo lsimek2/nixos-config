@@ -4,12 +4,12 @@
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
 
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -34,10 +34,19 @@
     };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, nixos-hardware
-    , home-manager-stable, home-manager-unstable, stylix, nuenv,
-    # nixos-cosmic,
-    ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs-unstable,
+      nixpkgs-stable,
+      nixos-hardware,
+      home-manager-stable,
+      home-manager-unstable,
+      stylix,
+      nuenv,
+      # nixos-cosmic,
+      ...
+    }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
@@ -51,13 +60,19 @@
       modules = import ./modules;
       user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
       specialArgs = {
-        inherit pkgs-unstable pkgs-stable modules user-pkgs stylix
+        inherit
+          pkgs-unstable
+          pkgs-stable
+          modules
+          user-pkgs
+          stylix
           # nixos-cosmic
-        ;
+          ;
         home-manager = home-manager-unstable;
       };
-    in {
-      nixosConfigurations.victus = nixpkgs-unstable.lib.nixosSystem {
+    in
+    {
+      nixosConfigurations.victus = nixpkgs-stable.lib.nixosSystem {
         inherit specialArgs;
         system = "x86_64-linux";
         modules = [
@@ -65,13 +80,13 @@
           ./hosts # defaults
           ./users
           ./network
-          home-manager-unstable.nixosModules.default
+          home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
           #          modules.cosmic
         ];
       };
-      nixosConfigurations.centaur = nixpkgs-unstable.lib.nixosSystem {
+      nixosConfigurations.centaur = nixpkgs-stable.lib.nixosSystem {
         inherit specialArgs;
         system = "x86_64-linux";
         modules = [
@@ -79,13 +94,13 @@
           ./hosts # defaults
           ./users
           ./network
-          home-manager-unstable.nixosModules.default
+          home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
           #          modules.cosmic
         ];
       };
-      nixosConfigurations.minibook = nixpkgs-unstable.lib.nixosSystem {
+      nixosConfigurations.minibook = nixpkgs-stable.lib.nixosSystem {
         inherit specialArgs;
         system = "x86_64-linux";
         modules = [
@@ -94,7 +109,7 @@
           ./users
           ./network
           nixos-hardware.nixosModules.chuwi-minibook-x
-          home-manager-unstable.nixosModules.default
+          home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
         ];

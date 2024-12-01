@@ -3,6 +3,7 @@
   lib,
   pkgs,
   pkgs-stable,
+  pkgs-unstable,
   inputs,
   modules,
   ...
@@ -17,18 +18,16 @@ in
   ];
 
   environment.systemPackages =
-    (with pkgs; [
+    (with pkgs-unstable; [
       jetbrains.idea-community-bin
     ])
-    ++
-
-      (with pkgs-stable; [
-        virtiofsd # libvirt folder sharing
-        moonlight-qt
-        wireshark
-        tshark
-        nikto
-      ]);
+    ++ (with pkgs-stable; [
+      virtiofsd # libvirt folder sharing
+      moonlight-qt
+      wireshark
+      tshark
+      nikto
+    ]);
 
   virtualisation.libvirtd = {
     enable = true;
@@ -55,8 +54,6 @@ in
   virtualisation.waydroid.enable = true;
 
   users.extraGroups.vboxusers.members = [ "carjin" ];
-
-  # services.xserver.videoDrivers = [ "intel" ];
 
   services.xserver.enable = true;
   services.displayManager.sddm = {

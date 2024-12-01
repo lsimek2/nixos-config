@@ -1,4 +1,11 @@
-{ config, pkgs, pkgs-stable, modules, ... }:
+{
+  config,
+  pkgs,
+  pkgs-stable,
+  pkgs-unstable,
+  modules,
+  ...
+}:
 
 {
 
@@ -14,36 +21,44 @@
 
   home.stateVersion = "23.11";
 
-  home.packages = (with pkgs; [
-    nmap
-    ani-cli
-    firefox
-    librewolf
-    chromium
-    thunderbird
-    peazip
-    protonup-ng
-  ]) ++ (with pkgs-stable; [
-    calibre
-    lutris
-    deluge-gtk
-    nextcloud-client
-    mpv
-    texlab
-    dconf
-    gedit
-    libreoffice
-  ]);
+  home.packages =
+    (with pkgs-unstable; [
+      nmap
+      ani-cli
+      protonup-ng
+    ])
+    ++ (with pkgs-stable; [
+      calibre
+      firefox
+      librewolf
+      chromium
+      thunderbird
+      peazip
+      lutris
+      deluge-gtk
+      nextcloud-client
+      mpv
+      texlab
+      dconf
+      gedit
+      libreoffice
+    ]);
 
   home.file = { };
 
-  home.sessionVariables = { EDITOR = "hx"; };
+  home.sessionVariables = {
+    EDITOR = "hx";
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   services.pueue = {
     enable = true;
-    settings = { daemon = { default_parallel_tasks = 64; }; };
+    settings = {
+      daemon = {
+        default_parallel_tasks = 64;
+      };
+    };
   };
 
   programs.git = {
@@ -59,14 +74,18 @@
 
   programs.helix = {
     enable = true;
-    languages.language = [{
-      name = "nix";
-      auto-format = true;
-      formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-    }];
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+      }
+    ];
     settings = {
       theme = "tokyodark";
-      editor.lsp = { display-inlay-hints = true; };
+      editor.lsp = {
+        display-inlay-hints = true;
+      };
     };
     themes = {
       autumn_night_transparent = {

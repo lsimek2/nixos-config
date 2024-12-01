@@ -5,16 +5,17 @@
   inputs,
   modules,
   pkgs-stable,
+  pkgs-unstable,
   ...
 }:
 let
   multimonitor = import ./multimonitor.nix { inherit pkgs; };
-  upkgs = with pkgs; [
+  spkgs = with pkgs-stable; [
     multimonitor
     virtiofsd # libvirt folder sharing
     looking-glass-client
   ];
-  spkgs = with pkgs-stable; [ ];
+  upkgs = with pkgs-unstable; [ ];
 in
 {
   imports = [
