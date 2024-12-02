@@ -5,6 +5,11 @@
     checkReversePath = "loose";
   };
 
+  networking.firewall.allowedUDPPorts = [
+    41641
+    3478
+  ];
+
   # inter-machine VPN
   services.tailscale = {
     enable = true;
