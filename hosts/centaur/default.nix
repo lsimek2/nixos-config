@@ -21,6 +21,11 @@
     enable = true;
     openFirewall = true;
     host = "centaur.akita-bleak.ts.net";
+    loadModels = [
+      "qwen2.5-coder:32b"
+      "llama3.1:8b"
+    ];
+    acceleration = "cuda";
   };
 
   nix.settings.experimental-features = [ "nix-command" ];
