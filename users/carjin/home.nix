@@ -43,6 +43,7 @@
       anki-bin
       gedit
       libreoffice
+      vscode-fhs
 
       (rstudioWrapper.override {
         packages = with rPackages; [
@@ -71,23 +72,23 @@
     };
   };
 
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs-stable.vscode-extensions; [
-      #      dracula-theme.theme-dracula
-      #      vscodevim.vim
-      #      yzhang.markdown-all-in-one
-      thenuprojectcontributors.vscode-nushell-lang
-      julialang.language-julia
-      haskell.haskell
-      #      justusadan.language-haskell
-      betterthantomorrow.calva
-      #      unison-lang.unison
-      jnoortheen.nix-ide
-      arrterian.nix-env-selector
-      mkhl.direnv
-    ];
-  };
+  # programs.vscode = {
+  #   enable = true;
+  #   extensions = with pkgs-stable.vscode-extensions; [
+  #     #      dracula-theme.theme-dracula
+  #     #      vscodevim.vim
+  #     #      yzhang.markdown-all-in-one
+  #     thenuprojectcontributors.vscode-nushell-lang
+  #     julialang.language-julia
+  #     haskell.haskell
+  #     #      justusadan.language-haskell
+  #     betterthantomorrow.calva
+  #     #      unison-lang.unison
+  #     jnoortheen.nix-ide
+  #     arrterian.nix-env-selector
+  #     mkhl.direnv
+  #   ];
+  # };
 
   programs.git = {
     enable = true;

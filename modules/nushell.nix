@@ -1,10 +1,11 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   programs = {
     nushell = {
       enable = true;
       # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
       #      configFile.source = ./.../config.nu;
-      # for editing directly to config.nu 
+      # for editing directly to config.nu
       extraConfig = ''
             let carapace_completer = {|spans|
             carapace $spans.0 nushell $spans | from json
@@ -63,6 +64,8 @@
 
             source ($nu.default-config-dir | path join "startup.nu")
             source ($nu.default-config-dir | path join "completers.nu")
+            const init_path = $"($nu.home-path)/.init.nu"
+            source $init_path
       '';
       shellAliases = {
         vi = "hx";
