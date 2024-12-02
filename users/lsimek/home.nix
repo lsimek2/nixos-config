@@ -42,6 +42,7 @@
       dconf
       gedit
       libreoffice
+      vesktop
     ]);
 
   home.file = { };
