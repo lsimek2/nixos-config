@@ -21,13 +21,17 @@
       substituters = [
         "https://nix-community.cachix.org"
         "https://cache.nixos.org"
+      ];
+      extra-substituters = [
         "https://victus.cachix.org"
         "http://victus.akita-bleak.ts.net?priority=50"
       ];
       trusted-public-keys = [
-        "victus.akita-bleak.ts.net:kb/jFWfxfUVJfWlLeu+qEYO3zGkNHdfCvb61qSHRo3A="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      extra-trusted-public-keys = [
         "victus.cachix.org-1:VQvwDrGr4O3e1G64Xl97fl2QdHRxr3LieTYldF84jIY="
+        "victus.akita-bleak.ts.net:kb/jFWfxfUVJfWlLeu+qEYO3zGkNHdfCvb61qSHRo3A="
       ];
     };
   };
