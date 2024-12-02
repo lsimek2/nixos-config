@@ -17,6 +17,32 @@
     modules.nix-ld
   ];
 
+  services._3proxy = {
+    enable = true;
+    services = [
+      {
+        type = "socks";
+        auth = [ "strong" ];
+        acl = [
+          {
+            rule = "allow";
+            users = [ "master" ];
+          }
+        ];
+      }
+    ];
+    usersFile = "/etc/3proxy.passwd";
+  };
+
+  environment.etc = {
+    "3proxy.passwd".text = ''
+      master:CR:$1$czCls9cH$.zIWiB42e4huFnrGAbwos.
+    '';
+  };
+
+  networking.firewall.allowedUDPPorts = [ 1080 ];
+  networking.firewall.allowedTCPPorts = [ 1080 ];
+
   services.ollama = {
     enable = true;
     openFirewall = true;
