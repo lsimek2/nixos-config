@@ -34,6 +34,7 @@
       librewolf
       chromium
       nextcloud-client
+      oterm
       mpv
       peazip
       lutris

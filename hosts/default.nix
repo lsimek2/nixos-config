@@ -71,6 +71,7 @@
       nil # Nix language server
       cabal-install
       sbt
+      ammonite
       mill
       metals
       julia
