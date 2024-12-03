@@ -84,7 +84,7 @@ window#waybar {
 
 #clock, #battery, #cpu, #memory,#idle_inhibitor, #temperature,#custom-keyboard-layout, #backlight, #network, #pulseaudio, #mode, #tray, #window,#custom-launcher,#custom-power,#custom-pacman, #custom-network_traffic {
     padding: 0 3px;
-    border-bottom: 2px;
+    border-bottom: 0px;
     border-style: solid;
 }
  
@@ -139,11 +139,11 @@ window#waybar {
 }
 
 #network{
-    color:#a3be8c;
+    color:#b694f5;
 }
 
 #network.disconnected {
-    color: #bf616a;
+    color: #51445f;
 }
 
 #pulseaudio {
@@ -186,5 +186,7 @@ window#waybar {
    color:#d08770;
 }   
 
-
+#custom-network_traffic{
+    color:#f7ac7b
+}
 

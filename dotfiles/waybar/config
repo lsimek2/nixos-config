@@ -86,16 +86,18 @@
         "on-scroll-up": "brightnessctl -c backlight set +5%"
     },
     "battery": {
+         "format": "<span font='Font Awesome 5 Free 11'>{icon}</span>   {capacity}%{time}",
+        "format-icons": ["", "", "", "", ""],
+        "format-time": " ({H}h{M}m)",
+        "format-charging": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}",
+        "format-full": "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  100%",
+        "interval": 15,
         "states": {
             // "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity: >3}%",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", " "]
-        //"format-icons": ["", "", "", "", "", "", "", "", "", ""]
+
     },
      "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
