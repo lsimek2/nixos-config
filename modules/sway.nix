@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-stable,
   user-pkgs,
   ...
 }:
@@ -48,8 +47,9 @@
     KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", GROUP="input", MODE="0660"
   '';
 
-  environment.systemPackages =
-    (with pkgs-stable; [
+  environment.systemPackages = (
+    with pkgs;
+    [
       # xfce.thunar
       xfce.xfce4-taskmanager
       networkmanagerapplet
@@ -93,6 +93,7 @@
       kdePackages.ffmpegthumbs
       kdePackages.kdesdk-thumbnailers
       icoutils
-    ])
-    ++ (with user-pkgs; [ wl-ocr ]);
+    ]
+  );
+  # ++ (with user-pkgs; [ wl-ocr ]);
 }

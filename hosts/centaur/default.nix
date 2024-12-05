@@ -7,6 +7,7 @@
   lib,
   pkgs,
   modules,
+  pkgs-unstable,
   ...
 }:
 {
@@ -15,7 +16,22 @@
     ./hardware-configuration.nix
     modules.qtile
     modules.nix-ld
+    ../../users/carjin/user.nix
+    ../../users/lsimek/user.nix
   ];
+
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = {
+      inherit modules pkgs-unstable;
+    };
+    users = {
+      carjin = import ../../users/carjin/home.nix;
+      lsimek = import ../../users/lsimek/home.nix;
+    };
+
+    backupFileExtension = "backup";
+  };
 
   services._3proxy = {
     enable = true;

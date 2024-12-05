@@ -4,18 +4,11 @@
   pkgs,
   inputs,
   modules,
-  pkgs-stable,
   pkgs-unstable,
   ...
 }:
 let
   multimonitor = import ./multimonitor.nix { inherit pkgs; };
-  spkgs = with pkgs-stable; [
-    multimonitor
-    virtiofsd # libvirt folder sharing
-    looking-glass-client
-  ];
-  upkgs = with pkgs-unstable; [ ];
 in
 {
   imports = [
@@ -24,7 +17,25 @@ in
     modules.sway
     ./vfio.nix
     ./kvmfr.nix
+    ../../users/carjin/user.nix
   ];
+
+  environment.systemPackages = with pkgs; [
+    multimonitor
+    virtiofsd # libvirt folder sharing
+    looking-glass-client
+  ];
+
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = {
+      inherit modules pkgs-unstable;
+    };
+    users = {
+      carjin = import ../../users/carjin/home.nix;
+    };
+    backupFileExtension = "backup";
+  };
 
   services.nix-serve = {
     enable = true;
@@ -140,8 +151,6 @@ in
   services.xserver.displayManager.setupCommands = "${multimonitor}/bin/multimonitor";
 
   networking.hostName = "victus"; # Define your hostname.
-
-  environment.systemPackages = upkgs ++ spkgs;
 
   system.stateVersion = "23.11";
 

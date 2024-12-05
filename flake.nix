@@ -13,25 +13,11 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     stylix = {
       url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    nuenv = {
-      url = "https://flakehub.com/f/DeterminateSystems/nuenv/*.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
   };
 
   outputs =
@@ -41,34 +27,28 @@
       nixpkgs-stable,
       nixos-hardware,
       home-manager-stable,
-      home-manager-unstable,
       stylix,
-      nuenv,
-      # nixos-cosmic,
       ...
     }@inputs:
     let
       pkgs-unstable = import nixpkgs-unstable {
         system = "x86_64-linux";
         config.allowUnfree = true;
-        overlays = [ nuenv.overlays.default ];
+        overlays = [ ];
       };
-      pkgs-stable = import nixpkgs-stable {
-        system = "x86_64-linux";
+      pkgs-unstable-arm = import nixpkgs-unstable {
+        system = "aarch64-linux";
         config.allowUnfree = true;
+        overlays = [ ];
       };
       modules = import ./modules;
-      user-pkgs = import ./pkgs { pkgs = pkgs-stable; };
       specialArgs = {
         inherit
           pkgs-unstable
-          pkgs-stable
+          pkgs-unstable-arm
           modules
-          user-pkgs
           stylix
-          # nixos-cosmic
           ;
-        home-manager = home-manager-unstable;
       };
     in
     {
@@ -78,7 +58,6 @@
         modules = [
           ./hosts/victus
           ./hosts # defaults
-          ./users
           ./network
           home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
@@ -92,7 +71,6 @@
         modules = [
           ./hosts/centaur
           ./hosts # defaults
-          ./users
           ./network
           home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
@@ -106,7 +84,6 @@
         modules = [
           ./hosts/minibook
           ./hosts # defaults
-          ./users
           ./network
           nixos-hardware.nixosModules.chuwi-minibook-x
           home-manager-stable.nixosModules.default

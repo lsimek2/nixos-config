@@ -2,12 +2,12 @@
   config,
   lib,
   pkgs,
-  user-pkgs,
   pkgs-unstable,
-  pkgs-stable,
   ...
 }:
-
+let
+  user-pkgs = import ../packages { inherit pkgs; };
+in
 {
 
   imports = [ ];
@@ -32,6 +32,11 @@
       extra-trusted-public-keys = [
         "victus.cachix.org-1:VQvwDrGr4O3e1G64Xl97fl2QdHRxr3LieTYldF84jIY="
         "victus.akita-bleak.ts.net:kb/jFWfxfUVJfWlLeu+qEYO3zGkNHdfCvb61qSHRo3A="
+      ];
+      trusted-users = [
+        "root"
+        "carjin"
+        "lsimek"
       ];
     };
   };
@@ -80,7 +85,7 @@
       zoxide
       carapace
     ])
-    ++ (with user-pkgs; [ ]);
+    ++ (with user-pkgs; [ ammonite.ammonite_3_5 ]);
 
   programs.fish.enable = true;
 

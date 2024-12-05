@@ -1,8 +1,7 @@
 {
-  config,
   pkgs-unstable,
-  pkgs-stable,
   modules,
+  pkgs,
   ...
 }:
 
@@ -27,7 +26,7 @@
       ani-cli
       protonup-ng
     ])
-    ++ (with pkgs-stable; [
+    ++ (with pkgs; [
       calibre
       firefox
       inkscape
@@ -108,12 +107,12 @@
       {
         name = "nix";
         auto-format = true;
-        formatter.command = "${pkgs-stable.nixfmt-rfc-style}/bin/nixfmt";
+        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
       }
       {
         name = "haskell";
         auto-format = true;
-        formatter.command = "${pkgs-stable.haskellPackages.ormolu}/bin/ormolu";
+        formatter.command = "${pkgs.haskellPackages.ormolu}/bin/ormolu";
         # linter.command = "${pkgs.haskellPackages.hlint}/bin/hlint";
       }
       {
@@ -140,7 +139,7 @@
   stylix.targets.kde.enable = false;
 
   gtk.iconTheme = {
-    package = pkgs-stable.papirus-icon-theme;
+    package = pkgs.papirus-icon-theme;
     name = "Papirus";
   };
 

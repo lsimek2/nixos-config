@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  pkgs-stable,
   pkgs-unstable,
   inputs,
   modules,
@@ -15,19 +14,33 @@ in
   imports = [
     ./hardware-configuration.nix
     modules.sway
+    ../../users/carjin/user.nix
   ];
 
   environment.systemPackages =
     (with pkgs-unstable; [
       jetbrains.idea-community-bin
     ])
-    ++ (with pkgs-stable; [
+    ++ (with pkgs; [
       virtiofsd # libvirt folder sharing
       moonlight-qt
       wireshark
       tshark
       nikto
     ]);
+
+  home-manager = {
+    # also pass inputs to home-manager modules
+    extraSpecialArgs = {
+      inherit modules pkgs-unstable;
+    };
+    users = {
+      carjin = import ../../users/carjin/home.nix;
+    };
+
+    backupFileExtension = "backup";
+    useGlobalPkgs = true;
+  };
 
   virtualisation.libvirtd = {
     enable = true;

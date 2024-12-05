@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgs-stable,
   pkgs-unstable,
   modules,
   ...
@@ -27,7 +26,7 @@
       ani-cli
       protonup-ng
     ])
-    ++ (with pkgs-stable; [
+    ++ (with pkgs; [
       calibre
       firefox
       librewolf
