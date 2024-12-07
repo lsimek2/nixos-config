@@ -103,24 +103,29 @@
 
   programs.helix = {
     enable = true;
-    languages.language = [
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-      }
-      {
-        name = "haskell";
-        auto-format = true;
-        formatter.command = "${pkgs.haskellPackages.ormolu}/bin/ormolu";
-        # linter.command = "${pkgs.haskellPackages.hlint}/bin/hlint";
-      }
-      {
-        name = "scala";
-        auto-format = true;
-        # formatter.command = "${pkgs.scalafmt}/bin/scalafmt";
-      }
-    ];
+    languages = {
+      language-server.metals.config.metals = {
+        autoImportBuild = "all";
+      };
+      language = [
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+        }
+        {
+          name = "haskell";
+          auto-format = true;
+          formatter.command = "${pkgs.haskellPackages.ormolu}/bin/ormolu";
+          # linter.command = "${pkgs.haskellPackages.hlint}/bin/hlint";
+        }
+        {
+          name = "scala";
+          auto-format = true;
+          # formatter.command = "${pkgs.scalafmt}/bin/scalafmt";
+        }
+      ];
+    };
     settings = {
       theme = "tokyonight";
       editor.lsp = {
