@@ -42,6 +42,9 @@ in
     useGlobalPkgs = true;
   };
 
+  services.upower.enable = true;
+  services.upower.percentageAction = 5;
+
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
