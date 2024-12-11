@@ -15,18 +15,12 @@
     helix
   ];
 
-  services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
-    forceSSL = true;
-    sslCertificate = "/etc/private/pico.akita-bleak.ts.net.crt";
-    sslCertificateKey = "/etc/private/pico.akita-bleak.ts.net.key";
-  };
-
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud30;
     # Instead of using pkgs.nextcloud28Packages.apps,
     # we'll reference the package version specified above
-    hostName = "pico.akita-bleak.ts.net";
+    hostName = "localhost";
     https = true;
     config = {
       adminpassFile = "/etc/private/nextcloud-admin-pass";
@@ -43,6 +37,7 @@
       overwritewebroot = dir;
       overwrite.cli.url = "${prot}://${host}${dir}/";
       htaccess.RewriteBase = dir;
+      trusted_domains = [ "pico" "pico.akita-bleak.ts.net" "localhost" ];
     };
   };
 
