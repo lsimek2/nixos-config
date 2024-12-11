@@ -33,6 +33,14 @@
     backupFileExtension = "backup";
   };
 
+  services.open-webui = {
+    enable = true;
+    openFirewall = true;
+    environment = {
+      WEBUI_AUTH = "False";
+    };
+  };
+
   services._3proxy = {
     enable = true;
     services = [
@@ -62,10 +70,12 @@
   services.ollama = {
     enable = true;
     openFirewall = true;
-    host = "centaur.akita-bleak.ts.net";
+    host = "localhost";
+    # host = "centaur.akita-bleak.ts.net";
     loadModels = [
       "qwen2.5-coder:32b"
       "llama3.1:8b"
+      "llama3.3:70b-instruct-q2_K"
     ];
     acceleration = "cuda";
   };
