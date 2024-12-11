@@ -94,6 +94,9 @@
     enable = true;
     userEmail = "karlo.puselj@gmail.com";
     userName = "Lunitur";
+    extraConfig = {
+      receive.denyCurrentBranch = "warn";
+    };
   };
 
   dconf.enable = true;
