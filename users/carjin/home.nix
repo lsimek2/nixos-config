@@ -28,6 +28,7 @@
     ])
     ++ (with pkgs; [
       calibre
+      logseq
       firefox
       inkscape
       librewolf
