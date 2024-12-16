@@ -17,6 +17,10 @@ in
     ../../users/carjin/user.nix
   ];
 
+  nix.settings.extra-substituters = [
+    "http://victus.akita-bleak.ts.net?priority=50"
+  ];
+
   environment.systemPackages =
     (with pkgs-unstable; [
       jetbrains.idea-community-bin
