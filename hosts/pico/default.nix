@@ -41,6 +41,16 @@
         # };
         locations."/.well-known/acme-challenge".root = "/var/lib/acme/acme-challenge";
       };
+
+      "ai.anarhizam.org" = {
+        enableACME = true;
+        addSSL = true;
+        locations."/" = {
+          proxyPass = "http://centaur.akita-bleak.ts.net:8080";
+          recommendedProxySettings = true;
+        };
+        locations."/.well-known/acme-challenge".root = "/var/lib/acme/acme-challenge";
+      };
     };
   };
 
