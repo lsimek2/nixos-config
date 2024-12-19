@@ -29,6 +29,8 @@
     ++ (with pkgs; [
       calibre
       firefox
+      element-desktop
+      signal-desktop
       librewolf
       chromium
       thunderbird
