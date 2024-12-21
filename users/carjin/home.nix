@@ -19,6 +19,25 @@
 
   home.stateVersion = "23.11";
 
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+
+    };
+
+  };
+
+  stylix.targets.fish.enable = true;
+
+  programs.direnv.enableFishIntegration = true;
+  programs.zoxide.enableFishIntegration = true;
+  programs.nix-index.enableFishIntegration = true;
+  programs.fzf.enableFishIntegration = true;
+  programs.carapace.enableFishIntegration = true;
+  programs.oh-my-posh.enableFishIntegration = true;
+  programs.dircolors.enableFishIntegration = true;
+  programs.autojump.enableFishIntegration = true;
+
   home.packages =
     (with pkgs-unstable; [
       tldr
@@ -119,6 +138,10 @@
         }
         {
           name = "haskell";
+          file-types = [
+            "hs"
+            "lhs"
+          ];
           auto-format = true;
           formatter.command = "${pkgs.haskellPackages.ormolu}/bin/ormolu";
           # linter.command = "${pkgs.haskellPackages.hlint}/bin/hlint";

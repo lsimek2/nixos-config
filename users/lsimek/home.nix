@@ -20,6 +20,24 @@
 
   home.stateVersion = "23.11";
 
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      ls = "ls -l";
+    };
+  };
+
+  stylix.targets.fish.enable = true;
+
+  programs.direnv.enableFishIntegration = true;
+  programs.zoxide.enableFishIntegration = true;
+  programs.nix-index.enableFishIntegration = true;
+  programs.fzf.enableFishIntegration = true;
+  programs.carapace.enableFishIntegration = true;
+  programs.oh-my-posh.enableFishIntegration = true;
+  programs.dircolors.enableFishIntegration = true;
+  programs.autojump.enableFishIntegration = true;
+
   home.packages =
     (with pkgs-unstable; [
       nmap
