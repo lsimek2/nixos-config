@@ -56,37 +56,19 @@
     '';
   };
 
+  networking.firewall.allowedUDPPorts = [ 1080 ];
+  networking.firewall.allowedTCPPorts = [ 1080 ];
+
   services.ollama = {
     enable = true;
     openFirewall = true;
-    host = "localhost";
+    host = "centaur.akita-bleak.ts.net";
     loadModels = [
       "qwen2.5-coder:32b"
       "llama3.1:8b"
-      "llama3.3:70b-instruct-q2_K"
-      "gemma2:27b"
     ];
     acceleration = "cuda";
   };
-
-  services.open-webui = {
-    enable = true;
-    openFirewall = true;
-    host = "centaur.akita-bleak.ts.net";
-    environment = {
-      WEBUI_AUTH = "True";
-      ENABLE_SIGNUP = "True";
-    };
-  };
-
-  networking.firewall.allowedUDPPorts = [
-    1080 # scoks
-    8080 # open-webut
-  ];
-  networking.firewall.allowedTCPPorts = [
-    1080
-    8080
-  ];
 
   nix.settings.experimental-features = [ "nix-command" ];
 
