@@ -62,7 +62,7 @@
             append $"($env.HOME)/System"
             )
 
-            source ($nu.default-config-dir | path join "startup.nu")
+            source $"($nu.home-path)/nixos/dotfiles/nushell/startup.nu"
             source ($nu.default-config-dir | path join "completers.nu")
             const init_path = $"($nu.home-path)/.init.nu"
             source $init_path

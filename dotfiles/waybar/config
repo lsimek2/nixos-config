@@ -4,12 +4,12 @@
     "height": 30,
     //"width": 1350, // Waybar width
     // Choose the order of the modules idle_inhibitor
-    "modules-left": ["custom/launcher","sway/workspaces", "sway/mode", "sway/window"],
+    "modules-left": ["custom/launcher","hyprland/workspaces", "hyprland/submap", "hyprland/window"],
     "modules-right": ["backlight", "temperature", "cpu", "memory", "battery", "network", "custom/network_traffic", "pulseaudio","tray", "idle_inhibitor", "clock","custom/power"],
 
  // Modules configuration
 
-    "sway/workspaces": {
+    "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
         "disable-markup": false,
@@ -27,11 +27,12 @@
 		"10": "10",
         }
     },
-    "sway/mode": {
+    "hyprland/submap": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "sway/window": {
-        "format": "{}"
+    "hyprland/window": {
+        "format": "{}",
+        "seperate-outputs": true
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -55,7 +56,7 @@
     },
     "cpu": {
         "format": " {usage: >3}%",
-        "on-click": "alacritty -e htop"
+        "on-click": "foot -e htop"
     },
     "memory": {
         "interval": 15,
@@ -144,7 +145,7 @@
     	"tooltip": false,
 },
      "custom/network_traffic": {
-             "exec": "~/.config/waybar/scripts/network_traffic.sh",
+             "exec": ".config/waybar/scripts/network_traffic.sh",
              "return-type": "json",
              "format-ethernet": "{icon} {ifname} ⇣{bandwidthDownBytes:>4} ⇡{bandwidthUpBytes:>4}",    // optional
 },

@@ -19,25 +19,6 @@
 
   home.stateVersion = "23.11";
 
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-
-    };
-
-  };
-
-  stylix.targets.fish.enable = true;
-
-  programs.direnv.enableFishIntegration = true;
-  programs.zoxide.enableFishIntegration = true;
-  programs.nix-index.enableFishIntegration = true;
-  programs.fzf.enableFishIntegration = true;
-  programs.carapace.enableFishIntegration = true;
-  programs.oh-my-posh.enableFishIntegration = true;
-  programs.dircolors.enableFishIntegration = true;
-  programs.autojump.enableFishIntegration = true;
-
   home.packages =
     (with pkgs-unstable; [
       tldr
@@ -47,7 +28,7 @@
     ])
     ++ (with pkgs; [
       calibre
-      logseq
+      # logseq
       firefox
       inkscape
       librewolf
@@ -77,6 +58,24 @@
 
   home.file = { };
 
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "on";
+      # splash = false;
+      # splash_offset = 2.0;
+
+      preload = [
+        "Pictures/desktop.jpg"
+      ];
+
+      wallpaper = [
+        "DP-1,Pictures/desktop.jpg"
+        "DP-2,Pictures/desktop.jpg"
+      ];
+    };
+  };
+
   home.sessionVariables = {
     EDITOR = "hx";
   };
@@ -91,24 +90,6 @@
       };
     };
   };
-
-  # programs.vscode = {
-  #   enable = true;
-  #   extensions = with pkgs-stable.vscode-extensions; [
-  #     #      dracula-theme.theme-dracula
-  #     #      vscodevim.vim
-  #     #      yzhang.markdown-all-in-one
-  #     thenuprojectcontributors.vscode-nushell-lang
-  #     julialang.language-julia
-  #     haskell.haskell
-  #     #      justusadan.language-haskell
-  #     betterthantomorrow.calva
-  #     #      unison-lang.unison
-  #     jnoortheen.nix-ide
-  #     arrterian.nix-env-selector
-  #     mkhl.direnv
-  #   ];
-  # };
 
   programs.git = {
     enable = true;
@@ -167,8 +148,40 @@
     };
   };
 
+  programs.foot = {
+    enable = true;
+    server.enable = true;
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false;
+    settings = {
+      source = "~/nixos/dotfiles/hypr/carjin.conf";
+    };
+  };
+
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        disable_loading_bar = true;
+        # grace = 300;
+        hide_cursor = true;
+        # no_fade_in = false;
+      };
+    };
+    extraConfig = ''
+      background {
+          path = screenshot
+          blur_passes = 2
+          blur_size = 8
+          }'';
+  };
   stylix.targets.helix.enable = false;
   stylix.targets.kde.enable = false;
+  stylix.targets.foot.enable = true;
+  stylix.targets.hyprpaper.enable = true;
 
   gtk.iconTheme = {
     package = pkgs.papirus-icon-theme;

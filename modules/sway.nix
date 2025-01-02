@@ -4,7 +4,7 @@
   ...
 }:
 {
-  programs.waybar.enable = true;
+  # programs.waybar.enable = true;
 
   programs.sway = {
     enable = true;
