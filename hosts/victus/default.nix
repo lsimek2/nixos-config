@@ -12,6 +12,7 @@ let
 in
 {
   imports = [
+    ./gputoggle.nix
     ./hardware-configuration.nix
     modules.nix-ld
     modules.hyprland
@@ -55,7 +56,8 @@ in
     recommendedProxySettings = true;
     virtualHosts = {
       "victus.akita-bleak.ts.net" = {
-        locations."/".proxyPass = "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
+        locations."/".proxyPass =
+          "http://${config.services.nix-serve.bindAddress}:${toString config.services.nix-serve.port}";
       };
     };
   };
@@ -94,55 +96,60 @@ in
 
   vfio.enable = true;
 
-  specialisation.no-vfio.configuration = {
-    vfio.enable = lib.mkForce false;
-    services.xserver.videoDrivers = [ "nvidia" ];
+  boot.blacklistedKernelModules = [
+    "nvidia"
+    "nouveau"
+  ];
 
-    hardware.nvidia = {
+  # specialisation.no-vfio.configuration = {
+  #   vfio.enable = lib.mkForce false;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-      forceFullCompositionPipeline = true;
+  hardware.nvidia = {
 
-      # Modesetting is required.
-      modesetting.enable = true;
+    forceFullCompositionPipeline = true;
 
-      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-      # Enable this if you have graphical corruption issues or application crashes after waking
-      # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-      # of just the bare essentials.
-      powerManagement.enable = true;
+    # Modesetting is required.
+    modesetting.enable = true;
 
-      # Fine-grained power management. Turns off GPU when not in use.
-      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-      powerManagement.finegrained = false;
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+    # of just the bare essentials.
+    powerManagement.enable = true;
 
-      # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      # Support is limited to the Turing and later architectures. Full list of
-      # supported GPUs is at:
-      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-      # Only available from driver 515.43.04+
-      # Currently alpha-quality/buggy, so false is currently the recommended setting.
-      open = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
 
-      # Enable the Nvidia settings menu,
-      # accessible via `nvidia-settings`.
-      nvidiaSettings = true;
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+    # Only available from driver 515.43.04+
+    # Currently alpha-quality/buggy, so false is currently the recommended setting.
+    open = false;
 
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.beta; # config.boot.kernelPackages.nvidiaPackages.stable;
+    # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
 
-      prime = {
-        offload = {
-          enable = true;
-          enableOffloadCmd = true;
-        };
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.beta; # config.boot.kernelPackages.nvidiaPackages.stable;
 
-        amdgpuBusId = "PCI:7:0:0";
-        nvidiaBusId = "PCI:1:0:0";
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
       };
-    };
 
+      amdgpuBusId = "PCI:7:0:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
+
+  # };
 
   boot.supportedFilesystems = [ "ntfs" ];
 
