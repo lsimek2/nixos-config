@@ -17,11 +17,19 @@
 
       # Load vfio module
       sudo modprobe vfio-pci
+
+      # Start VM
+      sudo virsh start win10
     '')
 
     (pkgs.writeShellScriptBin "bind" ''
       #!/usr/bin/env bash
       set -x
+
+      # Stop VM
+      sudo virsh destroy win10
+
+      sleep 1
 
       # Attach GPU devices to host
       # Use your GPU and HDMI Audio PCI host device
