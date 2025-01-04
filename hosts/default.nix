@@ -44,7 +44,9 @@ in
 
   nixpkgs.overlays = [ ];
 
-  nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-27.3.11"
+  ];
 
   boot.tmp.cleanOnBoot = true;
 

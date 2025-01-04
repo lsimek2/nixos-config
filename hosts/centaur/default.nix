@@ -14,7 +14,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    modules.qtile
+    modules.hyprland
     modules.nix-ld
     ../../users/carjin/user.nix
     ../../users/lsimek/user.nix
@@ -31,6 +31,19 @@
     };
 
     backupFileExtension = "backup";
+  };
+
+  services.xserver.enable = true;
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    settings = {
+      Autologin = {
+        Session = "hyprland-uwsm.desktop";
+        User = "lsimek";
+      };
+    };
   };
 
   services._3proxy = {
@@ -89,8 +102,6 @@
   # Enable OpenGL
   hardware.graphics.enable = true;
 
-  services.xserver.displayManager.lightdm.enable = true;
-
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -125,7 +136,7 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
 
   };
 

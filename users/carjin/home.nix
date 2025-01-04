@@ -249,8 +249,7 @@
       ];
     };
   };
-  stylix.targets.helix.enable = false;
-  stylix.targets.kde.enable = false;
+
   stylix.targets.foot.enable = true;
   stylix.targets.hyprpaper.enable = true;
 
