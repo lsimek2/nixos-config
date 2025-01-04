@@ -13,13 +13,13 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    modules.sway
+    modules.hyprland
     ../../users/carjin/user.nix
   ];
 
-  nix.settings.extra-substituters = [
-    "http://victus.akita-bleak.ts.net?priority=50"
-  ];
+  # nix.settings.extra-substituters = [
+  #   "http://victus.akita-bleak.ts.net?priority=50"
+  # ];
 
   environment.systemPackages =
     (with pkgs-unstable; [
@@ -81,7 +81,7 @@ in
     wayland.enable = true;
     settings = {
       Autologin = {
-        Session = "sway.desktop";
+        Session = "hyprland-uwsm.desktop";
         User = "carjin";
       };
     };
@@ -116,10 +116,9 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  # boot.kernelParams = [
-  # "fbcon=rotate:1"
-  # "video=DSI-1:panel_orientation=right_side_up"
-  # ];
+  boot.kernelParams = [
+    "video=DSI-1:1200x1920@75"
+  ];
   boot.loader.systemd-boot.consoleMode = "0";
 
   networking.hostName = "minibook";
