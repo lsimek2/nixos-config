@@ -58,6 +58,18 @@
 
   home.file = { };
 
+  systemd.user.services.hyprpaper = {
+    Unit = {
+      After = [ "wayland-session-waitenv.service" ];
+    };
+  };
+
+  systemd.user.services.hypridle = {
+    Unit = {
+      After = [ "wayland-session-waitenv.service" ];
+    };
+  };
+
   services.hyprpaper = {
     enable = true;
     settings = {
