@@ -1,10 +1,20 @@
-{ stylix, pkgs, ... }:
+{
+  pkgs,
+  lib,
+  ...
+}:
 {
   stylix.enable = true;
 
-  stylix.image = ../users/carjin/desktop.jpg;
+  stylix.image = lib.mkDefault ../users/carjin/desktop3.png;
 
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
+  specialisation.dark.configuration = {
+    stylix.image = ../users/carjin/desktop.jpg;
+  };
+
+  # stylix.polarity = "dark";
+
+  # "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
 
   stylix.cursor = {
     package = pkgs.vanilla-dmz;
@@ -32,7 +42,7 @@
       applications = 12;
       terminal = 10;
       desktop = 10;
-      popups = 9;
+      popups = 10;
     };
 
   };

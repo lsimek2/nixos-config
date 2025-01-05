@@ -10,4 +10,5 @@
   xmonad = ./xmonad.nix;
   cosmic = ./cosmic.nix;
   sway = ./sway.nix;
+  ls-colors = ./ls-colors.nix;
 }

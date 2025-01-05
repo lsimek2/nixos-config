@@ -5,7 +5,7 @@
 
   stylix.targets = {
     firefox.enable = true;
-    nushell.enable = false;
+    # nushell.enable = false;
     alacritty.enable = true;
     vesktop.enable = true;
     mako.enable = true;

@@ -11,6 +11,7 @@
     modules.nushell
     # modules.nixvim
     modules.stylix-hm
+    modules.ls-colors
     ./dotfiles.nix
   ];
 
@@ -164,7 +165,7 @@
       ];
     };
     settings = {
-      theme = "tokyonight";
+      # theme = "tokyonight";
       editor.lsp = {
         display-inlay-hints = true;
       };
@@ -180,6 +181,11 @@
   programs.foot = {
     enable = true;
     server.enable = true;
+    settings = {
+      colors = {
+        # background = "#E8E8E8";
+      };
+    };
   };
 
   wayland.windowManager.hyprland = {
@@ -252,6 +258,8 @@
 
   stylix.targets.foot.enable = true;
   stylix.targets.hyprpaper.enable = true;
+  stylix.targets.nushell.enable = true;
+  stylix.ls-colors.enable = true;
 
   gtk.iconTheme = {
     package = pkgs.papirus-icon-theme;
