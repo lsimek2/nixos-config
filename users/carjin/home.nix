@@ -2,6 +2,7 @@
   pkgs-unstable,
   modules,
   pkgs,
+  lib,
   ...
 }:
 
@@ -165,7 +166,7 @@
       ];
     };
     settings = {
-      # theme = "tokyonight";
+      theme = lib.mkForce "tokyonight";
       editor.lsp = {
         display-inlay-hints = true;
       };
@@ -183,6 +184,7 @@
     server.enable = true;
     settings = {
       colors = {
+        # alpha = lib.mkForce 1;
         # background = "#E8E8E8";
       };
     };

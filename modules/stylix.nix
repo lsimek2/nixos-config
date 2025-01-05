@@ -6,15 +6,13 @@
 {
   stylix.enable = true;
 
-  stylix.image = lib.mkDefault ../users/carjin/desktop3.png;
+  stylix.image = lib.mkDefault ../users/carjin/desktop5.png;
 
-  specialisation.dark.configuration = {
-    stylix.image = ../users/carjin/desktop.jpg;
-  };
-
-  # stylix.polarity = "dark";
-
-  # "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
+  # specialisation.dark.configuration = {
+  #   stylix.image = ../users/carjin/desktop.jpg;
+  stylix.polarity = "dark";
+  #   stylix.opacity.terminal = 1.0;
+  # };
 
   stylix.cursor = {
     package = pkgs.vanilla-dmz;
@@ -49,7 +47,7 @@
 
   stylix.opacity = {
     applications = 1.0;
-    terminal = 0.8;
+    terminal = lib.mkDefault 0.9;
     desktop = 1.0;
     popups = 0.6;
   };
