@@ -37,7 +37,7 @@
       sudo virsh nodedev-reattach pci_0000_01_00_1
 
       # Unload vfio module
-      modprobe -r vfio-pci
+      sudo modprobe -r vfio-pci
 
       #stop race condition
       sleep 2

@@ -21,10 +21,13 @@ in
     ../../users/carjin/user.nix
   ];
 
+  nixpkgs.overlays = [ (import ../../overlays/lutris.nix pkgs-unstable) ];
+
   environment.systemPackages = with pkgs; [
     multimonitor
     virtiofsd # libvirt folder sharing
     looking-glass-client
+    bottles
   ];
 
   virtualisation.docker = {
