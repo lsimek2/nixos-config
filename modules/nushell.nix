@@ -72,6 +72,8 @@
         vi = "hx";
         vim = "hx";
         nano = "hx";
+        cat = "bat";
+        tree = "eza --tree";
       };
     };
     carapace.enable = true;

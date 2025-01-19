@@ -85,7 +85,10 @@ in
       cargo
       fzf
       zoxide
+      eza
       carapace
+      ripgrep-all
+      mc
     ])
     ++ (with user-pkgs; [ ammonite.ammonite_3_5 ]);
 

@@ -30,7 +30,7 @@
     ])
     ++ (with pkgs; [
       calibre
-      # logseq
+      logseq
       firefox
       inkscape
       librewolf

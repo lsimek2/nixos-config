@@ -57,3 +57,7 @@ def 'ngrok ip' [] {
 def logout [] {
     qtile cmd-obj -o cmd -f shutdown
 }
+
+def ll [] {
+  ls -l | reject target num_links inode readonly created accessed
+}
