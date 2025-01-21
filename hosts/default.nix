@@ -89,6 +89,7 @@ in
       carapace
       ripgrep-all
       mc
+      btop
     ])
     ++ (with user-pkgs; [ ammonite.ammonite_3_5 ]);
 

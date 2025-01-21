@@ -74,6 +74,8 @@
         nano = "hx";
         cat = "bat";
         tree = "eza --tree";
+        grep = "rga";
+        rg = "rga";
       };
     };
     carapace.enable = true;

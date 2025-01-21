@@ -82,6 +82,7 @@
       "llama3.1:8b"
       "llama3.3:70b-instruct-q2_K"
       "gemma2:27b"
+      "deepseek-r1:70b"
     ];
     acceleration = "cuda";
   };

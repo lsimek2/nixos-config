@@ -31,6 +31,7 @@ in
       wireshark
       tshark
       nikto
+      logseq
     ]);
 
   home-manager = {
