@@ -1,6 +1,7 @@
 { ... }:
 {
   home.file.".config/nushell/completers.nu".source = ../../dotfiles/nushell/completers.nu;
+  home.file.".config/nushell/zoxide.nu".source = ../../dotfiles/nushell/completers.nu;
   home.file.".config/kmonad".source = ../../dotfiles/kmonad;
   home.file.".config/dunst".source = ../../dotfiles/dunst;
   # home.file.".config/mako/config".source = ../../dotfiles/mako/config;
