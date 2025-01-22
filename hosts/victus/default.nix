@@ -23,12 +23,29 @@ in
 
   nixpkgs.overlays = [ (import ../../overlays/lutris.nix pkgs-unstable) ];
 
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  '';
+
   environment.systemPackages = with pkgs; [
     multimonitor
     virtiofsd # libvirt folder sharing
     looking-glass-client
     bottles
+    protonplus
+    heroic
+    vial
   ];
+
+  programs.gamescope = {
+    enable = true;
+    env = {
+      __NV_PRIME_RENDER_OFFLOAD = "1";
+      __VK_LAYER_NV_optimus = "NVIDIA_only";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    };
+  };
 
   virtualisation.docker = {
     storageDriver = "btrfs";
@@ -47,6 +64,8 @@ in
       carjin = import ../../users/carjin/home.nix;
     };
     backupFileExtension = "backup";
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   services.nix-serve = {
