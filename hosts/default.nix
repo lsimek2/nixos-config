@@ -90,6 +90,7 @@ in
       ripgrep-all
       mc
       btop
+      bat
     ])
     ++ (with user-pkgs; [ ammonite.ammonite_3_5 ]);
 
