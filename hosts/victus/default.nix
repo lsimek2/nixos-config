@@ -37,6 +37,7 @@ in
     bottles
     protonplus
     heroic
+    rpcs3
     vial
     umu
   ];
