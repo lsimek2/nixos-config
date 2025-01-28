@@ -9,6 +9,8 @@
 }:
 let
   multimonitor = import ./multimonitor.nix { inherit pkgs; };
+  inherit (pkgs.stdenv.hostPlatform) system;
+  umu = inputs.umu.packages.${system}.umu;
 in
 {
   imports = [
@@ -36,6 +38,7 @@ in
     protonplus
     heroic
     vial
+    umu
   ];
 
   programs.gamescope = {

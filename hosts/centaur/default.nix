@@ -78,14 +78,16 @@
     openFirewall = true;
     host = "localhost";
     loadModels = [
-      "qwen2.5-coder:32b"
-      "llama3.1:8b"
-      "llama3.3:70b-instruct-q2_K"
-      "gemma2:27b"
       "deepseek-r1:70b"
+      "deepseek-r1:32b-qwen-distill-q8_0"
+      "deepseek-r1:14b-qwen-distill-fp16"
+      "deepseek-r1:14b"
+      # "deepseek-r1:32b"
     ];
     acceleration = "cuda";
   };
+
+  boot.supportedFilesystems = [ "ntfs" ];
 
   services.open-webui = {
     enable = true;
@@ -187,6 +189,7 @@
     nerdfonts
     pueue
     ollama-cuda
+    heroic
   ];
 
   programs.vim = {

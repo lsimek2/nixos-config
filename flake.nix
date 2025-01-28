@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/master";
 
+    umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
