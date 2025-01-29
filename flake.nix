@@ -11,7 +11,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -50,6 +50,7 @@
           pkgs-unstable-arm
           modules
           stylix
+          inputs
           ;
       };
     in

@@ -133,8 +133,6 @@
   dconf.enable = true;
   programs.alacritty.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
   programs.helix = {
     enable = true;
     languages = {
