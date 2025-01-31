@@ -20,6 +20,7 @@
   home.homeDirectory = "/home/carjin";
 
   home.stateVersion = "23.11";
+  home.enableNixpkgsReleaseCheck = false;
 
   home.packages =
     (with pkgs-unstable; [
@@ -46,6 +47,7 @@
       gedit
       libreoffice
       vscode-fhs
+      thunderbird
 
       (rstudioWrapper.override {
         packages = with rPackages; [

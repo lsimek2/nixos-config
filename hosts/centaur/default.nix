@@ -32,6 +32,8 @@
     };
 
     backupFileExtension = "backup";
+    useGlobalPkgs = true;
+    useUserPackages = true;
   };
 
   services.xserver.enable = true;

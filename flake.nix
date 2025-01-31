@@ -20,6 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
   };
 
   outputs =
@@ -29,6 +30,7 @@
       nixpkgs-stable,
       nixos-hardware,
       home-manager-stable,
+      simple-nixos-mailserver,
       stylix,
       ...
     }@inputs:
@@ -102,6 +104,7 @@
           ./hosts # defaults
           ./users/carjin/user.nix
           ./network
+          simple-nixos-mailserver.nixosModule
         ];
       };
     };

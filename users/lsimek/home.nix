@@ -76,8 +76,6 @@
 
   dconf.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
   systemd.user.services.hyprpaper = {
     Unit = {
       After = [ "wayland-session-waitenv.service" ];
