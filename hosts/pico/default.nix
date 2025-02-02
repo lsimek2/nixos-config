@@ -72,6 +72,9 @@
       "discourse@anarhizam.org" = {
         hashedPasswordFile = "/etc/mail/discourse";
       };
+      "marko@anarhizam.org" = {
+        hashedPasswordFile = "/etc/mail/marko";
+      };
     };
     certificateScheme = "acme-nginx";
   };
