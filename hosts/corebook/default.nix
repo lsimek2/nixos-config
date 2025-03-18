@@ -34,8 +34,22 @@ in
       logseq
       youtube-music
       ghostwriter
+      vanilla-dmz
     ]);
 
+  services.postgresql = {
+    enable = true;
+    # ensureDatabases = [ "mydb" ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
+
+  environment.variables = {
+    XCURSOR_THEME = "DMZ-Black"; # Match your theme's exact name
+    XCURSOR_SIZE = "10";
+  };
   # boot.blacklistedKernelModules = [
   #   "i915"
   #   # "snd_pcsp"

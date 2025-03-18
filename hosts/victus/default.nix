@@ -41,12 +41,12 @@ in
     kdePackages.ghostwriter
     vial
     umu
-    breeze-qt5
+    vanilla-dmz
   ];
 
   environment.variables = {
-    XCURSOR_THEME = "Breeze_Snow"; # Match your theme's exact name
-    # XCURSOR_SIZE = "24";
+    XCURSOR_THEME = "DMZ-Black"; # Match your theme's exact name
+    XCURSOR_SIZE = "10";
   };
 
   programs.gamescope = {

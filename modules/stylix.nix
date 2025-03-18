@@ -14,11 +14,11 @@
   #   stylix.opacity.terminal = 1.0;
   # };
 
-  # stylix.cursor = {
-  #   package = pkgs.vanilla-dmz;
-  #   name = "Vanilla-DMZ-Black";
-  #   size = 10;
-  # };
+  stylix.cursor = {
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ-Black";
+    size = 10;
+  };
 
   stylix.fonts = {
     monospace = {
