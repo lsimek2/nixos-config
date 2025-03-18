@@ -38,9 +38,16 @@ in
     protonplus
     heroic
     rpcs3
+    kdePackages.ghostwriter
     vial
     umu
+    breeze-qt5
   ];
+
+  environment.variables = {
+    XCURSOR_THEME = "Breeze_Snow"; # Match your theme's exact name
+    # XCURSOR_SIZE = "24";
+  };
 
   programs.gamescope = {
     enable = true;

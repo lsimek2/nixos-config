@@ -200,6 +200,13 @@
     };
   };
 
+  # home.pointerCursor = {
+  #   package = pkgs.breeze-qt5;
+  #   name = "Breeze_Snow";
+  #   # size = 24;
+  #   gtk.enable = true; # For GTK apps
+  # };
+
   programs.hyprlock = {
     enable = true;
     settings = {
