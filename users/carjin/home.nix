@@ -48,7 +48,9 @@
       libreoffice
       vscode-fhs
       thunderbird
-
+      halloy
+      kdePackages.kdenlive
+      yt-dlp
       (rstudioWrapper.override {
         packages = with rPackages; [
           ggplot2
@@ -169,6 +171,7 @@
       editor.lsp = {
         display-inlay-hints = true;
       };
+      editor.soft-wrap.enable = true;
     };
     themes = {
       autumn_night_transparent = {

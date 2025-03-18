@@ -8,7 +8,12 @@
 
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # nixpkgs-stable.follows = "nixos-cosmic/nixpkgs-stable"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
+
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
+    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "path:/home/carjin/nixos-hardware";
 
     home-manager-stable = {
       url = "github:nix-community/home-manager/master";
@@ -32,6 +37,7 @@
       home-manager-stable,
       simple-nixos-mailserver,
       stylix,
+      nixos-cosmic,
       ...
     }@inputs:
     let
@@ -94,6 +100,26 @@
           home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
+        ];
+      };
+      nixosConfigurations.corebook = nixpkgs-stable.lib.nixosSystem {
+        inherit specialArgs;
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/corebook
+          ./hosts # defaults
+          ./network
+          nixos-hardware.nixosModules.chuwi-corebook-x
+          home-manager-stable.nixosModules.default
+          stylix.nixosModules.stylix
+          modules.stylix
+          {
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+            };
+          }
+          # nixos-cosmic.nixosModules.default
         ];
       };
       nixosConfigurations.pico = nixpkgs-stable.lib.nixosSystem {

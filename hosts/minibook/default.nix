@@ -32,6 +32,8 @@ in
       tshark
       nikto
       logseq
+      youtube-music
+      ghostwriter
     ]);
 
   home-manager = {

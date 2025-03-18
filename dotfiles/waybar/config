@@ -65,7 +65,7 @@
         "on-click": "xfce4-taskmanager"
     },
     "temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
         "critical-threshold": 75,
         "interval": 5,
         "format": "{icon} {temperatureC}°",

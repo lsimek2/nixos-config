@@ -92,6 +92,7 @@ in
       mc
       btop
       bat
+      ihp-new
     ])
     ++ (with user-pkgs; [ ammonite.ammonite_3_5 ]);
 
