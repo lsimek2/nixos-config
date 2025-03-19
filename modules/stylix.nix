@@ -16,7 +16,8 @@
 
   stylix.cursor = {
     package = pkgs.vanilla-dmz;
-    name = "Vanilla-DMZ-Black";
+    name = "DMZ-Black";
+    # name = "Vanilla-DMZ-Black";
     size = 10;
   };
 

@@ -12,8 +12,8 @@
 
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-hardware.url = "path:/home/carjin/nixos-hardware";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # nixos-hardware.url = "path:/home/carjin/nixos-hardware";
 
     home-manager-stable = {
       url = "github:nix-community/home-manager/master";
@@ -102,6 +102,22 @@
           modules.stylix
         ];
       };
+      nixosConfigurations.freebook = nixpkgs-stable.lib.nixosSystem {
+        inherit specialArgs;
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/freebook
+          ./hosts # defaults
+          ./network
+          nixos-hardware.nixosModules.common-cpu-intel
+          nixos-hardware.nixosModules.common-pc-laptop
+          nixos-hardware.nixosModules.common-pc-laptop-ssd
+          nixos-hardware.nixosModules.common-hidpi
+          home-manager-stable.nixosModules.default
+          stylix.nixosModules.stylix
+          modules.stylix
+        ];
+      };
       nixosConfigurations.corebook = nixpkgs-stable.lib.nixosSystem {
         inherit specialArgs;
         system = "x86_64-linux";
@@ -109,7 +125,10 @@
           ./hosts/corebook
           ./hosts # defaults
           ./network
-          nixos-hardware.nixosModules.chuwi-corebook-x
+          nixos-hardware.nixosModules.common-cpu-intel
+          nixos-hardware.nixosModules.common-pc-laptop
+          nixos-hardware.nixosModules.common-pc-laptop-ssd
+          nixos-hardware.nixosModules.common-hidpi
           home-manager-stable.nixosModules.default
           stylix.nixosModules.stylix
           modules.stylix
