@@ -49,6 +49,8 @@
       gedit
       libreoffice
       vesktop
+      # conda
+      (conda.override { extraPkgs = [ pkgs.which ]; })
     ]);
 
   home.file = { };

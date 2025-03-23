@@ -24,6 +24,7 @@ in
   environment.systemPackages =
     (with pkgs-unstable; [
       jetbrains.idea-community-bin
+      btrfs-progs
     ])
     ++ (with pkgs; [
       virtiofsd # libvirt folder sharing

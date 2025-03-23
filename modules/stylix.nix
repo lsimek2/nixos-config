@@ -6,7 +6,7 @@
 {
   stylix.enable = true;
 
-  stylix.image = lib.mkDefault ../users/carjin/desktop5.png;
+  stylix.image = lib.mkDefault ../users/carjin/desktop-sunset.jpg;
 
   # specialisation.dark.configuration = {
   #   stylix.image = ../users/carjin/desktop.jpg;
