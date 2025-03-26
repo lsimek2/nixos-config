@@ -6,9 +6,8 @@
   ...
 }:
 {
-  imports =
-    [
-    ];
+  imports = [
+  ];
 
   users.users.lsimek = {
     isNormalUser = true;

@@ -69,7 +69,7 @@
             source $init_path
       '';
       shellAliases = {
-        vi = "hx";
+        # vi = "hx";
         vim = "hx";
         nano = "hx";
         cat = "bat";
@@ -86,8 +86,8 @@
       settings = {
         add_newline = true;
         character = {
-          success_symbol = "[➜](bold green)";
-          error_symbol = "[➜](bold red)";
+          success_symbol = "[>](bold green)";
+          error_symbol = "[!](bold red)";
         };
       };
     };

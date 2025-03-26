@@ -10,4 +10,5 @@
   home.file.".config/waybar".source = ../../dotfiles/waybar;
   home.file.".local/share/nwg-launchers".source = ../../dotfiles/nwg-launchers-assets;
   home.file.".config/nwg-launchers".source = ../../dotfiles/nwg-launchers;
+  #  home.file.".config/fish".source = ../../dotfiles/fish;
 }
