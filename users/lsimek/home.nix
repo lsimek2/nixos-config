@@ -3,6 +3,7 @@
   pkgs,
   pkgs-unstable,
   modules,
+  lib,
   ...
 }:
 
@@ -49,6 +50,7 @@
       gedit
       libreoffice
       vesktop
+      zathura
       (conda.override { extraPkgs = [ pkgs.which ]; })
     ]);
 
@@ -185,18 +187,42 @@
 
   programs.helix = {
     enable = true;
-    languages.language = [
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-      }
-    ];
+    languages = {
+      language-server.texlab.config.texlab = {
+        build = {
+          onSave = true;
+        };
+        forwardSearch = {
+          executable = "zathura";
+
+          args = [
+            "--synctex-forward"
+            "%l:1:%f"
+            "%p"
+          ];
+        };
+        chktex.onEdit = true;
+      };
+      language = [
+        {
+          name = "latex";
+          auto-format = true;
+          # config.texlab.build.onSave = true;
+
+        }
+        {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+        }
+      ];
+    };
     settings = {
-      theme = "tokyodark";
+      theme = lib.mkForce "tokyonight";
       editor.lsp = {
         display-inlay-hints = true;
       };
+      editor.soft-wrap.enable = true;
     };
     themes = {
       autumn_night_transparent = {
