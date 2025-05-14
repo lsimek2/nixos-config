@@ -49,16 +49,7 @@
       gedit
       libreoffice
       vesktop
-      conda
-      (rstudioWrapper.override {
-        packages = with rPackages; [
-          ggplot2
-          dplyr
-          xts
-          tidyverse
-          MFDFA
-        ];
-      })
+      (conda.override { extraPkgs = [ pkgs.which ]; })
     ]);
 
   home.file = { };
