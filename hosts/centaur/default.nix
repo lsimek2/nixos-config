@@ -16,7 +16,6 @@
     ./hardware-configuration.nix
     modules.hyprland
     modules.nix-ld
-    ../../users/carjin/user.nix
     ../../users/lsimek/user.nix
     ./kmonad.nix
   ];
@@ -27,7 +26,6 @@
       inherit modules pkgs-unstable;
     };
     users = {
-      carjin = import ../../users/carjin/home.nix;
       lsimek = import ../../users/lsimek/home.nix;
     };
 
@@ -74,32 +72,7 @@
 
   networking.firewall.allowedUDPPorts = [ 1080 ];
   networking.firewall.allowedTCPPorts = [ 1080 ];
-
-  services.ollama = {
-    enable = true;
-    openFirewall = true;
-    host = "localhost";
-    loadModels = [
-      "deepseek-r1:70b"
-      "deepseek-r1:32b-qwen-distill-q8_0"
-      "deepseek-r1:14b-qwen-distill-fp16"
-      "deepseek-r1:14b"
-      # "deepseek-r1:32b"
-    ];
-    acceleration = "cuda";
-  };
-
   boot.supportedFilesystems = [ "ntfs" ];
-
-  services.open-webui = {
-    enable = true;
-    openFirewall = true;
-    host = "centaur.akita-bleak.ts.net";
-    environment = {
-      WEBUI_AUTH = "True";
-      ENABLE_SIGNUP = "True";
-    };
-  };
 
   nix.settings.experimental-features = [ "nix-command" ];
 
@@ -190,7 +163,6 @@
     picom
     nerdfonts
     pueue
-    ollama-cuda
     heroic
     logseq
   ];

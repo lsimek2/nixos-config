@@ -43,7 +43,6 @@
       peazip
       lutris
       deluge-gtk
-      nextcloud-client
       mpv
       texlab
       dconf

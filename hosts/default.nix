@@ -34,7 +34,6 @@ in
       ];
       trusted-users = [
         "root"
-        "carjin"
         "lsimek"
       ];
     };
@@ -82,7 +81,6 @@ in
       sbt
       mill
       metals
-      julia
       cargo
       fzf
       zoxide
@@ -114,7 +112,7 @@ in
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = "monthly";
     options = "--delete-older-than 30d";
   };
 

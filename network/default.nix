@@ -3,9 +3,7 @@
 {
   imports = [
     ./avahi.nix
-    ./spotify.nix
     ./syncthing.nix
-    ./tailscale.nix
     ./moonlight.nix
   ];
 
