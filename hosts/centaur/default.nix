@@ -75,19 +75,19 @@
   networking.firewall.allowedUDPPorts = [ 1080 ];
   networking.firewall.allowedTCPPorts = [ 1080 ];
 
-  services.ollama = {
-    enable = true;
-    openFirewall = true;
-    host = "localhost";
-    loadModels = [
-      "deepseek-r1:70b"
-      "deepseek-r1:32b-qwen-distill-q8_0"
-      "deepseek-r1:14b-qwen-distill-fp16"
-      "deepseek-r1:14b"
-      # "deepseek-r1:32b"
-    ];
-    acceleration = "cuda";
-  };
+  # services.ollama = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   host = "localhost";
+  #   loadModels = [
+  #     "deepseek-r1:70b"
+  #     "deepseek-r1:32b-qwen-distill-q8_0"
+  #     "deepseek-r1:14b-qwen-distill-fp16"
+  #     "deepseek-r1:14b"
+  #     # "deepseek-r1:32b"
+  #   ];
+  #   acceleration = "cuda";
+  # };
 
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -190,7 +190,7 @@
     picom
     nerdfonts
     pueue
-    ollama-cuda
+    # ollama-cuda
     heroic
   ];
 
