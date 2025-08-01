@@ -192,6 +192,7 @@
     pueue
     # ollama-cuda
     heroic
+    logseq
   ];
 
   programs.vim = {
