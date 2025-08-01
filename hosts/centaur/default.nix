@@ -188,7 +188,7 @@
     nushell
     xfce.thunar
     picom
-    nerdfonts
+    nerd-fonts.jetbrains-mono
     pueue
     # ollama-cuda
     heroic
