@@ -34,7 +34,7 @@ in
       nikto
       logseq
       youtube-music
-      ghostwriter
+      kdePackages.ghostwriter
     ]);
 
   home-manager = {

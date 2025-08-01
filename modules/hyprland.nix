@@ -31,7 +31,7 @@
   security.rtkit.enable = true;
 
   fonts.packages = with pkgs; [
-    nerdfonts # bilo bi bolje da su samo iskljcuvo oni koji se koriste
+    nerd-fonts.jetbrains-mono
   ];
 
   xdg.portal.wlr.enable = true;

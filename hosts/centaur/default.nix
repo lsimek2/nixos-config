@@ -163,7 +163,7 @@
 
   users.defaultUserShell = pkgs.nushell;
   fonts.packages = with pkgs; [
-    nerdfonts # bilo bi bolje da su samo iskljcuvo oni koji se koriste
+    nerd-fonts.jetbrains-mono # bilo bi bolje da su samo iskljcuvo oni koji se koriste
   ];
 
   networking.hostName = "centaur"; # Define your hostname.
@@ -193,6 +193,7 @@
     # ollama-cuda
     heroic
     logseq
+    kdePackages.ghostwriter
   ];
 
   programs.vim = {

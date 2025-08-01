@@ -6,7 +6,7 @@
 
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
 
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     # nixpkgs-stable.follows = "nixos-cosmic/nixpkgs-stable"; # NOTE: change "nixpkgs" to "nixpkgs-stable" to use stable NixOS release
 
@@ -25,7 +25,7 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-24.11";
+    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.05";
   };
 
   outputs =
