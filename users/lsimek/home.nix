@@ -6,7 +6,48 @@
   lib,
   ...
 }:
-
+let
+  tex = (
+    pkgs.texlive.combine {
+      inherit (pkgs.texlive)
+        scheme-medium
+        textpos
+        etextools
+        environ
+        fmtcount
+        koma-script
+        babel
+        babel-croatian
+        datetime
+        geometry
+        amsfonts
+        csquotes
+        tcolorbox
+        pgf
+        pgfplots
+        arydshln
+        float
+        xcolor
+        breqn
+        thmtools
+        multirow
+        hyperref
+        booktabs
+        listings
+        letltxmacro
+        adjustbox
+        enumitem
+        biblatex
+        placeins
+        mathtools
+        autonum
+        url
+        subfiles
+        nowidow
+        ;
+    }
+  );
+in
 {
 
   imports = [
@@ -26,6 +67,11 @@
     shellAliases = {
       ls = "ls -l";
     };
+  };
+
+  programs.nushell.shellAliases = {
+    latex-compile = "latexmk -pdf";
+    latex-clear = "rm -f *.aux *.log *.out *.toc *.blg *.bbl *.synctex.gz *.fls *.fdb_latexmk *.bcf";
   };
 
   home.packages =
@@ -51,6 +97,14 @@
       libreoffice
       vesktop
       zathura
+
+      tex
+      biber
+      texlab
+      texmaker
+
+      fuzzel
+
       (conda.override { extraPkgs = [ pkgs.which ]; })
     ]);
 
