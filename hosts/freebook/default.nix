@@ -47,6 +47,7 @@ in
     };
 
     backupFileExtension = "backup";
+    useUserPackages = true;
     useGlobalPkgs = true;
   };
 
