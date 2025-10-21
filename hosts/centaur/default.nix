@@ -16,6 +16,7 @@
     ./hardware-configuration.nix
     modules.hyprland
     modules.nix-ld
+    ../../modules/jupyter.nix
     ../../users/carjin/user.nix
     ../../users/lsimek/user.nix
     ./kmonad.nix

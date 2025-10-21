@@ -14,6 +14,7 @@ in
   imports = [
     ./hardware-configuration.nix
     modules.hyprland
+    ../../modules/jupyter.nix
     ../../users/lsimek/user.nix
   ];
 
