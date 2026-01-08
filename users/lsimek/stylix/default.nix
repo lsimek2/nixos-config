@@ -4,6 +4,7 @@
   pkgs-unstable,
   config,
   inputs,
+  lib,
   ...
 }:
 {
@@ -12,7 +13,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    base16Scheme = import ./scheme.nix;
+    # base16Scheme = import ./scheme.nix;
 
     cursor = {
       name = "DMZ-Black";
@@ -42,8 +43,16 @@
         terminal = 13;
         applications = 11;
       };
+
     };
 
-    image = ../wallpapers/desktop6.png;
+    opacity = {
+      applications = 1.0;
+      terminal = lib.mkDefault 0.9;
+      desktop = 1.0;
+      popups = 0.6;
+    };
+
+    image = ../wallpapers/desktop2.jpg;
   };
 }

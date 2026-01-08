@@ -83,7 +83,7 @@
         tree = "eza --tree";
         grep = "rga";
         rg = "rga";
-        pkgs = "hx ~/nixos/users/carjin/packages.nix";
+        pkgs = "hx ~/nixos/users/lsimek/packages.nix";
         nixos-switch = "nh os switch ~/nixos";
         nixos = "hx ~/nixos";
         lls = "ls -l | reject target num_links inode readonly created accessed";
@@ -99,8 +99,8 @@
       settings = {
         add_newline = true;
         character = {
-          success_symbol = "[➜](bold green)";
-          error_symbol = "[➜](bold red)";
+          success_symbol = "[](bold green)";
+          error_symbol = "[](bold red)";
         };
       };
     };

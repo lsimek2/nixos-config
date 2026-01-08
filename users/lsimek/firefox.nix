@@ -12,6 +12,11 @@
   programs.firefox = {
     enable = true;
     profiles.default = {
+      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        ublock-origin
+        vimium
+      ];
+
       name = "Default";
       settings = {
         "browser.tabs.loadInBackground" = true;

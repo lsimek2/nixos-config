@@ -24,8 +24,8 @@ let
     fi
   '';
 
-  is-victus = osConfig.networking.hostName == "victus";
-  is-minibook = osConfig.networking.hostName == "minibook";
+  is-centaur = osConfig.networking.hostName == "centaur";
+  is-freebook = osConfig.networking.hostName == "freebook";
 in
 {
   programs.waybar = {
@@ -34,8 +34,8 @@ in
     settings = {
       mainBar = {
         # start_hidden = lib.mkIf is-minibook true;
-        mode = lib.mkIf is-minibook "hide";
-        modifier-reset = lib.mkIf is-minibook "release";
+        mode = lib.mkIf is-freebook "hide";
+        modifier-reset = lib.mkIf is-freebook "release";
         layer = "top";
         position = "top";
         height = 40;
@@ -48,7 +48,7 @@ in
           "wlr/taskbar"
         ];
         modules-center = [ ];
-        modules-right = lib.optional is-victus "custom/gpu" ++ [
+        modules-right = lib.optional is-centaur "custom/gpu" ++ [
           "memory"
           "temperature"
           "pulseaudio"

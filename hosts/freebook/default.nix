@@ -14,6 +14,7 @@ in
   imports = [
     ./hardware-configuration.nix
     modules.hyprland
+    ../../modules/jupyter.nix
     ../../users/lsimek/user.nix
   ];
 
@@ -24,6 +25,7 @@ in
   environment.systemPackages =
     (with pkgs-unstable; [
       jetbrains.idea-community-bin
+      btrfs-progs
     ])
     ++ (with pkgs; [
       virtiofsd # libvirt folder sharing
@@ -33,19 +35,20 @@ in
       nikto
       logseq
       youtube-music
-      ghostwriter
+      kdePackages.ghostwriter
     ]);
 
   home-manager = {
     # also pass inputs to home-manager modules
     extraSpecialArgs = {
-      inherit modules pkgs-unstable;
+      inherit modules pkgs-unstable inputs;
     };
     users = {
       lsimek = import ../../users/lsimek/home.nix;
     };
 
     backupFileExtension = "backup";
+    useUserPackages = true;
     useGlobalPkgs = true;
   };
 
@@ -97,6 +100,19 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
+  services.redshift = {
+    enable = true;
+    brightness = {
+      # Note the string values below.
+      day = "1";
+      night = "1";
+    };
+    temperature = {
+      day = 5500;
+      night = 3700;
+    };
   };
 
   swapDevices = [ { device = "/var/swapfile"; } ];

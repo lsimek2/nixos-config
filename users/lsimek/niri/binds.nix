@@ -11,13 +11,19 @@
         "-SIGUSR1"
         "wlsunset"
       ];
-      "Mod+B".action.spawn = [
+      "Mod+Z".action.spawn = [
         "nu"
         "-c"
-        "cd ~/Nextcloud; ls skripte/**/* | append (ls books/**/*) | append (ls ostalo) | append (ls cheatsheets) | where type == file | $in.name | str join \"\\n\" | fuzzel -d | if ($in | is-not-empty) {zathura $in}"
+        "cd ~/Nextcloud; ls skripte/**/* | append (ls books/**/*) | append (ls ostalo/**/*) | append (ls cheatsheets/**/*) | where type == file | $in.name | str join \"\\n\" | fuzzel -d | if ($in | is-not-empty) {zathura $in}"
       ];
 
-      "Mod+Shift+Tab".action.toggle-overview = [ ];
+      "Mod+X".action.spawn = [
+        "nu"
+        "-c"
+        "cd ~/Nextcloud; ls skripte/**/* | append (ls books/**/*) | append (ls ostalo/**/*) | append (ls cheatsheets/**/*) | where type == file | $in.name | str join \"\\n\" | fuzzel -d | if ($in | is-not-empty) {firefox $in}"
+      ];
+
+      "Mod+Tab".action.toggle-overview = [ ];
       "Ctrl+Alt+Delete".action.quit = [ ];
 
       "Print".action.screenshot = [ ];
@@ -82,7 +88,7 @@
       "Mod+F".action.maximize-column = [ ];
       "Mod+Shift+F".action.fullscreen-window = [ ];
 
-      "Mod+Tab".action.focus-workspace-previous = [ ];
+      # "Mod+Tab".action.focus-workspace-previous = [ ];
       "Mod+Shift+Slash".action.show-hotkey-overlay = [ ];
       "Mod+Return".action.spawn = [ "footclient" ];
       "Mod+Q".action.close-window = [ ];
@@ -98,7 +104,7 @@
         "bemoji"
         "-cn"
       ];
-      "Mod+Z".action.spawn = [
+      "Mod+C".action.spawn = [
         "sh"
         "-c"
         "cliphist list | fuzzel -d | cliphist decode | wl-copy"
@@ -145,6 +151,10 @@
       "Mod+L".action.focus-column-right = [ ];
       "Mod+K".action.focus-window-up = [ ];
       "Mod+J".action.focus-window-down = [ ];
+      "Mod+Left".action.focus-column-left = [ ];
+      "Mod+Right".action.focus-column-right = [ ];
+      "Mod+Up".action.focus-window-up = [ ];
+      "Mod+Down".action.focus-window-down = [ ];
       # "Mod+Shift+H".action.move-window-to-column-left = [ ];
       # "Mod+Shift+L".action.move-window-to-column-right = [ ];
       # "Mod+Shift+K".action.move-window-up = [ ];

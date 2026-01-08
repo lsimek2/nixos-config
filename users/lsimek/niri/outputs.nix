@@ -27,9 +27,9 @@
       };
       "DP-2" = {
         mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 143.854996;
+          width = 3440;
+          height = 1440;
+          refresh = 180.0000000;
         };
         position = {
           x = 0;

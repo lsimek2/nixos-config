@@ -1,11 +1,12 @@
+{ lib, ... }:
 {
   programs.fuzzel.enable = true;
   programs.fuzzel.settings = {
     main = {
-      # font = "monospace:size=10";
+      font = lib.mkForce "monospace:size=15";
       prompt = "> ";
       lines = 15;
-      width = 40;
+      width = 75;
       icons-enabled = "yes";
       # launch-prefix = "uwsm app -- ";
     };

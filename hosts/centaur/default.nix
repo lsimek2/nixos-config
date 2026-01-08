@@ -8,15 +8,15 @@
   pkgs,
   modules,
   pkgs-unstable,
+  inputs,
   ...
 }:
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    modules.hyprland
-    modules.nix-ld
-    ../../users/carjin/user.nix
+    ../../modules/jupyter.nix
+    # ../../users/carjin/user.nix
     ../../users/lsimek/user.nix
     ./kmonad.nix
   ];
@@ -24,10 +24,10 @@
   home-manager = {
     # also pass inputs to home-manager modules
     extraSpecialArgs = {
-      inherit modules pkgs-unstable;
+      inherit modules pkgs-unstable inputs;
     };
     users = {
-      carjin = import ../../users/carjin/home.nix;
+      # carjin = import ../../users/carjin/home.nix;
       lsimek = import ../../users/lsimek/home.nix;
     };
 
@@ -37,13 +37,25 @@
   };
 
   services.xserver.enable = true;
+  services.sunshine.enable = true;
+  services.sunshine.openFirewall = true;
 
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true; # Essential for high-priority scheduling (smooth frame pacing)
+  };
+
+  # ┃               permittedInsecurePackages = [
+  # ┃                 "electron-36.9.5"
+  # ┃               ];┃
+
+  programs.niri.enable = true;
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
     settings = {
       Autologin = {
-        Session = "hyprland-uwsm.desktop";
+        Session = "niri.desktop";
         User = "lsimek";
       };
     };
@@ -75,31 +87,31 @@
   networking.firewall.allowedUDPPorts = [ 1080 ];
   networking.firewall.allowedTCPPorts = [ 1080 ];
 
-  services.ollama = {
-    enable = true;
-    openFirewall = true;
-    host = "localhost";
-    loadModels = [
-      "deepseek-r1:70b"
-      "deepseek-r1:32b-qwen-distill-q8_0"
-      "deepseek-r1:14b-qwen-distill-fp16"
-      "deepseek-r1:14b"
-      # "deepseek-r1:32b"
-    ];
-    acceleration = "cuda";
-  };
+  # services.ollama = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   host = "localhost";
+  #   loadModels = [
+  #     "deepseek-r1:70b"
+  #     "deepseek-r1:32b-qwen-distill-q8_0"
+  #     "deepseek-r1:14b-qwen-distill-fp16"
+  #     "deepseek-r1:14b"
+  #     # "deepseek-r1:32b"
+  #   ];
+  #   acceleration = "cuda";
+  # };
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  services.open-webui = {
-    enable = true;
-    openFirewall = true;
-    host = "centaur.akita-bleak.ts.net";
-    environment = {
-      WEBUI_AUTH = "True";
-      ENABLE_SIGNUP = "True";
-    };
-  };
+  # services.open-webui = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   host = "centaur.akita-bleak.ts.net";
+  #   environment = {
+  #     WEBUI_AUTH = "True";
+  #     ENABLE_SIGNUP = "True";
+  #   };
+  # };
 
   nix.settings.experimental-features = [ "nix-command" ];
 
@@ -162,9 +174,9 @@
   nixpkgs.config.allowUnfree = true;
 
   users.defaultUserShell = pkgs.nushell;
-  # fonts.packages = with pkgs; [
-  #   nerdfonts # bilo bi bolje da su samo iskljcuvo oni koji se koriste
-  # ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono # bilo bi bolje da su samo iskljcuvo oni koji se koriste
+  ];
 
   networking.hostName = "centaur"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -184,26 +196,15 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     nushell
     xfce.thunar
     picom
-    nerdfonts
+    nerd-fonts.jetbrains-mono
     pueue
-    ollama-cuda
-    heroic
+    # ollama-cuda
+    logseq
+    kdePackages.ghostwriter
   ];
-
-  programs.vim = {
-    defaultEditor = true;
-    #     config = ''
-    #       set number relativenumber
-    #       set tabstop=2
-    #       set expandtab
-    #       set shiftwidth=2
-    #     '';
-  };
-  #environment.variables.EDITOR = "vim";
 
   # programs.mtr.enable = true;
   programs.gnupg.agent = {

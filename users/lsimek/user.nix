@@ -6,9 +6,9 @@
   ...
 }:
 {
-  imports =
-    [
-    ];
+  imports = [
+    ./stylix
+  ];
 
   users.users.lsimek = {
     isNormalUser = true;
@@ -49,5 +49,6 @@
     };
     wantedBy = [ "multi-user.target" ];
   };
+
 
 }
