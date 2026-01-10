@@ -27,7 +27,7 @@
 
   # Nextcloud-client autologin
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.carjin.enableGnomeKeyring = true;
+  security.pam.services.lsimek.enableGnomeKeyring = true;
 
   systemd.services.ssh-agent-lsimek = {
     enable = true;
@@ -49,6 +49,5 @@
     };
     wantedBy = [ "multi-user.target" ];
   };
-
 
 }

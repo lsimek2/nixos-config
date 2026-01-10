@@ -3,8 +3,8 @@
     enable = true;
     settings = {
       user = {
-        email = "karlo.puselj@gmail.com";
-        name = "Lunitur";
+        email = "tinjano@proton.me";
+        name = "lsimek";
       };
       receive.denyCurrentBranch = "warn";
       pull.rebase = true;

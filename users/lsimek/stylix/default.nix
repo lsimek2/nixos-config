@@ -13,7 +13,7 @@
   stylix = {
     enable = true;
     polarity = "dark";
-    # base16Scheme = import ./scheme.nix;
+    base16Scheme = import ./scheme.nix;
 
     cursor = {
       name = "DMZ-Black";
@@ -49,6 +49,7 @@
     opacity = {
       applications = 1.0;
       terminal = lib.mkDefault 0.9;
+      helix = 1.0;
       desktop = 1.0;
       popups = 0.6;
     };

@@ -43,6 +43,7 @@ let
         mathtools
         autonum
         # bm
+        subfiles
         url # dvisvgm
         # dvipng # for preview and export as html
         # wrapfig
@@ -63,4 +64,9 @@ in
     texlab
     texmaker
   ];
+
+  programs.nushell.shellAliases = {
+    latex-compile = "latexmk -pdf";
+    latex-clear = "rm -f *.aux *.log *.out *.toc *.blg *.bbl *.synctex.gz *.fls *.fdb_latexmk *.bcf";
+  };
 }

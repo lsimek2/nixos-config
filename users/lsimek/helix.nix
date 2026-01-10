@@ -103,18 +103,18 @@
       ];
     };
     settings = {
-      theme = lib.mkForce "tokyonight";
+      # theme = lib.mkForce "tokyonight";
       editor.lsp = {
         display-inlay-hints = true;
       };
       editor.soft-wrap.enable = true;
     };
-    themes = {
-      autumn_night_transparent = {
-        "inherits" = "autumn_night";
-        "ui.background" = { };
-      };
-    };
+    # themes = {
+    #   autumn_night_transparent = {
+    #     "inherits" = "autumn_night";
+    #     "ui.background" = { };
+    #   };
+    # };
   };
 
 }

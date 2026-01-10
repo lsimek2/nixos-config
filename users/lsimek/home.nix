@@ -27,7 +27,7 @@
     ./rofi.nix
     ./kitty.nix
     ./fonts.nix
-    # ./latex.nix
+    ./latex.nix
     ./packages.nix
     # ./hyprland
     ./waybar
@@ -74,6 +74,7 @@
       light = "Papirus-Light";
     };
     targets = {
+      helix.enable = true;
       waybar.enable = false;
       hyprland.enable = false;
       hyprlock.enable = false;
