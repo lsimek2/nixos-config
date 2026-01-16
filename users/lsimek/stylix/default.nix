@@ -49,7 +49,6 @@
     opacity = {
       applications = 1.0;
       terminal = lib.mkDefault 0.9;
-      helix = 1.0;
       desktop = 1.0;
       popups = 0.6;
     };
