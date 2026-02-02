@@ -222,6 +222,7 @@
   };
 
   services.openssh.enable = true;
+  hardware.bluetooth.enable = true;
 
   networking.firewall.enable = false;
 
