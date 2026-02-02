@@ -42,6 +42,8 @@ let
         placeins
         mathtools
         autonum
+        biber
+        latexmk
         # bm
         subfiles
         url # dvisvgm
