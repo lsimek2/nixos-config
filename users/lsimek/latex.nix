@@ -46,6 +46,11 @@ let
         latexmk
         # bm
         subfiles
+        background
+        fancyhdr
+        titlesec
+        everypage
+        # nicefrac
         url # dvisvgm
         # dvipng # for preview and export as html
         # wrapfig

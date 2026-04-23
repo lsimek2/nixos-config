@@ -62,6 +62,9 @@ in
     tex
   ];
 
+  networking.firewall.allowedTCPPorts = [ 8889 ];
+  networking.firewall.allowedUDPPorts = [ 8889 ];
+
   # services.jupyter.password = "argon2:$argon2id$v=19$m=10240,t=10,p=8$FkU3S77MRxrAIcTepYvK0Q$s93Kyu/+TdjOnlb+zApKFiz6wemdrsAneNwl7VR8O6U";
 
   services.jupyter.password = "argon2:$argon2id$v=19$m=10240,t=10,p=8$xo/dReoYyWqAueQIENHlEg$GvuZAqpUPcltQsSMz/4viVr1CNxUol6WhUk5Ht+O2es";
