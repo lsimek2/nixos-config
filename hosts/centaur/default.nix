@@ -207,6 +207,7 @@
     xfce.thunar
     picom
     nerd-fonts.jetbrains-mono
+    jetbrains.pycharm-community
     pueue
     # ollama-cuda
     logseq
