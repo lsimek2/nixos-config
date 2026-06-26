@@ -12,22 +12,20 @@
 
     umu.url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
 
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
     # nixpkgs-stable.url = "path:/home/carjin/nixpkgs";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     stylix = {
-      url = "github:danth/stylix/release-25.11";
+      url = "github:danth/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-
-    simple-nixos-mailserver.url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-25.11";
 
     niri = {
       url = "github:sodiboo/niri-flake";
@@ -42,7 +40,6 @@
       nixpkgs-stable,
       nixos-hardware,
       home-manager-stable,
-      simple-nixos-mailserver,
       stylix,
       niri,
       ...

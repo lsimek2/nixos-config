@@ -60,13 +60,5 @@ in
       kdePackages.kdenlive
       yt-dlp
       bemoji
-      (rstudioWrapper.override {
-        packages = with rPackages; [
-          ggplot2
-          dplyr
-          xts
-          tidyverse
-        ];
-      })
     ]);
 }

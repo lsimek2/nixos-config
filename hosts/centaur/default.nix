@@ -96,7 +96,6 @@
       "qwen3-coder-next"
       "qwen3.5:27b"
     ];
-    acceleration = "cuda";
   };
 
   boot.supportedFilesystems = [ "ntfs" ];
@@ -207,10 +206,10 @@
     xfce.thunar
     picom
     nerd-fonts.jetbrains-mono
-    jetbrains.pycharm-community
     pueue
+    jetbrains.pycharm-oss
     # ollama-cuda
-    logseq
+    # logseq
     kdePackages.ghostwriter
   ];
 
