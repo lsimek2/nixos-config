@@ -9,4 +9,6 @@
   mfcl3770cdw = pkgs.callPackage ./mfcl3770cdw { };
 
   hashcards = pkgs.callPackage ./hashcards { };
+
+  logseq-nightly = pkgs.callPackage ./logseq-nightly { };
 }

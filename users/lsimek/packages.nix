@@ -7,6 +7,7 @@ in
   home.packages =
     (with local-pkgs; [
       hashcards
+      logseq-nightly
     ])
     ++ (with pkgs-unstable; [
       tlrc
