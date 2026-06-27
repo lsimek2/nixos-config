@@ -71,7 +71,7 @@ in
       pueue
       fastfetch
       unar
-      nixfmt-rfc-style
+      nixfmt
       nh
       bash
       xarchiver

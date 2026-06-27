@@ -203,7 +203,7 @@
 
   environment.systemPackages = with pkgs; [
     nushell
-    xfce.thunar
+    thunar
     picom
     nerd-fonts.jetbrains-mono
     pueue

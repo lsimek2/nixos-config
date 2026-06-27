@@ -37,7 +37,7 @@ in
       clj-kondo
       babashka
       leiningen
-      xfce.xfce4-taskmanager
+      xfce4-taskmanager
       telegram-desktop
       vesktop
       signal-desktop

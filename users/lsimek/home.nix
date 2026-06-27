@@ -67,7 +67,7 @@
   dconf.enable = true;
 
   stylix = {
-    iconTheme = {
+    icons = {
       enable = true;
       # package = lib.mkForce pkgs.papirus-icon-theme;
       dark = "Papirus-Dark";
