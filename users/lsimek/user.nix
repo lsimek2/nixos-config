@@ -29,25 +29,4 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.lsimek.enableGnomeKeyring = true;
 
-  systemd.services.ssh-agent-lsimek = {
-    enable = false;
-    description = "SSH Agent for lsimek";
-    serviceConfig = {
-      ExecStart = pkgs.writeScript "ssh-agent-lsimek.nu" ''
-        #!${pkgs.nushell}/bin/nu
-        let ssh_agent_env = ${pkgs.sudo}/bin/sudo --user=lsimek ${pkgs.openssh}/bin/ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -r | into record
-        load-env $ssh_agent_env
-        ${pkgs.openssh}/bin/ssh-add /etc/private/key
-        $ssh_agent_env | save -f ( $nu.temp-path | path join "ssh-agent-lsimek.nuon" )
-
-        while (ps | where pid == ($env.SSH_AGENT_PID | into int) | length) > 0 {
-          sleep 1min
-        }
-      '';
-
-      Restart = "always";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-
 }

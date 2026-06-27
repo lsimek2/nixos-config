@@ -69,10 +69,6 @@
             ${import ./completers.nix}
             ${import ./startup.nix}
 
-            const init_path = $"($nu.home-path)/.init.nu"
-            touch $init_path
-            source $init_path
-
             # fastfetch --packages-disabled nix
       '';
       shellAliases = {
