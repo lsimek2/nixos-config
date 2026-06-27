@@ -30,7 +30,7 @@
   security.pam.services.lsimek.enableGnomeKeyring = true;
 
   systemd.services.ssh-agent-lsimek = {
-    enable = true;
+    enable = false;
     description = "SSH Agent for lsimek";
     serviceConfig = {
       ExecStart = pkgs.writeScript "ssh-agent-lsimek.nu" ''

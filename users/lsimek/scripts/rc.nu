@@ -74,22 +74,6 @@ def nx [...packages: string] {
     nix shell ...$pkgs
 }
 
-# Enter into a nix shell that contains programs needed for developing JavaScript
-alias jsh = nx ...([
-    nodejs
-    deno
-    bun
-    yarn
-    pnpm
-    tailwindcss-language-server
-    svelte-language-server
-    astro-language-server
-    vue-language-server
-    vscode-langservers-extracted
-    vtsls
-    markdownlint-cli2
-])
-
 # Enter into a nix shell that contains programs needed for developing Vala
 alias vsh = nx ...([
     vala-language-server

@@ -14,9 +14,10 @@ in
       ani-cli
       protonup-ng
       gemini-cli
-      heroic
+      # heroic
     ])
     ++ (with pkgs; [
+      lutris
       prismlauncher
       ytfzf
       pandoc
@@ -47,7 +48,7 @@ in
       nextcloud-client
       oterm
       peazip
-      lutris
+      claude-code
       deluge-gtk
       osu-lazer-bin
       dconf
